@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,11 +13,59 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WisdomRouterKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBJ-GR-hTJ">
+                                <rect key="frame" x="20" y="50" width="335" height="35"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="GzR-nQ-Jca"/>
+                                </constraints>
+                                <state key="normal" title="push，无传参数"/>
+                                <connections>
+                                    <action selector="clickPushNoDateBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C9E-Yp-qrz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6iB-8N-XAR">
+                                <rect key="frame" x="20" y="100" width="335" height="35"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="Xm8-B2-3Zg"/>
+                                </constraints>
+                                <state key="normal" title="push，参数：String"/>
+                                <connections>
+                                    <action selector="clickPushHasDateBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yRc-Iz-AvK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kt7-oN-xR0">
+                                <rect key="frame" x="20" y="150" width="335" height="35"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="fDG-3e-c2T"/>
+                                </constraints>
+                                <state key="normal" title="push，参数：TestModel对象"/>
+                                <connections>
+                                    <action selector="clickPushHasDateModelBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ruH-K3-usH"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="kt7-oN-xR0" firstAttribute="leading" secondItem="6iB-8N-XAR" secondAttribute="leading" id="1d6-1A-VmJ"/>
+                            <constraint firstItem="6iB-8N-XAR" firstAttribute="leading" secondItem="cBJ-GR-hTJ" secondAttribute="leading" id="3pU-LC-mLs"/>
+                            <constraint firstItem="kt7-oN-xR0" firstAttribute="height" secondItem="6iB-8N-XAR" secondAttribute="height" id="5de-vU-akZ"/>
+                            <constraint firstItem="cBJ-GR-hTJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="G4p-ag-QCi"/>
+                            <constraint firstItem="6iB-8N-XAR" firstAttribute="width" secondItem="cBJ-GR-hTJ" secondAttribute="width" id="Pys-9T-GkG"/>
+                            <constraint firstItem="cBJ-GR-hTJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="XSD-lS-Ub3"/>
+                            <constraint firstItem="6iB-8N-XAR" firstAttribute="trailing" secondItem="cBJ-GR-hTJ" secondAttribute="trailing" id="aAX-sI-us6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cBJ-GR-hTJ" secondAttribute="trailing" constant="20" id="dpA-VC-img"/>
+                            <constraint firstItem="kt7-oN-xR0" firstAttribute="trailing" secondItem="6iB-8N-XAR" secondAttribute="trailing" id="h3h-gY-IXb"/>
+                            <constraint firstItem="6iB-8N-XAR" firstAttribute="top" secondItem="cBJ-GR-hTJ" secondAttribute="bottom" constant="15" id="nkc-lf-UfP"/>
+                            <constraint firstItem="kt7-oN-xR0" firstAttribute="top" secondItem="6iB-8N-XAR" secondAttribute="bottom" constant="15" id="z3A-yU-tmP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>

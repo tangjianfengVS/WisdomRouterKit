@@ -12,6 +12,14 @@
 		A54D8339223A4A0C0076BF10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A54D8337223A4A0C0076BF10 /* Main.storyboard */; };
 		A54D833B223A4A0C0076BF10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A54D833A223A4A0C0076BF10 /* Assets.xcassets */; };
 		A54D833E223A4A0C0076BF10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A54D833C223A4A0C0076BF10 /* LaunchScreen.storyboard */; };
+		A54D8347223A4B090076BF10 /* WisdomRouterKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8346223A4B090076BF10 /* WisdomRouterKit.swift */; };
+		A54D835E223A4E200076BF10 /* WisdomRouterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D835D223A4E200076BF10 /* WisdomRouterModel.swift */; };
+		A54D8360223A571D0076BF10 /* SecundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D835F223A571D0076BF10 /* SecundViewController.swift */; };
+		A54D8362223A76AD0076BF10 /* WisdomRouterParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8361223A76AD0076BF10 /* WisdomRouterParam.swift */; };
+		A54D8365223B72F30076BF10 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8364223B72F30076BF10 /* TestModel.swift */; };
+		A54D8367223B7DF00076BF10 /* SecundTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8366223B7DF00076BF10 /* SecundTestModel.swift */; };
+		A54D8369223B9C7F0076BF10 /* WisdomRouterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8368223B9C7F0076BF10 /* WisdomRouterManager.swift */; };
+		A5F65A33223BE1C100413D49 /* WisdomRouterRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F65A32223BE1C100413D49 /* WisdomRouterRegister.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +30,14 @@
 		A54D833A223A4A0C0076BF10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A54D833D223A4A0C0076BF10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A54D833F223A4A0C0076BF10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A54D8346223A4B090076BF10 /* WisdomRouterKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterKit.swift; sourceTree = "<group>"; };
+		A54D835D223A4E200076BF10 /* WisdomRouterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterModel.swift; sourceTree = "<group>"; };
+		A54D835F223A571D0076BF10 /* SecundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecundViewController.swift; sourceTree = "<group>"; };
+		A54D8361223A76AD0076BF10 /* WisdomRouterParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterParam.swift; sourceTree = "<group>"; };
+		A54D8364223B72F30076BF10 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
+		A54D8366223B7DF00076BF10 /* SecundTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecundTestModel.swift; sourceTree = "<group>"; };
+		A54D8368223B9C7F0076BF10 /* WisdomRouterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterManager.swift; sourceTree = "<group>"; };
+		A5F65A32223BE1C100413D49 /* WisdomRouterRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterRegister.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +70,30 @@
 		A54D8332223A4A0B0076BF10 /* WisdomRouterKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				A54D8345223A4ADF0076BF10 /* WisdomRouterKit */,
 				A54D8333223A4A0B0076BF10 /* AppDelegate.swift */,
 				A54D8335223A4A0B0076BF10 /* ViewController.swift */,
+				A54D835F223A571D0076BF10 /* SecundViewController.swift */,
+				A54D8364223B72F30076BF10 /* TestModel.swift */,
+				A54D8366223B7DF00076BF10 /* SecundTestModel.swift */,
 				A54D8337223A4A0C0076BF10 /* Main.storyboard */,
 				A54D833A223A4A0C0076BF10 /* Assets.xcassets */,
 				A54D833C223A4A0C0076BF10 /* LaunchScreen.storyboard */,
 				A54D833F223A4A0C0076BF10 /* Info.plist */,
 			);
 			path = WisdomRouterKitDemo;
+			sourceTree = "<group>";
+		};
+		A54D8345223A4ADF0076BF10 /* WisdomRouterKit */ = {
+			isa = PBXGroup;
+			children = (
+				A54D8346223A4B090076BF10 /* WisdomRouterKit.swift */,
+				A54D8368223B9C7F0076BF10 /* WisdomRouterManager.swift */,
+				A54D8361223A76AD0076BF10 /* WisdomRouterParam.swift */,
+				A54D835D223A4E200076BF10 /* WisdomRouterModel.swift */,
+				A5F65A32223BE1C100413D49 /* WisdomRouterRegister.swift */,
+			);
+			path = WisdomRouterKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +167,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A54D8369223B9C7F0076BF10 /* WisdomRouterManager.swift in Sources */,
+				A54D8347223A4B090076BF10 /* WisdomRouterKit.swift in Sources */,
+				A54D8362223A76AD0076BF10 /* WisdomRouterParam.swift in Sources */,
 				A54D8336223A4A0B0076BF10 /* ViewController.swift in Sources */,
+				A5F65A33223BE1C100413D49 /* WisdomRouterRegister.swift in Sources */,
+				A54D8367223B7DF00076BF10 /* SecundTestModel.swift in Sources */,
+				A54D8365223B72F30076BF10 /* TestModel.swift in Sources */,
 				A54D8334223A4A0B0076BF10 /* AppDelegate.swift in Sources */,
+				A54D835E223A4E200076BF10 /* WisdomRouterModel.swift in Sources */,
+				A54D8360223A571D0076BF10 /* SecundViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
