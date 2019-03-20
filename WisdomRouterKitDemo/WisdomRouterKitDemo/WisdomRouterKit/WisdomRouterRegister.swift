@@ -8,18 +8,17 @@
 
 import UIKit
 
-class WisdomRouterRegister: NSObject {
+struct WisdomRouterRegister {
     
     private(set) var modelClass: AnyClass?
-    private(set) var modeName: String=""
-    
+    private(set) var modelName: String=""
 
-    init(modeName: String, modelClass: AnyClass) {
-        self.modeName = modeName
+    init(modelName: String, modelClass: AnyClass) {
+        self.modelName = modelName
         self.modelClass = modelClass
     }
     
-    func updateModelClass(modelClass: AnyClass) {
+    mutating func updateModelClass(modelClass: AnyClass) {
         self.modelClass = modelClass
     }
 }

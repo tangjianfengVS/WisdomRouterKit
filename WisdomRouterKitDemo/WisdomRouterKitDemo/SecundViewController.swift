@@ -8,28 +8,15 @@
 
 import UIKit
 
-@objcMembers class SecundViewController: UIViewController, WisdomRouterRegisterProtocol {
-    var name: String?
-    
-    var testModel: SecundTestModel?// = SecundTestModel()
+class SecundViewController: UIViewController, WisdomRouterRegisterProtocol {
     
     static func register() {
-        //WisdomRouterKit.register(classType: self)
-        WisdomRouterKit.register(vcClassType: self, modeName: "testModel", modelClassType: SecundTestModel.self)
+        WisdomRouterKit.register(vcClassType: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.gray
-        
-        let lab = UILabel()
-        view.addSubview(lab)
-        lab.frame = CGRect(x: 0, y: 0, width: 100, height: 500)
-        lab.center = view.center
-        
-        lab.textColor = UIColor.white
-        if testModel != nil{
-            lab.text = (testModel!.title ?? " ") + " + " + (testModel!.des ?? " ")
-        }
+        title = "无参数无回调"
+        view.backgroundColor = UIColor.white
     }
 }

@@ -9,10 +9,10 @@
 import UIKit
 
 class TestModel: WisdomRouterModel {
-    
     var name: String?
     var title: String?
     var des: String?
     var res: Bool = false
     var size: CGSize = .zero
+    var ages: NSInteger=0
 }

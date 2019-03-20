@@ -39,31 +39,75 @@ class NothingToSeeHere {
 
 
 class WisdomRouterKit: NSObject {
-    
-    /** 注册控制器 */
-    class func register(classType: UIViewController.Type){
-        WisdomRouterManager.shared.register(classType: classType)
-    }
-    
-    /**
-        1: 注册控制器
-        2: 注册继承 WisdomRouterModel 的模型对象属性,
+    /** 🌟注册控制器
+        1：classType:  UIViewController.Type
      */
-    class func register(vcClassType: UIViewController.Type, modeName: String, modelClassType: WisdomRouterModel.Type){
-        WisdomRouterManager.shared.register(vcClassType: vcClassType, modeName: modeName, modelClassType: modelClassType)
+    class func register(vcClassType: UIViewController.Type){
+        WisdomRouterManager.shared.register(classType: vcClassType)
     }
+    
+    /** 🌟注册控制器和属性,属性需要继承-> WisdomRouterModel
+        1：vcClassType:    UIViewController.Type
+        2：modelName:      属性名称
+        3：modelClassType: WisdomRouterModel.Type
+     */
+    class func register(vcClassType: UIViewController.Type, modelName: String, modelClassType: WisdomRouterModel.Type){
+        WisdomRouterManager.shared.register(vcClassType: vcClassType, modelName: modelName, modelClassType: modelClassType)
+    }
+    
+    /** 🌟注册控制器和Hander回调
+        1：vcClassType: UIViewController.Type
+        2：handerName:  闭包名称
+        3：hander:      (Any)->(UIViewController), 调用router时会调用
+     */
+    class func register(vcClassType: UIViewController.Type, handerName: String, hander: @escaping (Any)->(UIViewController)) {
+        WisdomRouterManager.shared.register(vcClassType: vcClassType, handerName: handerName, hander: hander)
+    }
+    
+    /** 🌟注册控制器，属性和Hander回调
+       1：vcClassType:    UIViewController.Type
+       2：modelName:      属性名称
+       3：modelClassType: WisdomRouterModel.Type
+       4：handerName:     闭包名称
+       5：hander:         (Any)->(UIViewController), 调用router时会调用
+     */
+    class func register(vcClassType: UIViewController.Type,
+                          modelName: String,
+                     modelClassType: WisdomRouterModel.Type,
+                         handerName: String,
+                             hander: @escaping (Any)->(UIViewController)) {
+        WisdomRouterManager.shared.register(vcClassType: vcClassType, modelName: modelName, modelClassType: modelClassType)
+        WisdomRouterManager.shared.register(vcClassType: vcClassType, handerName: handerName, hander: hander)
+    }
+    
     
     /** Router: 无参数，无回调 */
-    class func router(currentVC: UIViewController, targetVC: String) {
-        WisdomRouterManager.shared.router(currentVC: currentVC, targetVC: targetVC)
+    class func router(targetVC: String) -> UIViewController {
+        return WisdomRouterManager.shared.router(targetVC: targetVC)
     }
     
     /** Router: 有参数，无回调 */
-    class func router(currentVC: UIViewController, targetVC: String, param: WisdomRouterParam) {
-        WisdomRouterManager.shared.router(currentVC: currentVC, targetVC: targetVC, param: param)
+    class func router(targetVC: String, param: WisdomRouterParam) -> UIViewController {
+        return WisdomRouterManager.shared.router(targetVC: targetVC, param: param)
     }
     
-    /** 查询属性 */
+    /** Router: 无参数，有回调 */
+    class func router(targetVC: String, hander: WisdomRouterHander) -> UIViewController {
+        return WisdomRouterManager.shared.router(targetVC: targetVC, hander: hander)
+    }
+    
+    /** Router: 有参数，有回调 */
+    class func router(targetVC: String, param: WisdomRouterParam, hander: WisdomRouterHander) -> UIViewController {
+        return WisdomRouterManager.shared.router(targetVC: targetVC, param: param, hander: hander)
+    }
+    
+    
+    /** Router: 自定义参数，自定义回调 */
+//    class func router(currentVC: UIViewController, targetVC: String, paramClosure: ()->[WisdomRouterParam],
+//                                                                    handerClosure: ()->[WisdomRouterHander]) {
+//        WisdomRouterManager.shared.router(currentVC: currentVC, targetVC: targetVC, paramClosure: paramClosure, handerClosure: handerClosure)
+//    }
+    
     class func hasPropertyList(targetClass: AnyClass, targetParamKey: String) -> Bool {
         var count: UInt32 = 0
         let list = class_copyPropertyList(targetClass, &count)
@@ -81,7 +125,6 @@ class WisdomRouterKit: NSObject {
         return false
     }
 
-    /** 获取所以属性 */
     class func propertyList(targetClass: WisdomRouterModel.Type) -> [String] {
         var count: UInt32 = 0
         var nameLsit: [String] = []
