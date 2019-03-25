@@ -22,7 +22,9 @@ import UIKit
         )}.register(handerName: "closureThree") { (closureTwo, vc) in
             let VC = vc as! EightViewController
             VC.closureThree = (closureTwo as! ((String, NSInteger) -> (Bool))
-        )}
+                
+        )}.register(modelName: "testModel", modelClassType: SecundTestModel.self)
+            .register(modelName: "threeTestModel", modelClassType: ThreeTestModel.self)
     }
     
     /// 参数一
