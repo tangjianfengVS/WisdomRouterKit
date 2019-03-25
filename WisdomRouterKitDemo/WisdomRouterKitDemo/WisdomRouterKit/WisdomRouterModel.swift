@@ -9,11 +9,9 @@
 import UIKit
 
 @objcMembers class WisdomRouterModel: NSObject {
-
     required override init() {
         
     }
-    
     
     override func setValue(_ value: Any?, forUndefinedKey key: String) {
         
