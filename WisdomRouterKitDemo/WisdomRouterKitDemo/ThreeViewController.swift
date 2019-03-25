@@ -17,16 +17,15 @@ import UIKit
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "ModelList: testModelList"
+        title = "WisdomRouterKit"
         view.backgroundColor = UIColor.white
         view.addSubview(tabView)
     }
     
-    
     lazy var tabView : UITableView = {
         let view = UITableView(frame: self.view.frame, style: .plain)
         view.register(TestCell.classForCoder(), forCellReuseIdentifier: "TestCell")
-        view.rowHeight = 140
+        view.rowHeight = 160
         view.dataSource = self
         return view
     }()
@@ -46,12 +45,12 @@ extension ThreeViewController: UITableViewDataSource{
 }
 
 class TestCell: UITableViewCell {
-    let labe = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 140))
+    let labe = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 160))
     
     var model: ThreeTestModel? {
         didSet{
             labe.text = nil
-            var text: String = "ThreeTestModel:  \n"
+            var text: String = "ThreeTestModel属性如下:  \n"
             let propertyList = WisdomRouterManager.propertyList(targetClass: ThreeTestModel.self)
             for key in propertyList {
                 let res = model!.value(forKey: key)
@@ -64,8 +63,10 @@ class TestCell: UITableViewCell {
                     str = String(resStr)
                 }else if let resStr = res as? String{
                     str = resStr
+                }else if str.count == 0 {
+                    str = "nil"
                 }
-                text = text + key + ": " + str + "\n"
+                text = text + "\n" + key + ":  " + str
             }
             labe.text = text
         }

@@ -9,7 +9,9 @@
 import UIKit
 
 class WisdomRouterKit: NSObject {
-    /** 🌟注册控制器 classType:  UIViewController.Type */
+    /** 🌟注册控制器
+        classType:  UIViewController.Type
+     */
     @discardableResult
     class func register(vcClassType: UIViewController.Type) -> WisdomRouterResult{
         return WisdomRouterManager.shared.register(vcClassType: vcClassType)
@@ -18,7 +20,7 @@ class WisdomRouterKit: NSObject {
     /** 🌟注册控制器,并注册它的Model属性,属性需要继承 WisdomRouterModel
         1：vcClassType:    UIViewController.Type
         2：modelName:      模型属性名称
-        3：modelClassType: WisdomRouterModel.Type
+        3：modelClassType: 模型属性类型
      */
     @discardableResult
     class func register(vcClassType: UIViewController.Type, modelName: String, modelClassType: WisdomRouterModel.Type) -> WisdomRouterResult{
@@ -28,10 +30,10 @@ class WisdomRouterKit: NSObject {
     /** 🌟注册控制器,并注册它的Hander(回调)属性
        1：vcClassType: UIViewController.Type
        2：handerName:  闭包名称
-       3：hander:      (Any)->(UIViewController), 调用router时会调用
+       3：hander:      (Any)->(UIViewController)实现闭包, 调用router时会调用
      */
     @discardableResult
-    class func register(vcClassType: UIViewController.Type, handerName: String, hander: @escaping WisdomRouterClosure) -> WisdomRouterHanderResult{
+    class func register(vcClassType: UIViewController.Type, handerName: String, hander: @escaping WisdomRouterClosure) -> WisdomRouterResult{
         return WisdomRouterManager.shared.register(vcClassType: vcClassType, handerName: handerName, hander: hander)
     }
     
@@ -71,32 +73,3 @@ class WisdomRouterKit: NSObject {
     }
 }
 
-
-extension UIApplication {
-    override open var next: UIResponder? {
-        UIApplication.routerKitRunOnce
-        return super.next
-    }
-    
-    private static let routerKitRunOnce: Void = {
-        WisdomRouterKitToSeeHere.routerKitFunction()
-    }()
-}
-
-protocol WisdomRouterRegisterProtocol: class{
-    static func register()
-}
-
-class WisdomRouterKitToSeeHere {
-    static func routerKitFunction() {
-        let typeCount = Int(objc_getClassList(nil, 0))
-        let types = UnsafeMutablePointer<AnyClass>.allocate(capacity: typeCount)
-        let autoreleasingTypes = AutoreleasingUnsafeMutablePointer<AnyClass>(types)
-        objc_getClassList(autoreleasingTypes, Int32(typeCount))
-        
-        for index in 0 ..< typeCount {
-            (types[index] as? WisdomRouterRegisterProtocol.Type)?.register()
-        }
-        types.deallocate()
-    }
-}

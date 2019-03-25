@@ -20,15 +20,15 @@ import UIKit
     }()
     
     static func register() {
-        WisdomRouterKit.register(vcClassType: self, handerName: "closure") { (hander: Any, vc: UIViewController?) -> (UIViewController) in
-            let VC = FourViewController()
+        WisdomRouterKit.register(vcClassType: self, handerName: "closure") { (hander: Any, vc: UIViewController) in
+            let VC = vc as! FourViewController
             VC.closure = (hander as! ((String) -> Void))
-            return VC
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "WisdomRouterKit"
         view.backgroundColor = UIColor.white
         view.addSubview(handerBtn)
         handerBtn.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
@@ -37,7 +37,7 @@ import UIKit
     
     @objc private func clickHander() {
         if closure != nil {
-            closure!("我是回调\n数据")
+            closure!("closure \n闭包被调用了!")
         }
     }
 }

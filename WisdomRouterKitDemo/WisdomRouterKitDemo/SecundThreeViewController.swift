@@ -22,15 +22,16 @@ import UIKit
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Model: testModel"
+        title = "WisdomRouterKit"
         view.backgroundColor = UIColor.white
         let lab = UILabel()
         view.addSubview(lab)
-        lab.frame = CGRect(x: 0, y: 0, width: 300, height: 500)
+        lab.frame = CGRect(x: 0, y: 0, width: 200, height: 300)
         lab.center = view.center
         lab.textAlignment = .center
         lab.numberOfLines = 0
-        var text: String = "testModel:  \n"
+        lab.backgroundColor = UIColor(white: 0.5, alpha: 0.7)
+        var text: String = "WisdomRouterKit\nFunc:\ntestModel属性如下：\n"
         
         let propertyList = WisdomRouterManager.propertyList(targetClass: SecundTestModel.self)
         for key in propertyList {
@@ -39,13 +40,15 @@ import UIKit
             if let resStr = res as? CGSize{
                 str = String.init(format:"%.2f,%.2f",resStr.width,resStr.height)
             }else if let resStr = res as? Bool{
-                str = resStr ? "True":"Fales"
+                str = resStr ? "true":"fales"
             }else if let resStr = res as? NSInteger{
                 str = String(resStr)
             }else if let resStr = res as? String{
                 str = resStr
+            }else if res == nil{
+                str = "nil"
             }
-            text = text + key + ": " + str + "\n"
+            text = text + "\n" + key + ": " + str 
         }
         lab.text = text
     }

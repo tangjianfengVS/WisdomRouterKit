@@ -10,14 +10,10 @@ import UIKit
 
 @objcMembers class FiveViewController: UIViewController, WisdomRouterRegisterProtocol {
     static func register() {
-//        WisdomRouterKit.register(vcClassType: self,
-//                                   modelName: "testModel",
-//                              modelClassType: SecundTestModel.self,
-//                                  handerName: "hander") {(hander: Any, vc: UIViewController?) -> UIViewController in
-//            let VC = FiveViewController()
-//            VC.hander = (hander as! ((String,NSInteger) -> Bool))
-//            return VC
-//        }
+        WisdomRouterKit.register(vcClassType: self, modelName: "testModel", modelClassType: SecundTestModel.self).register(handerName: "hander") { (hander, vc) in
+            let VC = vc as! FiveViewController
+            VC.hander = (hander as! (String,NSInteger)->(Bool))
+        }
     }
     
     var testModel: SecundTestModel = SecundTestModel()
@@ -34,7 +30,7 @@ import UIKit
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "属性加Hander"
+        title = "WisdomRouterKit"
         view.backgroundColor = UIColor.white
         view.addSubview(handerBtn)
         handerBtn.frame = CGRect(x: 100, y: UIScreen.main.bounds.height - 200,
@@ -42,11 +38,12 @@ import UIKit
         
         let lab = UILabel()
         view.addSubview(lab)
-        lab.frame = CGRect(x: 0, y: 0, width: 300, height: 200)
+        lab.frame = CGRect(x: 0, y: 0, width: 200, height: 300)
         lab.center = view.center
         lab.textAlignment = .center
         lab.numberOfLines = 0
-        var text: String = "testModel:  \n"
+        lab.backgroundColor = UIColor(white: 0.5, alpha: 0.7)
+        var text: String = "WisdomRouterKit\nFunc:\ntestModel属性如下：\n"
         
         let propertyList = WisdomRouterManager.propertyList(targetClass: SecundTestModel.self)
         for key in propertyList {
@@ -55,21 +52,22 @@ import UIKit
             if let resStr = res as? CGSize{
                 str = String.init(format:"%.2f,%.2f",resStr.width,resStr.height)
             }else if let resStr = res as? Bool{
-                str = resStr ? "True":"Fales"
+                str = resStr ? "true":"fales"
             }else if let resStr = res as? NSInteger{
                 str = String(resStr)
             }else if let resStr = res as? String{
                 str = resStr
+            }else if res == nil{
+                str = "nil"
             }
-            text = text + key + ": " + str + "\n"
+            text = text + "\n" + key + ": " + str
         }
         lab.text = text
     }
     
     @objc private func clickHander() {
         if hander != nil {
-            let res = hander!("我是回调\n数据",70)
-            print(res)
+            let _ = hander!("我是回调\n数据",70)
         }
     }
 }

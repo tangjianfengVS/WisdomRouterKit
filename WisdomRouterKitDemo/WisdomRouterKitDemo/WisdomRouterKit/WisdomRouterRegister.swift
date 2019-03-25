@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias WisdomRouterClosure = (Any, UIViewController?) -> (UIViewController)
+typealias WisdomRouterClosure = (Any,UIViewController) -> ()
 
 struct WisdomRouterRegisterModel {
     private(set) var modelClass: AnyClass?

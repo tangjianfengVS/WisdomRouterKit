@@ -8,6 +8,35 @@
 
 import UIKit
 
+extension UIApplication {
+    override open var next: UIResponder? {
+        UIApplication.routerKitRunOnce
+        return super.next
+    }
+    
+    private static let routerKitRunOnce: Void = {
+        WisdomRouterKitToSeeHere.routerKitFunction()
+    }()
+}
+
+protocol WisdomRouterRegisterProtocol: class{
+    static func register()
+}
+
+class WisdomRouterKitToSeeHere {
+    static func routerKitFunction() {
+        let typeCount = Int(objc_getClassList(nil, 0))
+        let types = UnsafeMutablePointer<AnyClass>.allocate(capacity: typeCount)
+        let autoreleasingTypes = AutoreleasingUnsafeMutablePointer<AnyClass>(types)
+        objc_getClassList(autoreleasingTypes, Int32(typeCount))
+        
+        for index in 0 ..< typeCount {
+            (types[index] as? WisdomRouterRegisterProtocol.Type)?.register()
+        }
+        types.deallocate()
+    }
+}
+
 class WisdomRouterManager: NSObject {
     static let shared = WisdomRouterManager()
     
@@ -32,6 +61,7 @@ class WisdomRouterManager: NSObject {
         return WisdomRouterResult(vcClassType: vcClassType, info: info)
     }
     
+    /** 注册模型 */
     func register(vcClassType: UIViewController.Type, modelName: String, modelClassType: WisdomRouterModel.Type) -> WisdomRouterResult {
         let cls = NSStringFromClass(vcClassType)
         let value = cls.components(separatedBy: Dot)
@@ -58,8 +88,9 @@ class WisdomRouterManager: NSObject {
         return WisdomRouterResult(vcClassType: vcClassType, info: info)
     }
 
+    /** 注册闭包 */
     @discardableResult
-    func register(vcClassType: UIViewController.Type, handerName: String, hander: @escaping WisdomRouterClosure) -> WisdomRouterHanderResult{
+    func register(vcClassType: UIViewController.Type, handerName: String, hander: @escaping WisdomRouterClosure) -> WisdomRouterResult{
         let cls = NSStringFromClass(vcClassType)
         let value = cls.components(separatedBy: Dot)
         if vcClassValue[value.last!] == nil {
@@ -70,13 +101,13 @@ class WisdomRouterManager: NSObject {
         if info.handerList.count > 0{
             for obj in info.handerList{
                 if obj.handerName == handerName {
-                    return WisdomRouterHanderResult(vcClassType: vcClassType, info: info)
+                    return WisdomRouterResult(vcClassType: vcClassType, info: info)
                 }
             }
         }
         info.add(hander: WisdomRouterRegisterHander(handerName: handerName, handerValue: hander))
         vcClassValue[value.last!] = info
-        return WisdomRouterHanderResult(vcClassType: vcClassType, info: info)
+        return WisdomRouterResult(vcClassType: vcClassType, info: info)
     }
 
     func router(targetVC: String) -> UIViewController{
@@ -91,6 +122,7 @@ class WisdomRouterManager: NSObject {
         return vcClassType.init()
     }
 
+    /** router 参数 */
     func router(targetVC: String, param: WisdomRouterParam) -> UIViewController {
         if vcClassValue[targetVC] == nil {
             WisdomRouterManager.showError(error: targetVC+"\n未注册\n请检查代码")
@@ -118,6 +150,7 @@ class WisdomRouterManager: NSObject {
         return target
     }
 
+    /** router 闭包 */
     func router(targetVC: String, hander: WisdomRouterHander) -> UIViewController {
         if vcClassValue[targetVC] == nil {
             WisdomRouterManager.showError(error: targetVC+"\n未注册\n请检查代码")
@@ -126,12 +159,11 @@ class WisdomRouterManager: NSObject {
         guard let vcClassType = vcClassValue[targetVC]!.vcClassType else {
             return UIViewController()
         }
-        var target = vcClassType.init()
+        let target = vcClassType.init()
         if WisdomRouterManager.hasPropertyList(targetClass: vcClassType, targetParamKey: hander.valueTargetKey){
-            let res = setHanderProperty(targetVC: target, target: targetVC, hander: hander)
-            target = res.0
-            if res.1.count > errorCount {
-                WisdomRouterManager.showError(error: res.1)
+            let error = setHanderProperty(targetVC: target, target: targetVC, hander: hander)
+            if error.count > errorCount {
+                WisdomRouterManager.showError(error: error)
             }
         }else{
             WisdomRouterManager.showError(error: hander.valueTargetKey+"\nHander查找失败\n请检查代码")
@@ -139,6 +171,7 @@ class WisdomRouterManager: NSObject {
         return target
     }
 
+    /** router 参数和闭包 */
     func router(targetVC: String, param: WisdomRouterParam, hander: WisdomRouterHander) -> UIViewController {
         if vcClassValue[targetVC] == nil {
             WisdomRouterManager.showError(error: targetVC+"\n未注册\n请检查代码")
@@ -148,11 +181,9 @@ class WisdomRouterManager: NSObject {
             return UIViewController()
         }
         var errorStr = ""
-        var target = vcClassType.init()
+        let target = vcClassType.init()
         if WisdomRouterManager.hasPropertyList(targetClass: vcClassType, targetParamKey: hander.valueTargetKey){
-            let res = setHanderProperty(targetVC: target, target: targetVC, hander: hander)
-            target = res.0
-            errorStr = res.1
+            errorStr = setHanderProperty(targetVC: target, target: targetVC, hander: hander)
         }else{
             errorStr = hander.valueTargetKey+"\nHander查找失败\n请检查代码\n"
         }
@@ -184,10 +215,13 @@ class WisdomRouterManager: NSObject {
         }
         var errorStr = ""
         let target = vcClassType.init()
-        
-        
-        
-        
+        for hander in handers {
+            if WisdomRouterManager.hasPropertyList(targetClass: vcClassType, targetParamKey: hander.valueTargetKey){
+                errorStr = setHanderProperty(targetVC: target, target: targetVC, hander: hander)
+            }else{
+                errorStr = hander.valueTargetKey+"\nHander查找失败\n请检查代码\n"
+            }
+        }
         
         for param in params {
             if WisdomRouterManager.hasPropertyList(targetClass: vcClassType, targetParamKey: param.valueTargetKey){
@@ -210,16 +244,15 @@ class WisdomRouterManager: NSObject {
     }
 
     /// Hander属性赋值
-    private func setHanderProperty(targetVC: UIViewController, target: String,
-                                   hander: WisdomRouterHander) -> (UIViewController, String) {
+    private func setHanderProperty(targetVC: UIViewController, target: String,hander: WisdomRouterHander) -> (String) {
         let registerInfo = vcClassValue[target]!
         for handerInfo in registerInfo.handerList {
             if handerInfo.handerName == hander.valueTargetKey {
-                let VC = handerInfo.handerValue(hander.value!,targetVC)
-                return (VC, "")
+                handerInfo.handerValue(hander.value!,targetVC)
+                return ("")
             }
         }
-        return (targetVC, hander.valueTargetKey+"\nHander未注册\n请检查代码\n")
+        return (hander.valueTargetKey+"\nHander未注册\n请检查代码\n")
     }
 
     /// model属性赋值

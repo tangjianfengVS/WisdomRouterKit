@@ -8,16 +8,27 @@
 
 import UIKit
 
-class SevenViewController: UIViewController,WisdomRouterRegisterProtocol {
+@objcMembers class SevenViewController: UIViewController,WisdomRouterRegisterProtocol {
     static func register() {
-        WisdomRouterKit.register(vcClassType: self)
+        WisdomRouterKit.register(vcClassType: self, handerName: "closureOne") { (closureOne, vc) in
+            let VC = vc as! SevenViewController
+            VC.closureOne = (closureOne as! ((String) ->())
+            
+        )}.register(handerName: "closureTwo") { (closureTwo, vc) in
+            let VC = vc as! SevenViewController
+            VC.closureTwo = (closureTwo as! ((String,CGSize) -> ())
+                
+        )}.register(handerName: "closureThree") { (closureTwo, vc) in
+            let VC = vc as! SevenViewController
+            VC.closureThree = (closureTwo as! ((String, NSInteger) -> (Bool))
+        )}
     }
     
-    var closureOne: ((String) -> Void)?
+    var closureOne: ((String) ->())?
     
-    var closureTwo: ((String,CGSize) -> Void)?
+    var closureTwo: ((String,CGSize) -> ())?
     
-    var closureThree: ((String,Bool) -> Void)?
+    var closureThree: ((String, NSInteger) -> (Bool))?
     
     var handerBtnOne: UIButton = {
         let btn = UIButton(frame: CGRect(x: 10, y: UIScreen.main.bounds.height - 270, width: UIScreen.main.bounds.width - 20, height: 35))
@@ -45,20 +56,28 @@ class SevenViewController: UIViewController,WisdomRouterRegisterProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "WisdomRouterKit"
+        view.backgroundColor = UIColor.white
         view.addSubview(handerBtnOne)
         view.addSubview(handerBtnTwo)
         view.addSubview(handerBtnThree)
     }
     
     @objc func clickHanderOne(){
-        
+        if closureOne != nil {
+            closureOne!("我是闭包closureOne\n我被调用了")
+        }
     }
 
     @objc func clickHanderTwo(){
-        
+        if closureTwo != nil {
+            closureTwo!("我是闭包closureTwo\n我被调用了",CGSize(width: 77, height: 77))
+        }
     }
     
     @objc func clickHanderThree(){
-        
+        if closureThree != nil {
+            let _ = closureThree!("我是闭包closureThree\n我被调用了",999)
+        }
     }
 }
