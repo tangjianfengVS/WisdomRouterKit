@@ -14,5 +14,6 @@ class SecundTestModel: WisdomRouterModel {
     var des: String?
     var res: Bool=false
     var size: CGSize = .zero
-    var ages: NSInteger=0
+    var ages: NSInteger=990
+    var hhhhhhhhhh: String?
 }

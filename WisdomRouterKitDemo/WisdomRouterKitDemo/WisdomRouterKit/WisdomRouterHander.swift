@@ -19,17 +19,3 @@ class WisdomRouterHander: NSObject {
         return obj
     }
 }
-
-struct WisdomRouterHanderType {
-    private(set) var handerValue: ((Any)->(UIViewController))?
-    private(set) var handerName: String=""
-    
-    init(handerName:String, handerValue: @escaping (Any)->(UIViewController)) {
-        self.handerName = handerName
-        self.handerValue = handerValue
-    }
-    
-    mutating func updateHanderValue(handerValue: @escaping (Any)->(UIViewController)){
-        self.handerValue = handerValue
-    }
-}

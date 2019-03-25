@@ -8,17 +8,19 @@
 
 import UIKit
 
-class FiveViewController: UIViewController, WisdomRouterRegisterProtocol {
+@objcMembers class FiveViewController: UIViewController, WisdomRouterRegisterProtocol {
     static func register() {
-        WisdomRouterKit.register(vcClassType: self, modelName: "testModel", modelClassType: SecundTestModel.self,
-                                  handerName: "hander") { (hander: Any) -> UIViewController in
-            let VC = FiveViewController()
-            VC.hander = (hander as! ((String,NSInteger) -> Bool))
-            return VC
-        }
+//        WisdomRouterKit.register(vcClassType: self,
+//                                   modelName: "testModel",
+//                              modelClassType: SecundTestModel.self,
+//                                  handerName: "hander") {(hander: Any, vc: UIViewController?) -> UIViewController in
+//            let VC = FiveViewController()
+//            VC.hander = (hander as! ((String,NSInteger) -> Bool))
+//            return VC
+//        }
     }
     
-    var testModel: SecundTestModel?
+    var testModel: SecundTestModel = SecundTestModel()
     
     var hander: ((String,NSInteger)->(Bool))?
     
@@ -32,10 +34,11 @@ class FiveViewController: UIViewController, WisdomRouterRegisterProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "属性加Hander"
         view.backgroundColor = UIColor.white
         view.addSubview(handerBtn)
-        handerBtn.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
-        handerBtn.center = view.center
+        handerBtn.frame = CGRect(x: 100, y: UIScreen.main.bounds.height - 200,
+                                 width: UIScreen.main.bounds.width - 200, height: 40)
         
         let lab = UILabel()
         view.addSubview(lab)
@@ -45,11 +48,17 @@ class FiveViewController: UIViewController, WisdomRouterRegisterProtocol {
         lab.numberOfLines = 0
         var text: String = "testModel:  \n"
         
-        let propertyList = WisdomRouterKit.propertyList(targetClass: SecundTestModel.self)
+        let propertyList = WisdomRouterManager.propertyList(targetClass: SecundTestModel.self)
         for key in propertyList {
-            let res = testModel?.value(forKey: key)
+            let res = testModel.value(forKey: key)
             var str = ""
-            if let resStr = res as? String{
+            if let resStr = res as? CGSize{
+                str = String.init(format:"%.2f,%.2f",resStr.width,resStr.height)
+            }else if let resStr = res as? Bool{
+                str = resStr ? "True":"Fales"
+            }else if let resStr = res as? NSInteger{
+                str = String(resStr)
+            }else if let resStr = res as? String{
                 str = resStr
             }
             text = text + key + ": " + str + "\n"

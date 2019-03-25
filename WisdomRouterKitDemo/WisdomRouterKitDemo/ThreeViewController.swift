@@ -52,11 +52,17 @@ class TestCell: UITableViewCell {
         didSet{
             labe.text = nil
             var text: String = "ThreeTestModel:  \n"
-            let propertyList = WisdomRouterKit.propertyList(targetClass: ThreeTestModel.self)
+            let propertyList = WisdomRouterManager.propertyList(targetClass: ThreeTestModel.self)
             for key in propertyList {
-                let res = model?.value(forKey: key)
+                let res = model!.value(forKey: key)
                 var str = ""
-                if let resStr = res as? String{
+                if let resStr = res as? CGSize{
+                    str = String.init(format:"%.2f,%.2f",resStr.width,resStr.height)
+                }else if let resStr = res as? Bool{
+                    str = resStr ? "true":"fales"
+                }else if let resStr = res as? NSInteger{
+                    str = String(resStr)
+                }else if let resStr = res as? String{
                     str = resStr
                 }
                 text = text + key + ": " + str + "\n"

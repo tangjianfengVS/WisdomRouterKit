@@ -1,0 +1,50 @@
+//
+//  WisdomRouterResult.swift
+//  WisdomRouterKitDemo
+//
+//  Created by jianfeng on 2019/3/22.
+//  Copyright © 2019年 All over the sky star. All rights reserved.
+//
+
+import UIKit
+
+class WisdomRouterResult: NSObject {
+    let vcClassTypes: UIViewController.Type!
+    let infos: WisdomRouterRegisterInfo!
+    
+    init(vcClassType: UIViewController.Type, info: WisdomRouterRegisterInfo) {
+        vcClassTypes = vcClassType
+        infos = info
+        super.init()
+    }
+    
+    /** 追加注册模型 */
+    @discardableResult
+    func register(modelName: String, modelClassType: WisdomRouterModel.Type) -> WisdomRouterResult{
+        return WisdomRouterManager.shared.register(vcClassType: vcClassTypes, modelName: modelName, modelClassType: modelClassType)
+    }
+    
+    /** 追加注册Hander */
+    @discardableResult
+    func register(handerName: String, hander: @escaping WisdomRouterClosure) -> WisdomRouterHanderResult{
+        return WisdomRouterManager.shared.register(vcClassType: vcClassTypes, handerName: handerName, hander: hander)
+    }
+}
+
+class WisdomRouterHanderResult: NSObject {
+    let vcClassTypes: UIViewController.Type!
+    let infos: WisdomRouterRegisterInfo!
+    
+    init(vcClassType: UIViewController.Type, info: WisdomRouterRegisterInfo) {
+        vcClassTypes = vcClassType
+        infos = info
+        super.init()
+    }
+    
+    /** 追加注册模型 */
+    @discardableResult
+    func register(modelName: String, modelClassType: WisdomRouterModel.Type) -> WisdomRouterHanderResult{
+        let info = WisdomRouterManager.shared.register(vcClassType: vcClassTypes, modelName: modelName, modelClassType: modelClassType)
+        return WisdomRouterHanderResult(vcClassType: info.vcClassTypes, info: info.infos)
+    }
+}

@@ -13,7 +13,7 @@ import UIKit
         WisdomRouterKit.register(vcClassType: self)
     }
     
-    var name: String?
+    var name99: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,6 @@ import UIKit
         lab.frame = CGRect(x: 0, y: 0, width: 300, height: 50)
         lab.center = view.center
         lab.textAlignment = .center
-        lab.text = "name:  " + (name ?? " ")
+        lab.text = "name:  " + (name99 ?? " ")
     }
 }

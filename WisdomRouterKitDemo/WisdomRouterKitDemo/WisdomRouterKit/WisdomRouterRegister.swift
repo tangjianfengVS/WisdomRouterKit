@@ -8,8 +8,9 @@
 
 import UIKit
 
-struct WisdomRouterRegister {
-    
+typealias WisdomRouterClosure = (Any, UIViewController?) -> (UIViewController)
+
+struct WisdomRouterRegisterModel {
     private(set) var modelClass: AnyClass?
     private(set) var modelName: String=""
 
@@ -20,5 +21,37 @@ struct WisdomRouterRegister {
     
     mutating func updateModelClass(modelClass: AnyClass) {
         self.modelClass = modelClass
+    }
+}
+
+struct WisdomRouterRegisterHander{
+    private(set) var handerValue: WisdomRouterClosure!
+    private(set) var handerName: String!
+    
+    init(handerName:String, handerValue: @escaping WisdomRouterClosure) {
+        self.handerName = handerName
+        self.handerValue = handerValue
+    }
+    
+    mutating func updateHanderValue(handerValue: @escaping WisdomRouterClosure){
+        self.handerValue = handerValue
+    }
+}
+
+struct WisdomRouterRegisterInfo {
+    private(set) var vcClassType: UIViewController.Type!
+    private(set) var modelList: [WisdomRouterRegisterModel]=[]
+    private(set) var handerList: [WisdomRouterRegisterHander]=[]
+
+    init(vcClassType: UIViewController.Type) {
+        self.vcClassType = vcClassType
+    }
+    
+    mutating func add(model: WisdomRouterRegisterModel) {
+        self.modelList.append(model)
+    }
+    
+    mutating func add(hander: WisdomRouterRegisterHander) {
+        self.handerList.append(hander)
     }
 }

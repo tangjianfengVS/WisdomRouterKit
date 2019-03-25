@@ -20,7 +20,7 @@ import UIKit
     }()
     
     static func register() {
-        WisdomRouterKit.register(vcClassType: self, handerName: "closure") { (hander: Any) -> (UIViewController) in
+        WisdomRouterKit.register(vcClassType: self, handerName: "closure") { (hander: Any, vc: UIViewController?) -> (UIViewController) in
             let VC = FourViewController()
             VC.closure = (hander as! ((String) -> Void))
             return VC

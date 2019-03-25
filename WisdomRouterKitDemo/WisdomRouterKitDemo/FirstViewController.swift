@@ -9,7 +9,6 @@
 import UIKit
 
 class FirstViewController: UIViewController {
-
     var testModel: TestModel = TestModel()
     
     var testModelList: [TestModel] = []
@@ -20,13 +19,16 @@ class FirstViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
     }
     
+    /// 无参数，无闭包
     @IBAction func clickPushNoDateBtn(_ sender: UIButton) {
         let VC = WisdomRouterKit.router(targetVC: "SecundViewController")
         navigationController?.pushViewController(VC, animated: true)
     }
     
+    /// 有参数，无闭包
     @IBAction func clickPushHasDateBtn(_ sender: UIButton) {
-        let VC = WisdomRouterKit.router(targetVC: "SecundTwoViewController", param: WisdomRouterParam.creat(param: "WisdomRouterKit", key: "name"))
+        let VC = WisdomRouterKit.router(targetVC: "SecundTwoViewController",
+                                           param: WisdomRouterParam.creat(key: "name99", param: "我是参数name99"))
         navigationController?.pushViewController(VC, animated: true)
     }
     
@@ -35,28 +37,29 @@ class FirstViewController: UIViewController {
         testModel.title = "文字"
         testModel.des = "描述"
         testModel.res = true
-        testModel.size = CGSize(width: 100, height: 100)
+        testModel.size = CGSize(width: 33, height: 33)
         testModel.ages = 30
-        let VC = WisdomRouterKit.router(targetVC: "SecundThreeViewController", param: WisdomRouterParam.creat(param: testModel, key: "testModel"))
+        let VC = WisdomRouterKit.router(targetVC: "SecundThreeViewController",
+                                           param: WisdomRouterParam.creat(key: "testModel",param: testModel))
         navigationController?.pushViewController(VC, animated: true)
     }
     
     @IBAction func clickPushHasDateModelListBtn(_ sender: UIButton) {
         for i in 0...500 {
             let model = TestModel()
-            model.name = "名字-Three-" + String(i)
-            model.title = "文字-Three-" + String(i)
-            model.des = "描述-Three-" + String(i)
+            model.name = "名字-" + String(i)
+            model.title = "文字-" + String(i)
+            model.des = "描述-" + String(i)
             model.res = true
-            model.size = CGSize(width: 333, height: 333)
+            model.size = CGSize(width: i, height: i)
             testModelList.append(model)
         }
-        let VC = WisdomRouterKit.router(targetVC: "ThreeViewController", param: WisdomRouterParam.creat(param: testModelList, key: "testModelList"))
+        let VC = WisdomRouterKit.router(targetVC: "ThreeViewController",
+                                           param: WisdomRouterParam.creat(key: "testModelList", param: testModelList))
         navigationController?.pushViewController(VC, animated: true)
     }
     
     @IBAction func clickPushWaitHanderBtn(_ sender: UIButton) {
-        
         let hander = WisdomRouterHander.creat(key: "closure", hander: {(name: String) in
              let label = UILabel(frame: CGRect(x: 0, y: 100, width: 100, height: 100))
              label.layer.cornerRadius = 8
@@ -76,7 +79,6 @@ class FirstViewController: UIViewController {
         navigationController?.pushViewController(VC, animated: true)
     }
     
-    
     @IBAction func clickPushModelAndeWaitHanderBtn(_ sender: UIButton) {
         testModel.name = "名字"
         testModel.title = "文字"
@@ -85,23 +87,103 @@ class FirstViewController: UIViewController {
         testModel.size = CGSize(width: 100, height: 100)
         testModel.ages = 30
         
-        let param = WisdomRouterParam.creat(param: testModel, key: "testModel")
-        let hander = WisdomRouterHander.creat(key: "closure", hander: {(name: String) in
-            let label = UILabel(frame: CGRect(x: 0, y: 100, width: 100, height: 100))
+        let param = WisdomRouterParam.creat(key: "testModel",param: testModel)
+        let hander = WisdomRouterHander.creat(key: "hander", hander: {(name: String, count: NSInteger) -> (Bool) in
+            let label = UILabel(frame: CGRect(x: 0, y: 100, width: 125, height: 130))
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
-            label.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
+            label.backgroundColor = UIColor(white: 0.5, alpha: 0.9)
             label.textAlignment = .center
             label.numberOfLines = 0
             label.center = UIApplication.shared.keyWindow!.center
-            label.text = name
+            label.text = name+"\n"+"和\n" + String(count) + "\n返回值是:true"
+            UIApplication.shared.keyWindow?.addSubview(label)
+
+            DispatchQueue.main.asyncAfter(deadline: .now()+2.5, execute:{
+                label.removeFromSuperview()
+            })
+            return true
+        })
+        let VC = WisdomRouterKit.router(targetVC: "FiveViewController", param: param, hander: hander)
+        navigationController?.pushViewController(VC, animated: true)
+    }
+    
+    ///-----------------功能进阶------------------------
+    @IBAction func clickPushMuchModelBtn(_ sender: UIButton) {
+        testModel.name = "名字"
+        testModel.title = "文字"
+        testModel.des = "描述"
+        testModel.res = true
+        testModel.size = CGSize(width: 33, height: 33)
+        testModel.ages = 30
+        
+        let param1 = WisdomRouterParam.creat(key: "name99", param: "我是参数一：name99")
+        let param2 = WisdomRouterParam.creat(key: "testModel", param: testModel)
+        testModel.name = "名字---"
+        testModel.title = "文字--"
+        testModel.des = "描述---"
+        testModel.res = true
+        testModel.size = CGSize(width: 777, height: 777)
+        testModel.ages = 777
+        let param3 = WisdomRouterParam.creat(key: "threeTestModel", param: testModel)
+        
+        let VC = WisdomRouterKit.router(targetVC: "SixViewController", params: [param1,param2,param3])
+        navigationController?.pushViewController(VC, animated: true)
+    }
+    
+    @IBAction func clickPushMuchHanderBtn(_ sender: UIButton) {
+        let hander1 = WisdomRouterHander.creat(key: "hander", hander: {(name: String, count: NSInteger) -> (Bool) in
+            let label = UILabel(frame: CGRect(x: 0, y: 100, width: 125, height: 130))
+            label.layer.cornerRadius = 8
+            label.layer.masksToBounds = true
+            label.backgroundColor = UIColor(white: 0.5, alpha: 0.9)
+            label.textAlignment = .center
+            label.numberOfLines = 0
+            label.center = UIApplication.shared.keyWindow!.center
+            label.text = name+"\n"+"和\n" + String(count) + "\n返回值是:true"
             UIApplication.shared.keyWindow?.addSubview(label)
             
             DispatchQueue.main.asyncAfter(deadline: .now()+2.5, execute:{
                 label.removeFromSuperview()
             })
+            return true
         })
-        let VC = WisdomRouterKit.router(targetVC: "FiveViewController", param: param, hander: hander)
+        
+        let hander2 = WisdomRouterHander.creat(key: "hander", hander: {(name: String, count: NSInteger) -> (Bool) in
+            let label = UILabel(frame: CGRect(x: 0, y: 100, width: 125, height: 130))
+            label.layer.cornerRadius = 8
+            label.layer.masksToBounds = true
+            label.backgroundColor = UIColor(white: 0.5, alpha: 0.9)
+            label.textAlignment = .center
+            label.numberOfLines = 0
+            label.center = UIApplication.shared.keyWindow!.center
+            label.text = name+"\n"+"和\n" + String(count) + "\n返回值是:true"
+            UIApplication.shared.keyWindow?.addSubview(label)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now()+2.5, execute:{
+                label.removeFromSuperview()
+            })
+            return true
+        })
+        
+        let hander3 = WisdomRouterHander.creat(key: "hander", hander: {(name: String, count: NSInteger) -> (Bool) in
+            let label = UILabel(frame: CGRect(x: 0, y: 100, width: 125, height: 130))
+            label.layer.cornerRadius = 8
+            label.layer.masksToBounds = true
+            label.backgroundColor = UIColor(white: 0.5, alpha: 0.9)
+            label.textAlignment = .center
+            label.numberOfLines = 0
+            label.center = UIApplication.shared.keyWindow!.center
+            label.text = name+"\n"+"和\n" + String(count) + "\n返回值是:true"
+            UIApplication.shared.keyWindow?.addSubview(label)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now()+2.5, execute:{
+                label.removeFromSuperview()
+            })
+            return true
+        })
+        
+        let VC = WisdomRouterKit.router(targetVC: "SevenViewController", params: [], handers: [hander1,hander2,hander3])
         navigationController?.pushViewController(VC, animated: true)
     }
 }
