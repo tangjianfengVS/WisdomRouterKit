@@ -55,9 +55,9 @@ class WisdomRouterParam: NSObject {
     }
     
     /** Param: [String:Any] */
-    class func creat(key: String, param: [String: Any]) -> WisdomRouterParam{
-        return WisdomRouterParam.creatAny(param: param, key: key)
-    }
+    //class func creat(key: String, param: [String: Any]) -> WisdomRouterParam{
+    //    return WisdomRouterParam.creatAny(param: param, key: key)
+    //}
     
     /** Param: String */
     class func creat(key: String, param: String) -> WisdomRouterParam{

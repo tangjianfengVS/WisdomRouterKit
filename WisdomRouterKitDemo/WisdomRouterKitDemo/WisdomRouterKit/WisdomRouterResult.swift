@@ -30,21 +30,3 @@ class WisdomRouterResult: NSObject {
         return WisdomRouterManager.shared.register(vcClassType: vcClassTypes, handerName: handerName, hander: hander)
     }
 }
-
-//class WisdomRouterHanderResult: NSObject {
-//    let vcClassTypes: UIViewController.Type!
-//    let infos: WisdomRouterRegisterInfo!
-//
-//    init(vcClassType: UIViewController.Type, info: WisdomRouterRegisterInfo) {
-//        vcClassTypes = vcClassType
-//        infos = info
-//        super.init()
-//    }
-//
-//    /** 追加注册模型 */
-//    @discardableResult
-//    func register(modelName: String, modelClassType: WisdomRouterModel.Type) -> WisdomRouterHanderResult{
-//        let info = WisdomRouterManager.shared.register(vcClassType: vcClassTypes, modelName: modelName, modelClassType: modelClassType)
-//        return WisdomRouterHanderResult(vcClassType: info.vcClassTypes, info: info.infos)
-//    }
-//}

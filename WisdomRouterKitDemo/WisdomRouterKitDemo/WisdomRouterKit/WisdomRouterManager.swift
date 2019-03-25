@@ -110,6 +110,7 @@ class WisdomRouterManager: NSObject {
         return WisdomRouterResult(vcClassType: vcClassType, info: info)
     }
 
+    /** router 基础 */
     func router(targetVC: String) -> UIViewController{
         if vcClassValue[targetVC] == nil {
             WisdomRouterManager.showError(error: targetVC+"\n未注册\n请检查代码")
@@ -205,6 +206,7 @@ class WisdomRouterManager: NSObject {
         return target
     }
 
+    /** router 参数集合和闭包集合 */
     func router(targetVC: String, params: [WisdomRouterParam], handers: [WisdomRouterHander]) -> UIViewController {
         if vcClassValue[targetVC] == nil {
             WisdomRouterManager.showError(error: targetVC+"\n未注册\n请检查代码")
