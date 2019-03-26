@@ -8,16 +8,16 @@
 
 import UIKit
 
-@objcMembers class WisdomRouterModel: NSObject {
+@objcMembers public class WisdomRouterModel: NSObject {
     required override init() {
         
     }
     
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+    override public func setValue(_ value: Any?, forUndefinedKey key: String) {
         
     }
     
-    override func setValue(_ value: Any?, forKey key: String) {
+    override public func setValue(_ value: Any?, forKey key: String) {
         if value != nil {
             super.setValue(value, forKey: key)
         }

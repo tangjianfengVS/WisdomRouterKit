@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WisdomRouterKit: NSObject {
+public class WisdomRouterKit: NSObject {
     /** 🌟注册控制器
         classType:  UIViewController.Type
      */

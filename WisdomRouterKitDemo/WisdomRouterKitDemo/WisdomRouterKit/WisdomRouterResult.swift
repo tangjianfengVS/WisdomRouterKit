@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WisdomRouterResult: NSObject {
+public class WisdomRouterResult: NSObject {
     let vcClassTypes: UIViewController.Type!
     let infos: WisdomRouterRegisterInfo!
     

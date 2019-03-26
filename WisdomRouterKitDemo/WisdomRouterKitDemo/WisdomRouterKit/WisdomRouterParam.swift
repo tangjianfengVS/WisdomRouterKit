@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WisdomRouterParam: NSObject {
+public class WisdomRouterParam: NSObject {
     private(set) var valueClass: AnyClass = NSObject.self
     private(set) var value: Any?
     private(set) var valueTargetKey: String=""
