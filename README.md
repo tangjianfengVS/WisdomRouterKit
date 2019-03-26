@@ -12,3 +12,15 @@ WisdomRouterKit SDK是纯swift代码编写，保证了SDK高效性能，支持�
 OC项目的小伙伴们也不要愁，WisdomRouterKit SDK完成支持OC项目调用,尽管pod集成就是了。
 
 
+English introduction：
+A powerful iOS router SDK.
+
+For componentization calls between modules, WisdomRouterKit can help you to a page attribute parameter and callback Block assignment, and support the big property parameters of quantitative and quantitative correction Block assignment, without any reference between each module, also need not define relationships between public agreement file for each module, really completely decouple, truly indomitable spirit.
+
+No matter the future function of the project or the rapid expansion and superposition of business code, there is no need for personnel maintenance and no maintenance cost.
+
+The advantage of API is that it is easy to call, flexible to use, and simple append registration call is realized. It only takes a few lines of registration code to expand the following Router function.
+
+WisdomRouterKit SDK is a pure swift code compilation, which ensures the efficient performance of SDK, supports exception fetching in the process of attribute assignment, and helps develop rapid location problems.
+
+For those of you who are working on OC projects, the WisdomRouterKit SDK has been developed to support support for OC project calls, even though pod integration is the way to go.
