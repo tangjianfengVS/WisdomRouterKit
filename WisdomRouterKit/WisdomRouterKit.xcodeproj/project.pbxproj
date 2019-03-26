@@ -34,7 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A54D8330223A4A0B0076BF10 /* WisdomRouterKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WisdomRouterKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A54D8330223A4A0B0076BF10 /* WisdomRouterKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WisdomRouterKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A54D8333223A4A0B0076BF10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A54D833A223A4A0C0076BF10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A54D833D223A4A0C0076BF10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 		A54D8327223A4A0B0076BF10 = {
 			isa = PBXGroup;
 			children = (
-				A54D8332223A4A0B0076BF10 /* WisdomRouterKitDemo */,
+				A54D8332223A4A0B0076BF10 /* WisdomRouterKit */,
 				A54D8331223A4A0B0076BF10 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,12 +84,12 @@
 		A54D8331223A4A0B0076BF10 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A54D8330223A4A0B0076BF10 /* WisdomRouterKitDemo.app */,
+				A54D8330223A4A0B0076BF10 /* WisdomRouterKit.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A54D8332223A4A0B0076BF10 /* WisdomRouterKitDemo */ = {
+		A54D8332223A4A0B0076BF10 /* WisdomRouterKit */ = {
 			isa = PBXGroup;
 			children = (
 				A54D8345223A4ADF0076BF10 /* WisdomRouterKit */,
@@ -112,7 +112,7 @@
 				A54D833C223A4A0C0076BF10 /* LaunchScreen.storyboard */,
 				A54D833F223A4A0C0076BF10 /* Info.plist */,
 			);
-			path = WisdomRouterKitDemo;
+			path = WisdomRouterKit;
 			sourceTree = "<group>";
 		};
 		A54D8345223A4ADF0076BF10 /* WisdomRouterKit */ = {
@@ -132,9 +132,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A54D832F223A4A0B0076BF10 /* WisdomRouterKitDemo */ = {
+		A54D832F223A4A0B0076BF10 /* WisdomRouterKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A54D8342223A4A0C0076BF10 /* Build configuration list for PBXNativeTarget "WisdomRouterKitDemo" */;
+			buildConfigurationList = A54D8342223A4A0C0076BF10 /* Build configuration list for PBXNativeTarget "WisdomRouterKit" */;
 			buildPhases = (
 				A54D832C223A4A0B0076BF10 /* Sources */,
 				A54D832D223A4A0B0076BF10 /* Frameworks */,
@@ -144,9 +144,9 @@
 			);
 			dependencies = (
 			);
-			name = WisdomRouterKitDemo;
+			name = WisdomRouterKit;
 			productName = WisdomRouterKitDemo;
-			productReference = A54D8330223A4A0B0076BF10 /* WisdomRouterKitDemo.app */;
+			productReference = A54D8330223A4A0B0076BF10 /* WisdomRouterKit.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -164,7 +164,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A54D832B223A4A0B0076BF10 /* Build configuration list for PBXProject "WisdomRouterKitDemo" */;
+			buildConfigurationList = A54D832B223A4A0B0076BF10 /* Build configuration list for PBXProject "WisdomRouterKit" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -177,7 +177,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A54D832F223A4A0B0076BF10 /* WisdomRouterKitDemo */,
+				A54D832F223A4A0B0076BF10 /* WisdomRouterKit */,
 			);
 		};
 /* End PBXProject section */
@@ -359,7 +359,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WisdomRouterKitDemo/Info.plist;
+				INFOPLIST_FILE = WisdomRouterKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -377,7 +377,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WisdomRouterKitDemo/Info.plist;
+				INFOPLIST_FILE = WisdomRouterKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -393,7 +393,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A54D832B223A4A0B0076BF10 /* Build configuration list for PBXProject "WisdomRouterKitDemo" */ = {
+		A54D832B223A4A0B0076BF10 /* Build configuration list for PBXProject "WisdomRouterKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A54D8340223A4A0C0076BF10 /* Debug */,
@@ -402,7 +402,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A54D8342223A4A0C0076BF10 /* Build configuration list for PBXNativeTarget "WisdomRouterKitDemo" */ = {
+		A54D8342223A4A0C0076BF10 /* Build configuration list for PBXNativeTarget "WisdomRouterKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A54D8343223A4A0C0076BF10 /* Debug */,
