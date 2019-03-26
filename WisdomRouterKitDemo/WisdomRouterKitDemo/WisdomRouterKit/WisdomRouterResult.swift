@@ -20,13 +20,13 @@ public class WisdomRouterResult: NSObject {
     
     /** 追加注册模型 */
     @discardableResult
-    func register(modelName: String, modelClassType: WisdomRouterModel.Type) -> WisdomRouterResult{
+    @objc public func register(modelName: String, modelClassType: WisdomRouterModel.Type) -> WisdomRouterResult{
         return WisdomRouterManager.shared.register(vcClassType: vcClassTypes, modelName: modelName, modelClassType: modelClassType)
     }
     
     /** 追加注册Hander */
     @discardableResult
-    func register(handerName: String, hander: @escaping WisdomRouterClosure) -> WisdomRouterResult{
+    @objc public func register(handerName: String, hander: @escaping WisdomRouterClosure) -> WisdomRouterResult{
         return WisdomRouterManager.shared.register(vcClassType: vcClassTypes, handerName: handerName, hander: hander)
     }
 }

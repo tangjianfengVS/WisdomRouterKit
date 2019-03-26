@@ -15,14 +15,14 @@ public class WisdomRouterParam: NSObject {
     private(set) var keyValue: [[String:Any]] = []
     
     /** Param: ModelList */
-    class func creat(key: String, param: [WisdomRouterModel]) -> WisdomRouterParam{
+    @objc public class func creat(key: String, modelList: [WisdomRouterModel]) -> WisdomRouterParam{
         let obj = WisdomRouterParam()
-        obj.value = param
+        obj.value = modelList
         obj.valueTargetKey = key
         obj.valueClass = WisdomRouterModelList.self
-        let propertyList = WisdomRouterManager.propertyList(targetClass: param.first!.classForCoder as! WisdomRouterModel.Type)
+        let propertyList = WisdomRouterManager.propertyList(targetClass: modelList.first!.classForCoder as! WisdomRouterModel.Type)
         
-        for ject in param {
+        for ject in modelList {
             var dict: [String:Any] = [:]
             for key in propertyList {
                 let value = ject.value(forKey: key)
@@ -36,16 +36,16 @@ public class WisdomRouterParam: NSObject {
     }
     
     /** Param: Model */
-    class func creat(key: String, param: WisdomRouterModel) -> WisdomRouterParam{
+    @objc public class func creat(key: String, model: WisdomRouterModel) -> WisdomRouterParam{
         let obj = WisdomRouterParam()
-        obj.value = param
+        obj.value = model
         obj.valueTargetKey = key
         obj.valueClass = WisdomRouterModel.self
-        let propertyList = WisdomRouterManager.propertyList(targetClass: param.classForCoder as! WisdomRouterModel.Type)
+        let propertyList = WisdomRouterManager.propertyList(targetClass: model.classForCoder as! WisdomRouterModel.Type)
         var dict: [String:Any] = [:]
         
         for key in propertyList {
-            let value = param.value(forKey: key)
+            let value = model.value(forKey: key)
             if value != nil{
                 dict[key] = value
             }
@@ -60,53 +60,53 @@ public class WisdomRouterParam: NSObject {
     //}
     
     /** Param: String */
-    class func creat(key: String, param: String) -> WisdomRouterParam{
-        return WisdomRouterParam.creatAny(param: param, key: key)
+    @objc public class func creat(key: String, string: String) -> WisdomRouterParam{
+        return WisdomRouterParam.creatAny(param: string, key: key)
     }
 
     /** Param: Double */
-    class func creat(key: String, param: Double) -> WisdomRouterParam{
-        return WisdomRouterParam.creatAny(param: param, key: key)
+    @objc public class func creat(key: String, double: Double) -> WisdomRouterParam{
+        return WisdomRouterParam.creatAny(param: double, key: key)
     }
 
     /** Param: NSInteger */
-    class func creat(key: String, param: NSInteger) -> WisdomRouterParam{
-        return WisdomRouterParam.creatAny(param: param, key: key)
+    @objc public class func creat(key: String, integer: NSInteger) -> WisdomRouterParam{
+        return WisdomRouterParam.creatAny(param: integer, key: key)
     }
 
     /** Param: Int */
-    class func creatInt(key: String, param: Int) -> WisdomRouterParam{
-        return WisdomRouterParam.creatAny(param: param, key: key)
+    @objc public class func creatInt(key: String, int: Int) -> WisdomRouterParam{
+        return WisdomRouterParam.creatAny(param: int, key: key)
     }
 
     /** Param: CGPoint */
-    class func creat(key: String, param: CGPoint) -> WisdomRouterParam{
-        return WisdomRouterParam.creatAny(param: param, key: key)
+    @objc public class func creat(key: String, point: CGPoint) -> WisdomRouterParam{
+        return WisdomRouterParam.creatAny(param: point, key: key)
     }
 
     /** Param: CGSize */
-    class func creat(key: String, param: CGSize) -> WisdomRouterParam{
-        return WisdomRouterParam.creatAny(param: param, key: key)
+    @objc public class func creat(key: String, size: CGSize) -> WisdomRouterParam{
+        return WisdomRouterParam.creatAny(param: size, key: key)
     }
 
     /** Param: CGFloat */
-    class func creat(key: String, param: CGFloat) -> WisdomRouterParam{
-        return WisdomRouterParam.creatAny(param: param, key: key)
+    @objc public class func creat(key: String, float: CGFloat) -> WisdomRouterParam{
+        return WisdomRouterParam.creatAny(param: float, key: key)
     }
 
     /** Param: CGRect */
-    class func creat(key: String, param: CGRect) -> WisdomRouterParam{
-        return WisdomRouterParam.creatAny(param: param, key: key)
+    @objc public class func creat(key: String, rect: CGRect) -> WisdomRouterParam{
+        return WisdomRouterParam.creatAny(param: rect, key: key)
     }
 
     /** Param: Data */
-    class func creat(key: String, param: Data) -> WisdomRouterParam{
-        return WisdomRouterParam.creatAny(param: param, key: key)
+    @objc public class func creat(key: String, data: Data) -> WisdomRouterParam{
+        return WisdomRouterParam.creatAny(param: data, key: key)
     }
     
     /** Param: URL */
-    class func creat(key: String, param: URL) -> WisdomRouterParam{
-        return WisdomRouterParam.creatAny(param: param, key: key)
+    @objc public class func creat(key: String, url: URL) -> WisdomRouterParam{
+        return WisdomRouterParam.creatAny(param: url, key: key)
     }
  
     private class func creatAny(param: Any, key: String) -> WisdomRouterParam {

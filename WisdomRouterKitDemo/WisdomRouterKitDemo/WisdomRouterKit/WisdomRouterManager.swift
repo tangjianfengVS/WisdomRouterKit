@@ -76,6 +76,10 @@ class WisdomRouterManager: NSObject {
         }
         
         var info = vcClassValue[value.last!]!
+        if modelName.count == 0 {
+            return WisdomRouterResult(vcClassType: vcClassType, info: info)
+        }
+        
         if info.modelList.count > 0{
             for obj in info.modelList{
                 if obj.modelName == modelName {
@@ -98,6 +102,10 @@ class WisdomRouterManager: NSObject {
         }
 
         var info = vcClassValue[value.last!]!
+        if handerName.count == 0 {
+            return WisdomRouterResult(vcClassType: vcClassType, info: info)
+        }
+        
         if info.handerList.count > 0{
             for obj in info.handerList{
                 if obj.handerName == handerName {
