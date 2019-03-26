@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "WisdomRouterKit"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "A powerful router SDK"
   s.description  = "A powerful router SDK.For handling calls between componentized modules, WisdomRouterKit can help you with property parameters between pages and call-back Block transfer assignments without having to refer to each submodule or define a common protocol file to associate each submodule.No maintenance cost is required, no matter how large the project's future functionality or business scale.API call convenience, flexible use, just a few lines of registration code to complete."
 
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
   s.source       = { :git => "https://github.com/tangjianfengVS/WisdomRouterKit.git", :tag => s.version }
-  s.source_files  = "WisdomRouterKitDemo/WisdomRouterKitDemo/WisdomRouterKit/*.swift"
+  s.source_files  = "WisdomRouterKit/WisdomRouterKit/WisdomRouterKit/*.swift"
 
   #s.resources = "WisdomScanKitDemo/WisdomScanKitDemo/WisdomScanKit/WisdomScanKit.bundle"
   #s.dependency ""
