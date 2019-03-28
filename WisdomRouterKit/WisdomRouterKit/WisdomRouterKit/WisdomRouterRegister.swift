@@ -55,3 +55,14 @@ struct WisdomRouterRegisterHander{
         self.handerValue = handerValue
     }
 }
+
+
+struct WisdomRouterRegisterProperty{
+    private(set) var nameType: String!
+    private(set) var name: String!
+    
+    init(name:String, nameType:String ) {
+        self.name = name
+        self.nameType = nameType
+    }
+}

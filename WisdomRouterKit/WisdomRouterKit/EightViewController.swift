@@ -97,7 +97,7 @@ import UIKit
         
         var propertyList = WisdomRouterManager.propertyList(targetClass: SecundTestModel.self)
         for key in propertyList {
-            let res = testModel.value(forKey: key)
+            let res = testModel.value(forKey: key.name)
             var str = ""
             if let resStr = res as? CGSize{
                 str = String.init(format:"%.2f,%.2f",resStr.width,resStr.height)
@@ -110,13 +110,13 @@ import UIKit
             }else if str.count == 0{
                 str = "nil"
             }
-            text = text + key + ": " + str + "\n"
+            text = text + key.name + ": " + str + "\n"
         }
         
         text = text + "\n参数三：\n"+"threeTestModel属性如下:  \n"
         propertyList = WisdomRouterManager.propertyList(targetClass: ThreeTestModel.self)
         for key in propertyList {
-            let res = threeTestModel.value(forKey: key)
+            let res = threeTestModel.value(forKey: key.name)
             var str = ""
             if let resStr = res as? CGSize{
                 str = String.init(format:"%.2f,%.2f",resStr.width,resStr.height)
@@ -129,7 +129,7 @@ import UIKit
             }else if str.count == 0{
                 str = "nil"
             }
-            text = text + key + ": " + str + "\n"
+            text = text + key.name + ": " + str + "\n"
         }
         lab.text = text
     }

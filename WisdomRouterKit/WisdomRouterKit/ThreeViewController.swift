@@ -53,7 +53,7 @@ class TestCell: UITableViewCell {
             var text: String = "ThreeTestModel属性如下:  \n"
             let propertyList = WisdomRouterManager.propertyList(targetClass: ThreeTestModel.self)
             for key in propertyList {
-                let res = model!.value(forKey: key)
+                let res = model!.value(forKey: key.name)
                 var str = ""
                 if let resStr = res as? CGSize{
                     str = String.init(format:"%.2f,%.2f",resStr.width,resStr.height)
@@ -66,7 +66,7 @@ class TestCell: UITableViewCell {
                 }else if str.count == 0 {
                     str = "nil"
                 }
-                text = text + "\n" + key + ":  " + str
+                text = text + "\n" + key.name + ":  " + str
             }
             labe.text = text
         }

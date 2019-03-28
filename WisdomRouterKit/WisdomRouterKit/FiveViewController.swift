@@ -47,7 +47,7 @@ import UIKit
         
         let propertyList = WisdomRouterManager.propertyList(targetClass: SecundTestModel.self)
         for key in propertyList {
-            let res = testModel.value(forKey: key)
+            let res = testModel.value(forKey: key.name)
             var str = ""
             if let resStr = res as? CGSize{
                 str = String.init(format:"%.2f,%.2f",resStr.width,resStr.height)
@@ -60,7 +60,7 @@ import UIKit
             }else if res == nil{
                 str = "nil"
             }
-            text = text + "\n" + key + ": " + str
+            text = text + "\n" + key.name + ": " + str
         }
         lab.text = text
     }
