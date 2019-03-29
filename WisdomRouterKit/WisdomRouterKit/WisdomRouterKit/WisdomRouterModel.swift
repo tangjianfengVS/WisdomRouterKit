@@ -12,16 +12,6 @@ import UIKit
     required override init() {
         
     }
-    
-    override public func setValue(_ value: Any?, forUndefinedKey key: String) {
-        
-    }
-    
-    override public func setValue(_ value: Any?, forKey key: String) {
-        if value != nil {
-            super.setValue(value, forKey: key)
-        }
-    }
 }
 
 class WisdomRouterModelList: NSObject {

@@ -45,6 +45,8 @@ let Equal = "="
 
 let errorCount: Int = 5
 
+let DateBaseKey = "Double,NSInteger,Int,CGFloat"
+
 let valueTypesMap: Dictionary<String, String> = [
     "c" : "Int8",
     "s" : "Int16",
