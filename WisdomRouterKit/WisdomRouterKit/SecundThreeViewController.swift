@@ -26,7 +26,7 @@ import UIKit
         view.backgroundColor = UIColor.white
         let lab = UILabel()
         view.addSubview(lab)
-        lab.frame = CGRect(x: 0, y: 0, width: 200, height: 300)
+        lab.frame = CGRect(x: 0, y: 0, width: 200, height: 400)
         lab.center = view.center
         lab.textAlignment = .center
         lab.numberOfLines = 0

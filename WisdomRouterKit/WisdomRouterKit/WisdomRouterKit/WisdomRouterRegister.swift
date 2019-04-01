@@ -60,9 +60,14 @@ struct WisdomRouterRegisterHander{
 struct WisdomRouterRegisterProperty{
     private(set) var nameType: String!
     private(set) var name: String!
+    private(set) var value: Any?
     
     init(name:String, nameType:String ) {
         self.name = name
         self.nameType = nameType
+    }
+    
+    mutating func updateValue(value: Any) {
+        self.value = value
     }
 }

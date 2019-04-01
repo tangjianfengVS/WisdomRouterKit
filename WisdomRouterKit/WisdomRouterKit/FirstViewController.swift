@@ -28,7 +28,7 @@ class FirstViewController: UIViewController {
     /// 有参数，无闭包
     @IBAction func clickPushHasDateBtn(_ sender: UIButton) {
         let VC = WisdomRouterKit.router(targetVC: "SecundViewController",
-                                           param: WisdomRouterParam.creat(key: "testSize", size: CGSize(width: 99, height: 99)))
+                                           param: WisdomRouterParam.creat(key: "testSize", double: 99.99))
         navigationController?.pushViewController(VC, animated: true)
     }
     

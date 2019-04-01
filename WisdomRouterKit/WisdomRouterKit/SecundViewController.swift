@@ -13,7 +13,7 @@ import UIKit
         WisdomRouterKit.register(vcClassType: self)
     }
     
-    var testSize: CGSize=CGSize.zero
+    var testSize: Double=0.0
     
     lazy var label: UILabel = {
         let lab = UILabel()
@@ -32,8 +32,8 @@ import UIKit
         view.backgroundColor = UIColor.white
         view.addSubview(label)
         
-        if testSize != CGSize.zero {
-            label.text = label.text! + "CGSzie: \n" + String.init(format:"%.2f,%.2f",testSize.width,testSize.height)
+        if testSize > 0 {
+            label.text = label.text! + "Double: \n" + String.init(format:"%.2f",testSize)
         }else{
             label.text = label.text! + "Router传参数失败"
             label.textColor = UIColor.red

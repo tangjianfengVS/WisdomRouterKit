@@ -12,7 +12,7 @@ public class WisdomRouterParam: NSObject {
     private(set) var valueClass: AnyClass = NSObject.self
     private(set) var value: Any!
     private(set) var valueTargetKey: String=""
-    private(set) var keyValue: [[String:Any]] = []
+    private(set) var keyValue: [[String: WisdomRouterRegisterProperty]] = []
     private(set) var typeValue: String=""
     
     /** Param: ModelList */
@@ -24,11 +24,14 @@ public class WisdomRouterParam: NSObject {
         let propertyList = WisdomRouterManager.propertyList(targetClass: modelList.first!.classForCoder as! WisdomRouterModel.Type)
         
         for ject in modelList {
-            var dict: [String:Any] = [:]
+            var dict: [String: WisdomRouterRegisterProperty] = [:]
+            
             for key in propertyList {
                 let value = ject.value(forKey: key.name)
                 if value != nil{
-                    dict[key.name] = value
+                    var property = WisdomRouterRegisterProperty(name: key.name, nameType: key.nameType)
+                    property.updateValue(value: value!)
+                    dict[key.name] = property
                 }
             }
             obj.keyValue.append(dict)
@@ -43,22 +46,26 @@ public class WisdomRouterParam: NSObject {
         obj.valueTargetKey = key
         obj.valueClass = WisdomRouterModel.self
         let propertyList = WisdomRouterManager.propertyList(targetClass: model.classForCoder as! WisdomRouterModel.Type)
-        var dict: [String:Any] = [:]
+        var dict: [String: WisdomRouterRegisterProperty] = [:]
         
         for key in propertyList {
             let value = model.value(forKey: key.name)
             if value != nil{
-                dict[key.name] = value
+                var property = WisdomRouterRegisterProperty(name: key.name, nameType: key.nameType)
+                property.updateValue(value: value!)
+                dict[key.name] = property
             }
         }
         obj.keyValue.append(dict)
         return obj
     }
     
-    /** Param: [String:Any] */
-    //class func creat(key: String, param: [String: Any]) -> WisdomRouterParam{
-    //    return WisdomRouterParam.creatAny(param: param, key: key)
-    //}
+    /** Param: Bool */
+    class func creat(key: String, bool: Bool) -> WisdomRouterParam{
+        let obj = WisdomRouterParam.creatAny(param: bool, key: key)
+        obj.typeValue = "Bool,BOOL"
+        return obj
+    }
     
     /** Param: String */
     @objc public class func creat(key: String, string: String) -> WisdomRouterParam{
@@ -70,28 +77,28 @@ public class WisdomRouterParam: NSObject {
     /** Param: Double */
     @objc public class func creat(key: String, double: Double) -> WisdomRouterParam{
         let obj = WisdomRouterParam.creatAny(param: double, key: key)
-        obj.typeValue = DateBaseKey//"Double"
+        obj.typeValue = DateBaseKey
         return obj
     }
 
     /** Param: NSInteger */
     @objc public class func creat(key: String, integer: NSInteger) -> WisdomRouterParam{
         let obj = WisdomRouterParam.creatAny(param: integer, key: key)
-        obj.typeValue = DateBaseKey//"NSInteger"
+        obj.typeValue = DateBaseKey
         return obj
     }
 
     /** Param: Int */
     @objc public class func creatInt(key: String, int: Int) -> WisdomRouterParam{
         let obj = WisdomRouterParam.creatAny(param: int, key: key)
-        obj.typeValue = DateBaseKey//"Int"
+        obj.typeValue = DateBaseKey
         return obj
     }
     
     /** Param: CGFloat */
     @objc public class func creat(key: String, cgFloat: CGFloat) -> WisdomRouterParam{
         let obj = WisdomRouterParam.creatAny(param: cgFloat, key: key)
-        obj.typeValue = DateBaseKey//"CGFloat"
+        obj.typeValue = DateBaseKey
         return obj
     }
 

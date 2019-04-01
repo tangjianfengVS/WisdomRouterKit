@@ -222,68 +222,6 @@ class WisdomRouterManager: NSObject {
         }
         return target
     }
-
-    /// Hander属性赋值
-    private func setHanderProperty(targetVC: UIViewController, target: String,hander: WisdomRouterHander) -> (String) {
-        let registerInfo = vcClassValue[target]!
-        for handerInfo in registerInfo.handerList {
-            if handerInfo.handerName == hander.valueTargetKey {
-                handerInfo.handerValue(hander.value!,targetVC)
-                return ("")
-            }
-        }
-        return (hander.valueTargetKey+"\nHander未注册\n请检查代码\n")
-    }
-
-    /// model属性赋值
-    private func setPropertyList(targetVC: String, param: WisdomRouterParam, target: UIViewController)->String{
-        let registerInfo = vcClassValue[targetVC]!
-        for modelInfo in registerInfo.modelList {
-            if modelInfo.modelName == param.valueTargetKey {
-                if let modelClass = modelInfo.modelClass! as? WisdomRouterModel.Type {
-                    let model = modelClass.init()
-                    let classStr = NSStringFromClass(model.classForCoder)
-                    let propertyList = modelPropertyList[classStr] ?? []
-                    
-                    for property in propertyList {
-                        let value = param.keyValue.first![property.name]
-                        model.setValue(value, forKey: property.name)
-                    }
-                    target.setValue(model, forKey: modelInfo.modelName)
-                    return ""
-                }
-            }
-        }
-        return param.valueTargetKey+"\n属性类未注册\n请检查代码\n"
-    }
-
-    /// modelList属性赋值
-    private func setListPropertyList(targetVC: String, param: WisdomRouterParam, target: UIViewController)->String{
-        let registerInfo = vcClassValue[targetVC]!
-        for modelInfo in registerInfo.modelList {
-            if modelInfo.modelName == param.valueTargetKey {
-                
-                if let modelClass = modelInfo.modelClass! as? WisdomRouterModel.Type {
-                    let classStr = NSStringFromClass(modelClass)
-                    let propertyList = modelPropertyList[classStr] ?? []
-                    var modelList: [WisdomRouterModel] = []
-                    
-                    for keyValue in param.keyValue {
-                        let model = modelClass.init()
-                        
-                        for property in propertyList {
-                            let value = keyValue[property.name]
-                            model.setValue(value, forKey: property.name)
-                        }
-                        modelList.append(model)
-                    }
-                    target.setValue(modelList, forKey: modelInfo.modelName)
-                    return ""
-                }
-            }
-        }
-        return param.valueTargetKey+"\n属性类未注册\n请检查代码\n"
-    }
     
     class func hasPropertyList(targetClass: AnyClass, targetParamKey: String) -> (Bool,String) {
         var count: UInt32 = 0
@@ -295,7 +233,6 @@ class WisdomRouterManager: NSObject {
             let name = String(utf8String: cName)
             if name == targetParamKey{
                 let type = WisdomRouterManager.getTypeOf(property: pty!)
-                print(name! + "= " + type)
                 free(list)
                 return (true, type)
             }
@@ -316,14 +253,16 @@ class WisdomRouterManager: NSObject {
             if name != nil {
                 /// date type
                 let type = WisdomRouterManager.getTypeOf(property: pty!)
-                print(name! + "= " + type)
                 nameLsit.append(WisdomRouterRegisterProperty(name: name!, nameType: type))
             }
         }
         free(list)
         return nameLsit
     }
-    
+}
+
+
+extension WisdomRouterManager {
     /// 类型确定
     private class func valueType(withAttributes attributes: String) -> String {
         if attributes.contains(Bracket) && attributes.contains(Equal){
@@ -339,7 +278,7 @@ class WisdomRouterManager: NSObject {
             return type
         }
     }
-        
+    
     /// 类型分类
     private class func getTypeOf(property: objc_property_t) -> String {
         let str = property_getAttributes(property)!
@@ -359,9 +298,95 @@ class WisdomRouterManager: NSObject {
         if param.typeValue.contains(tagerDateType) {
             tager.setValue(param.value, forKey: param.valueTargetKey)
         }else{
-            let error = "WisdomRouterKit⚠️:不能使用 '" + param.typeValue + "' 数据类型赋值-> '" + param.valueTargetKey + "'=" + tagerDateType + ",请修改数据类型⚠️"
+            let error = "WisdomRouterKit⚠️:不能使用'"+param.typeValue+"'数据类型赋值-> '"+param.valueTargetKey+"'="+tagerDateType+",请修改数据类型⚠️"
             print(error)
         }
+    }
+    
+    private func tager(model: WisdomRouterModel, param: WisdomRouterParam, tagerProperty: WisdomRouterRegisterProperty){
+        guard let value = param.keyValue.first![tagerProperty.name] else {
+            return
+        }
+        if value.nameType == tagerProperty.nameType {
+            model.setValue(value.value!, forKey: tagerProperty.name)
+        }else{
+            let error = "WisdomRouterKit⚠️:不能使用'"+value.nameType+"'数据类型赋值-> '"+tagerProperty.name+"'="+tagerProperty.nameType+",请修改数据类型⚠️"
+            print(error)
+        }
+    }
+    
+    private func tagerList(model: WisdomRouterModel, param: [String: WisdomRouterRegisterProperty],
+                                             tagerProperty: WisdomRouterRegisterProperty){
+        guard let value = param[tagerProperty.name] else {
+            return
+        }
+        if value.nameType == tagerProperty.nameType {
+            model.setValue(value.value!, forKey: tagerProperty.name)
+        }else{
+            let error = "WisdomRouterKit⚠️:不能使用'"+value.nameType+"'数据类型赋值-> '"+tagerProperty.name+"'="+tagerProperty.nameType+",请修改数据类型⚠️"
+            print(error)
+        }
+    }
+    
+    /// Hander属性赋值
+    private func setHanderProperty(targetVC: UIViewController, target: String,hander: WisdomRouterHander) -> (String) {
+        let registerInfo = vcClassValue[target]!
+        for handerInfo in registerInfo.handerList {
+            if handerInfo.handerName == hander.valueTargetKey {
+                handerInfo.handerValue(hander.value!,targetVC)
+                return ("")
+            }
+        }
+        return (hander.valueTargetKey+"\nHander未注册\n请检查代码\n")
+    }
+    
+    /// model属性赋值
+    private func setPropertyList(targetVC: String, param: WisdomRouterParam, target: UIViewController)->String{
+        let registerInfo = vcClassValue[targetVC]!
+        
+        for modelInfo in registerInfo.modelList {
+            if modelInfo.modelName == param.valueTargetKey {
+                if let modelClass = modelInfo.modelClass! as? WisdomRouterModel.Type {
+                    let model = modelClass.init()
+                    let classStr = NSStringFromClass(model.classForCoder)
+                    let propertyList = modelPropertyList[classStr] ?? []
+                    
+                    for property in propertyList {
+                        tager(model: model, param: param, tagerProperty: property)
+                    }
+                    target.setValue(model, forKey: modelInfo.modelName)
+                    return ""
+                }
+            }
+        }
+        return param.valueTargetKey+"\n属性类未注册\n请检查代码\n"
+    }
+    
+    /// modelList属性赋值
+    private func setListPropertyList(targetVC: String, param: WisdomRouterParam, target: UIViewController)->String{
+        let registerInfo = vcClassValue[targetVC]!
+        for modelInfo in registerInfo.modelList {
+            if modelInfo.modelName == param.valueTargetKey {
+                
+                if let modelClass = modelInfo.modelClass! as? WisdomRouterModel.Type {
+                    let classStr = NSStringFromClass(modelClass)
+                    let propertyList = modelPropertyList[classStr] ?? []
+                    var modelList: [WisdomRouterModel] = []
+                    
+                    for keyValue in param.keyValue {
+                        
+                        let model = modelClass.init()
+                        for property in propertyList {
+                            tagerList(model: model, param: keyValue, tagerProperty: property)
+                        }
+                        modelList.append(model)
+                    }
+                    target.setValue(modelList, forKey: modelInfo.modelName)
+                    return ""
+                }
+            }
+        }
+        return param.valueTargetKey+"\n属性类未注册\n请检查代码\n"
     }
     
     class func showError(error: String){
