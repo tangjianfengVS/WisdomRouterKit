@@ -8,6 +8,12 @@
 
 import UIKit
 
+/** Register Protocol */
+public protocol WisdomRouterRegisterProtocol: NSObject{
+    static func register()
+}
+
+
 public class WisdomRouterKit: NSObject {
     
     /** 🌟注册控制器

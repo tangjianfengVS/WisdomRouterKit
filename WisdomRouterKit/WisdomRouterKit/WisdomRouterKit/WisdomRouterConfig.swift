@@ -20,11 +20,6 @@ extension UIApplication {
 }
 
 
-protocol WisdomRouterRegisterProtocol: class{
-    static func register()
-}
-
-
 class WisdomRouterKitToSeeHere {
     static func routerKitFunction() {
         let typeCount = Int(objc_getClassList(nil, 0))
