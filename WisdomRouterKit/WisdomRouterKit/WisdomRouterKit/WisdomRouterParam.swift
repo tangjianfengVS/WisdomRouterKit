@@ -162,6 +162,22 @@ public class WisdomRouterParam: NSObject {
         return obj
     }
     
+    
+    /** Param: UIView */
+    @objc public class func create(key: String, uiView: UIView) -> WisdomRouterParam {
+        let obj = WisdomRouterParam.creatAny(param: uiView.copy(), key: key)
+        obj.typeValue = NSStringFromClass(uiView.classForCoder)
+        return obj
+    }
+    
+    
+    /** Param: UIImage */
+    @objc public class func create(key: String, image: UIImage) -> WisdomRouterParam {
+        let obj = WisdomRouterParam.creatAny(param: image.copy(), key: key)
+        obj.typeValue = NSStringFromClass(image.classForCoder)
+        return obj
+    }
+    
  
     private class func creatAny(param: Any, key: String) -> WisdomRouterParam {
         let obj = WisdomRouterParam()
