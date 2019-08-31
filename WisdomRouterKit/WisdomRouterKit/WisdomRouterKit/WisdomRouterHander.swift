@@ -13,7 +13,7 @@ public class WisdomRouterHander: NSObject {
     
     private(set) var valueTargetKey: String=""
     
-    @objc public class func creat(key: String, hander: Any) -> WisdomRouterHander{
+    @objc public class func create(key: String, hander: Any) -> WisdomRouterHander{
         let obj = WisdomRouterHander()
         obj.valueTargetKey = key
         obj.value = hander;

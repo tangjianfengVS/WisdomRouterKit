@@ -21,7 +21,7 @@ public class WisdomRouterParam: NSObject {
     private(set) var typeValue: String=""
     
     /** Param: ModelList */
-    @objc public class func creat(key: String, modelList: [WisdomRouterModel]) -> WisdomRouterParam{
+    @objc public class func create(key: String, modelList: [WisdomRouterModel]) -> WisdomRouterParam{
         let obj = WisdomRouterParam()
         obj.value = modelList
         obj.valueTargetKey = key
@@ -46,7 +46,7 @@ public class WisdomRouterParam: NSObject {
     
     
     /** Param: Model */
-    @objc public class func creat(key: String, model: WisdomRouterModel) -> WisdomRouterParam{
+    @objc public class func create(key: String, model: WisdomRouterModel) -> WisdomRouterParam{
         let obj = WisdomRouterParam()
         obj.value = model
         obj.valueTargetKey = key
@@ -68,96 +68,96 @@ public class WisdomRouterParam: NSObject {
     
     
     /** Param: Bool */
-    class func creat(key: String, bool: Bool) -> WisdomRouterParam{
-        let obj = WisdomRouterParam.creatAny(param: bool, key: key)
+    class func create(key: String, bool: Bool) -> WisdomRouterParam{
+        let obj = WisdomRouterParam.createAny(param: bool, key: key)
         obj.typeValue = "Bool,BOOL"
         return obj
     }
     
     
     /** Param: String */
-    @objc public class func creat(key: String, string: String) -> WisdomRouterParam{
-        let obj = WisdomRouterParam.creatAny(param: string, key: key)
+    @objc public class func create(key: String, string: String) -> WisdomRouterParam{
+        let obj = WisdomRouterParam.createAny(param: string, key: key)
         obj.typeValue = "String,NSString"
         return obj
     }
     
 
     /** Param: Double */
-    @objc public class func creat(key: String, double: Double) -> WisdomRouterParam{
-        let obj = WisdomRouterParam.creatAny(param: double, key: key)
+    @objc public class func create(key: String, double: Double) -> WisdomRouterParam{
+        let obj = WisdomRouterParam.createAny(param: double, key: key)
         obj.typeValue = DateBaseKey
         return obj
     }
     
 
     /** Param: NSInteger */
-    @objc public class func creat(key: String, integer: NSInteger) -> WisdomRouterParam{
-        let obj = WisdomRouterParam.creatAny(param: integer, key: key)
+    @objc public class func create(key: String, integer: NSInteger) -> WisdomRouterParam{
+        let obj = WisdomRouterParam.createAny(param: integer, key: key)
         obj.typeValue = DateBaseKey
         return obj
     }
     
 
     /** Param: Int */
-    @objc public class func creatInt(key: String, int: Int) -> WisdomRouterParam{
-        let obj = WisdomRouterParam.creatAny(param: int, key: key)
+    @objc public class func create(key: String, int: Int) -> WisdomRouterParam{
+        let obj = WisdomRouterParam.createAny(param: int, key: key)
         obj.typeValue = DateBaseKey
         return obj
     }
     
     
     /** Param: CGFloat */
-    @objc public class func creat(key: String, cgFloat: CGFloat) -> WisdomRouterParam{
-        let obj = WisdomRouterParam.creatAny(param: cgFloat, key: key)
+    @objc public class func create(key: String, cgFloat: CGFloat) -> WisdomRouterParam{
+        let obj = WisdomRouterParam.createAny(param: cgFloat, key: key)
         obj.typeValue = DateBaseKey
         return obj
     }
     
 
     /** Param: CGPoint */
-    @objc public class func creat(key: String, point: CGPoint) -> WisdomRouterParam{
-        let obj = WisdomRouterParam.creatAny(param: point, key: key)
+    @objc public class func create(key: String, point: CGPoint) -> WisdomRouterParam{
+        let obj = WisdomRouterParam.createAny(param: point, key: key)
         obj.typeValue = "CGPoint"
         return obj
     }
     
 
     /** Param: CGSize */
-    @objc public class func creat(key: String, size: CGSize) -> WisdomRouterParam{
-        let obj = WisdomRouterParam.creatAny(param: size, key: key)
+    @objc public class func create(key: String, size: CGSize) -> WisdomRouterParam{
+        let obj = WisdomRouterParam.createAny(param: size, key: key)
         obj.typeValue = "CGSize"
         return obj
     }
     
 
     /** Param: CGRect */
-    @objc public class func creat(key: String, rect: CGRect) -> WisdomRouterParam{
-        let obj = WisdomRouterParam.creatAny(param: rect, key: key)
+    @objc public class func create(key: String, rect: CGRect) -> WisdomRouterParam{
+        let obj = WisdomRouterParam.createAny(param: rect, key: key)
         obj.typeValue = "CGRect"
         return obj
     }
     
 
     /** Param: Data */
-    @objc public class func creat(key: String, data: Data) -> WisdomRouterParam{
-        let obj = WisdomRouterParam.creatAny(param: data, key: key)
+    @objc public class func create(key: String, data: Data) -> WisdomRouterParam{
+        let obj = WisdomRouterParam.createAny(param: data, key: key)
         obj.typeValue = "Data,NSData"
         return obj
     }
     
     
     /** Param: URL */
-    @objc public class func creat(key: String, url: URL) -> WisdomRouterParam{
-        let obj = WisdomRouterParam.creatAny(param: url, key: key)
+    @objc public class func create(key: String, url: URL) -> WisdomRouterParam{
+        let obj = WisdomRouterParam.createAny(param: url, key: key)
         obj.typeValue = "URL,NSURL"
         return obj
     }
     
     
     /** Param: NSNumber */
-    @objc public class func creat(key: String, number: NSNumber) -> WisdomRouterParam{
-        let obj = WisdomRouterParam.creatAny(param: number, key: key)
+    @objc public class func create(key: String, number: NSNumber) -> WisdomRouterParam{
+        let obj = WisdomRouterParam.createAny(param: number, key: key)
         obj.typeValue = "NSNumber"
         return obj
     }
@@ -165,7 +165,7 @@ public class WisdomRouterParam: NSObject {
     
     /** Param: UIView */
     @objc public class func create(key: String, uiView: UIView) -> WisdomRouterParam {
-        let obj = WisdomRouterParam.creatAny(param: uiView.copy(), key: key)
+        let obj = WisdomRouterParam.createAny(param: uiView.copy(), key: key)
         obj.typeValue = NSStringFromClass(uiView.classForCoder)
         return obj
     }
@@ -173,13 +173,13 @@ public class WisdomRouterParam: NSObject {
     
     /** Param: UIImage */
     @objc public class func create(key: String, image: UIImage) -> WisdomRouterParam {
-        let obj = WisdomRouterParam.creatAny(param: image.copy(), key: key)
+        let obj = WisdomRouterParam.createAny(param: image.copy(), key: key)
         obj.typeValue = NSStringFromClass(image.classForCoder)
         return obj
     }
     
  
-    private class func creatAny(param: Any, key: String) -> WisdomRouterParam {
+    private class func createAny(param: Any, key: String) -> WisdomRouterParam {
         let obj = WisdomRouterParam()
         obj.value = param
         obj.valueTargetKey = key

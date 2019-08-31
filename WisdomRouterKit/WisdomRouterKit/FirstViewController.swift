@@ -28,7 +28,7 @@ class FirstViewController: UIViewController {
     /// 有参数，无闭包
     @IBAction func clickPushHasDateBtn(_ sender: UIButton) {
         let VC = WisdomRouterKit.router(targetVC: "SecundViewController",
-                                           param: WisdomRouterParam.creat(key: "testSize", double: 99.99))
+                                           param: WisdomRouterParam.create(key: "testSize", double: 99.99))
         navigationController?.pushViewController(VC, animated: true)
     }
     
@@ -41,7 +41,7 @@ class FirstViewController: UIViewController {
         testModel.size = CGSize(width: 33, height: 33)
         testModel.ages = 30
         let VC = WisdomRouterKit.router(targetVC: "SecundThreeViewController",
-                                           param: WisdomRouterParam.creat(key: "testModel",model: testModel))
+                                           param: WisdomRouterParam.create(key: "testModel",model: testModel))
         navigationController?.pushViewController(VC, animated: true)
     }
     
@@ -58,14 +58,14 @@ class FirstViewController: UIViewController {
             testModelList.append(model)
         }
         let VC = WisdomRouterKit.router(targetVC: "ThreeViewController",
-                                        param: WisdomRouterParam.creat(key: "testModelList", modelList: testModelList))
+                                        param: WisdomRouterParam.create(key: "testModelList", modelList: testModelList))
         navigationController?.pushViewController(VC, animated: true)
     }
     
     
     /// 闭包 ---------------------------------------------------------
     @IBAction func clickPushWaitHanderBtn(_ sender: UIButton) {
-        let hander = WisdomRouterHander.creat(key: "closure", hander: {(name: String) in
+        let hander = WisdomRouterHander.create(key: "closure", hander: {(name: String) in
              let label = UILabel(frame: CGRect(x: 0, y: 100, width: 100, height: 100))
              label.layer.cornerRadius = 8
              label.layer.masksToBounds = true
@@ -94,8 +94,8 @@ class FirstViewController: UIViewController {
         testModel.size = CGSize(width: 100, height: 100)
         testModel.ages = 30
         
-        let param = WisdomRouterParam.creat(key: "testModel",model: testModel)
-        let hander = WisdomRouterHander.creat(key: "hander", hander: {(name: String, count: NSInteger) -> (Bool) in
+        let param = WisdomRouterParam.create(key: "testModel",model: testModel)
+        let hander = WisdomRouterHander.create(key: "hander", hander: {(name: String, count: NSInteger) -> (Bool) in
             let label = UILabel(frame: CGRect(x: 0, y: 100, width: 125, height: 130))
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
@@ -124,15 +124,15 @@ class FirstViewController: UIViewController {
         testModel.size = CGSize(width: 33, height: 33)
         testModel.ages = 30
         
-        let param1 = WisdomRouterParam.creat(key: "name99", string: "我是参数一：name99")
-        let param2 = WisdomRouterParam.creat(key: "testModel", model: testModel)
+        let param1 = WisdomRouterParam.create(key: "name99", string: "我是参数一：name99")
+        let param2 = WisdomRouterParam.create(key: "testModel", model: testModel)
         testModel.name = "名字---"
         testModel.title = "文字--"
         testModel.des = "描述---"
         testModel.res = true
         testModel.size = CGSize(width: 777, height: 777)
         testModel.ages = 777
-        let param3 = WisdomRouterParam.creat(key: "threeTestModel", model: testModel)
+        let param3 = WisdomRouterParam.create(key: "threeTestModel", model: testModel)
         
         let VC = WisdomRouterKit.router(targetVC: "SixViewController", params: [param1,param2,param3])
         navigationController?.pushViewController(VC, animated: true)
@@ -140,7 +140,7 @@ class FirstViewController: UIViewController {
     
     /// 多闭包集合
     @IBAction func clickPushMuchHanderBtn(_ sender: UIButton) {
-        let hander1 = WisdomRouterHander.creat(key: "closureOne", hander: {(name: String) in
+        let hander1 = WisdomRouterHander.create(key: "closureOne", hander: {(name: String) in
             let label = UILabel(frame: CGRect(x: 0, y: 100, width: 125, height: 130))
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
@@ -156,7 +156,7 @@ class FirstViewController: UIViewController {
             })
         })
         
-        let hander2 = WisdomRouterHander.creat(key: "closureTwo", hander: {(name: String, size: CGSize) in
+        let hander2 = WisdomRouterHander.create(key: "closureTwo", hander: {(name: String, size: CGSize) in
             let label = UILabel(frame: CGRect(x: 0, y: 100, width: 125, height: 130))
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
@@ -172,7 +172,7 @@ class FirstViewController: UIViewController {
             })
         })
         
-        let hander3 = WisdomRouterHander.creat(key: "closureThree", hander: {(name: String, count: NSInteger) -> (Bool) in
+        let hander3 = WisdomRouterHander.create(key: "closureThree", hander: {(name: String, count: NSInteger) -> (Bool) in
             let label = UILabel(frame: CGRect(x: 0, y: 100, width: 125, height: 130))
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
@@ -201,17 +201,17 @@ class FirstViewController: UIViewController {
         testModel.size = CGSize(width: 33, height: 33)
         testModel.ages = 30
         
-        let param1 = WisdomRouterParam.creat(key: "name99", string: "我是参数一：name99")
-        let param2 = WisdomRouterParam.creat(key: "testModel", model: testModel)
+        let param1 = WisdomRouterParam.create(key: "name99", string: "我是参数一：name99")
+        let param2 = WisdomRouterParam.create(key: "testModel", model: testModel)
         testModel.name = "名字---"
         testModel.title = "文字--"
         testModel.des = "描述---"
         testModel.res = true
         testModel.size = CGSize(width: 777, height: 777)
         testModel.ages = 777
-        let param3 = WisdomRouterParam.creat(key: "threeTestModel", model: testModel)
+        let param3 = WisdomRouterParam.create(key: "threeTestModel", model: testModel)
         
-        let hander1 = WisdomRouterHander.creat(key: "closureOne", hander: {(name: String) in
+        let hander1 = WisdomRouterHander.create(key: "closureOne", hander: {(name: String) in
             let label = UILabel(frame: CGRect(x: 0, y: 100, width: 125, height: 130))
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
@@ -227,7 +227,7 @@ class FirstViewController: UIViewController {
             })
         })
         
-        let hander2 = WisdomRouterHander.creat(key: "closureTwo", hander: {(name: String, size: CGSize) in
+        let hander2 = WisdomRouterHander.create(key: "closureTwo", hander: {(name: String, size: CGSize) in
             let label = UILabel(frame: CGRect(x: 0, y: 100, width: 125, height: 130))
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
@@ -243,7 +243,7 @@ class FirstViewController: UIViewController {
             })
         })
         
-        let hander3 = WisdomRouterHander.creat(key: "closureThree", hander: {(name: String, count: NSInteger) -> (Bool) in
+        let hander3 = WisdomRouterHander.create(key: "closureThree", hander: {(name: String, count: NSInteger) -> (Bool) in
             let label = UILabel(frame: CGRect(x: 0, y: 100, width: 125, height: 130))
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
