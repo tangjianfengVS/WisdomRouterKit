@@ -9,10 +9,15 @@
 import UIKit
 
 public class WisdomRouterParam: NSObject {
+    
     private(set) var valueClass: AnyClass = NSObject.self
+    
     private(set) var value: Any!
+    
     private(set) var valueTargetKey: String=""
+    
     private(set) var keyValue: [[String: WisdomRouterRegisterProperty]] = []
+    
     private(set) var typeValue: String=""
     
     /** Param: ModelList */
@@ -39,6 +44,7 @@ public class WisdomRouterParam: NSObject {
         return obj
     }
     
+    
     /** Param: Model */
     @objc public class func creat(key: String, model: WisdomRouterModel) -> WisdomRouterParam{
         let obj = WisdomRouterParam()
@@ -60,6 +66,7 @@ public class WisdomRouterParam: NSObject {
         return obj
     }
     
+    
     /** Param: Bool */
     class func creat(key: String, bool: Bool) -> WisdomRouterParam{
         let obj = WisdomRouterParam.creatAny(param: bool, key: key)
@@ -67,12 +74,14 @@ public class WisdomRouterParam: NSObject {
         return obj
     }
     
+    
     /** Param: String */
     @objc public class func creat(key: String, string: String) -> WisdomRouterParam{
         let obj = WisdomRouterParam.creatAny(param: string, key: key)
         obj.typeValue = "String,NSString"
         return obj
     }
+    
 
     /** Param: Double */
     @objc public class func creat(key: String, double: Double) -> WisdomRouterParam{
@@ -80,6 +89,7 @@ public class WisdomRouterParam: NSObject {
         obj.typeValue = DateBaseKey
         return obj
     }
+    
 
     /** Param: NSInteger */
     @objc public class func creat(key: String, integer: NSInteger) -> WisdomRouterParam{
@@ -87,6 +97,7 @@ public class WisdomRouterParam: NSObject {
         obj.typeValue = DateBaseKey
         return obj
     }
+    
 
     /** Param: Int */
     @objc public class func creatInt(key: String, int: Int) -> WisdomRouterParam{
@@ -95,12 +106,14 @@ public class WisdomRouterParam: NSObject {
         return obj
     }
     
+    
     /** Param: CGFloat */
     @objc public class func creat(key: String, cgFloat: CGFloat) -> WisdomRouterParam{
         let obj = WisdomRouterParam.creatAny(param: cgFloat, key: key)
         obj.typeValue = DateBaseKey
         return obj
     }
+    
 
     /** Param: CGPoint */
     @objc public class func creat(key: String, point: CGPoint) -> WisdomRouterParam{
@@ -108,6 +121,7 @@ public class WisdomRouterParam: NSObject {
         obj.typeValue = "CGPoint"
         return obj
     }
+    
 
     /** Param: CGSize */
     @objc public class func creat(key: String, size: CGSize) -> WisdomRouterParam{
@@ -115,6 +129,7 @@ public class WisdomRouterParam: NSObject {
         obj.typeValue = "CGSize"
         return obj
     }
+    
 
     /** Param: CGRect */
     @objc public class func creat(key: String, rect: CGRect) -> WisdomRouterParam{
@@ -122,6 +137,7 @@ public class WisdomRouterParam: NSObject {
         obj.typeValue = "CGRect"
         return obj
     }
+    
 
     /** Param: Data */
     @objc public class func creat(key: String, data: Data) -> WisdomRouterParam{
@@ -130,6 +146,7 @@ public class WisdomRouterParam: NSObject {
         return obj
     }
     
+    
     /** Param: URL */
     @objc public class func creat(key: String, url: URL) -> WisdomRouterParam{
         let obj = WisdomRouterParam.creatAny(param: url, key: key)
@@ -137,12 +154,14 @@ public class WisdomRouterParam: NSObject {
         return obj
     }
     
+    
     /** Param: NSNumber */
     @objc public class func creat(key: String, number: NSNumber) -> WisdomRouterParam{
         let obj = WisdomRouterParam.creatAny(param: number, key: key)
         obj.typeValue = "NSNumber"
         return obj
     }
+    
  
     private class func creatAny(param: Any, key: String) -> WisdomRouterParam {
         let obj = WisdomRouterParam()

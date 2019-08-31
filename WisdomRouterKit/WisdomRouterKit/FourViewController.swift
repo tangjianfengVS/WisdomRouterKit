@@ -11,6 +11,13 @@ import UIKit
 @objcMembers class FourViewController: UIViewController,WisdomRouterRegisterProtocol {
     var closure: ((String) -> Void)?
     
+    static func register() {
+        WisdomRouterKit.register(vcClassType: self, handerName: "closure") { (hander: Any, vc: UIViewController) in
+            let VC = vc as! FourViewController
+            VC.closure = (hander as! ((String) -> Void))
+        }
+    }
+    
     var handerBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("Click Hander", for: .normal)
@@ -18,13 +25,6 @@ import UIKit
         btn.addTarget(self, action: #selector(clickHander), for: .touchUpInside)
         return btn
     }()
-    
-    static func register() {
-        WisdomRouterKit.register(vcClassType: self, handerName: "closure") { (hander: Any, vc: UIViewController) in
-            let VC = vc as! FourViewController
-            VC.closure = (hander as! ((String) -> Void))
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

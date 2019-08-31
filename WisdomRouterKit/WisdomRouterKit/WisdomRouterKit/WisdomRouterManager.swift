@@ -9,6 +9,7 @@
 import UIKit
 
 class WisdomRouterManager: NSObject {
+    
     static let shared = WisdomRouterManager()
     
     /** 注册控制器值 */
@@ -28,8 +29,10 @@ class WisdomRouterManager: NSObject {
         return WisdomRouterResult(vcClassType: vcClassType, info: info)
     }
     
+    
     /** 注册模型 */
     func register(vcClassType: UIViewController.Type, modelName: String, modelClassType: WisdomRouterModel.Type) -> WisdomRouterResult {
+        
         let cls = NSStringFromClass(vcClassType)
         let value = cls.components(separatedBy: Dot)
         if vcClassValue[value.last!] == nil {
@@ -58,10 +61,12 @@ class WisdomRouterManager: NSObject {
         vcClassValue[value.last!] = info
         return WisdomRouterResult(vcClassType: vcClassType, info: info)
     }
+    
 
     /** 注册闭包 */
     @discardableResult
     func register(vcClassType: UIViewController.Type, handerName: String, hander: @escaping WisdomRouterClosure) -> WisdomRouterResult{
+        
         let cls = NSStringFromClass(vcClassType)
         let value = cls.components(separatedBy: Dot)
         if vcClassValue[value.last!] == nil {
@@ -84,12 +89,13 @@ class WisdomRouterManager: NSObject {
         vcClassValue[value.last!] = info
         return WisdomRouterResult(vcClassType: vcClassType, info: info)
     }
+    
 
     /** router 基础 */
     func router(targetVC: String) -> UIViewController{
+        
         if vcClassValue[targetVC] == nil {
-            WisdomRouterManager.showError(error: targetVC+"\n未注册\n请检查代码")
-            return UIViewController()
+            return WisdomRouterAlertVC.alert(title: "温馨提示", message: targetVC+"\n未注册\n请检查代码", closeActionText: "确定", rightActionText: nil, handler: nil)
         }
         
         guard let vcClassType = vcClassValue[targetVC]!.vcClassType else {
@@ -97,16 +103,19 @@ class WisdomRouterManager: NSObject {
         }
         return vcClassType.init()
     }
+    
 
     /** router 参数 */
     func router(targetVC: String, param: WisdomRouterParam) -> UIViewController {
+        
         if vcClassValue[targetVC] == nil {
-            WisdomRouterManager.showError(error: targetVC+"\n未注册\n请检查代码")
-            return UIViewController()
+            return WisdomRouterAlertVC.alert(title: "温馨提示", message: targetVC+"\n未注册\n请检查代码", closeActionText: "确定", rightActionText: nil, handler: nil)
         }
+        
         guard let vcClassType = vcClassValue[targetVC]!.vcClassType else {
             return UIViewController()
         }
+        
         var error = ""
         let target = vcClassType.init()
         let result = WisdomRouterManager.hasPropertyList(targetClass: vcClassType, targetParamKey: param.valueTargetKey)
@@ -121,21 +130,25 @@ class WisdomRouterManager: NSObject {
         }else{
             error = param.valueTargetKey+"\n属性查找失败\n请检查代码"
         }
+        
         if error.count > errorCount {
             WisdomRouterManager.showError(error: error)
         }
         return target
     }
+    
 
     /** router 闭包 */
     func router(targetVC: String, hander: WisdomRouterHander) -> UIViewController {
+        
         if vcClassValue[targetVC] == nil {
-            WisdomRouterManager.showError(error: targetVC+"\n未注册\n请检查代码")
-            return UIViewController()
+            return WisdomRouterAlertVC.alert(title: "温馨提示", message: targetVC+"\n未注册\n请检查代码", closeActionText: "确定", rightActionText: nil, handler: nil)
         }
+        
         guard let vcClassType = vcClassValue[targetVC]!.vcClassType else {
             return UIViewController()
         }
+        
         let target = vcClassType.init()
         if WisdomRouterManager.hasPropertyList(targetClass: vcClassType, targetParamKey: hander.valueTargetKey).0{
             let error = setHanderProperty(targetVC: target, target: targetVC, hander: hander)
@@ -145,18 +158,22 @@ class WisdomRouterManager: NSObject {
         }else{
             WisdomRouterManager.showError(error: hander.valueTargetKey+"\nHander查找失败\n请检查代码")
         }
+        
         return target
     }
+    
 
     /** router 参数和闭包 */
     func router(targetVC: String, param: WisdomRouterParam, hander: WisdomRouterHander) -> UIViewController {
+        
         if vcClassValue[targetVC] == nil {
-            WisdomRouterManager.showError(error: targetVC+"\n未注册\n请检查代码")
-            return UIViewController()
+            return WisdomRouterAlertVC.alert(title: "温馨提示", message: targetVC+"\n未注册\n请检查代码", closeActionText: "确定", rightActionText: nil, handler: nil)
         }
+        
         guard let vcClassType = vcClassValue[targetVC]!.vcClassType else {
             return UIViewController()
         }
+        
         var errorStr = ""
         let target = vcClassType.init()
         if WisdomRouterManager.hasPropertyList(targetClass: vcClassType, targetParamKey: hander.valueTargetKey).0 {
@@ -177,21 +194,24 @@ class WisdomRouterManager: NSObject {
         }else{
             errorStr = errorStr + " \n" + param.valueTargetKey+"\n属性查找失败\n请检查代码"
         }
+        
         if errorStr.count > errorCount {
             WisdomRouterManager.showError(error: errorStr)
         }
         return target
     }
+    
 
     /** router 参数集合和闭包集合 */
     func router(targetVC: String, params: [WisdomRouterParam], handers: [WisdomRouterHander]) -> UIViewController {
         if vcClassValue[targetVC] == nil {
-            WisdomRouterManager.showError(error: targetVC+"\n未注册\n请检查代码")
-            return UIViewController()
+            return WisdomRouterAlertVC.alert(title: "温馨提示", message: targetVC+"\n未注册\n请检查代码", closeActionText: "确定", rightActionText: nil, handler: nil)
         }
+        
         guard let vcClassType = vcClassValue[targetVC]!.vcClassType else {
             return UIViewController()
         }
+        
         var errorStr = ""
         let target = vcClassType.init()
         for hander in handers {
@@ -223,6 +243,7 @@ class WisdomRouterManager: NSObject {
         return target
     }
     
+    
     class func hasPropertyList(targetClass: AnyClass, targetParamKey: String) -> (Bool,String) {
         var count: UInt32 = 0
         let list = class_copyPropertyList(targetClass, &count)
@@ -240,6 +261,7 @@ class WisdomRouterManager: NSObject {
         free(list)
         return (false,"")
     }
+    
     
     class func propertyList(targetClass: WisdomRouterModel.Type) -> [WisdomRouterRegisterProperty] {
         var count: UInt32 = 0
@@ -279,6 +301,7 @@ extension WisdomRouterManager {
         }
     }
     
+    
     /// 类型分类
     private class func getTypeOf(property: objc_property_t) -> String {
         let str = property_getAttributes(property)!
@@ -294,6 +317,7 @@ extension WisdomRouterManager {
         return objectClassName
     }
     
+    
     private func tager(tager: NSObject, param: WisdomRouterParam, tagerDateType: String){
         if param.typeValue.contains(tagerDateType) {
             tager.setValue(param.value, forKey: param.valueTargetKey)
@@ -303,10 +327,13 @@ extension WisdomRouterManager {
         }
     }
     
+    
     private func tager(model: WisdomRouterModel, param: WisdomRouterParam, tagerProperty: WisdomRouterRegisterProperty){
+        
         guard let value = param.keyValue.first![tagerProperty.name] else {
             return
         }
+        
         if value.nameType == tagerProperty.nameType {
             model.setValue(value.value!, forKey: tagerProperty.name)
         }else{
@@ -314,6 +341,7 @@ extension WisdomRouterManager {
             print(error)
         }
     }
+    
     
     private func tagerList(model: WisdomRouterModel, param: [String: WisdomRouterRegisterProperty],
                                              tagerProperty: WisdomRouterRegisterProperty){
@@ -328,6 +356,7 @@ extension WisdomRouterManager {
         }
     }
     
+    
     /// Hander属性赋值
     private func setHanderProperty(targetVC: UIViewController, target: String,hander: WisdomRouterHander) -> (String) {
         let registerInfo = vcClassValue[target]!
@@ -339,6 +368,7 @@ extension WisdomRouterManager {
         }
         return (hander.valueTargetKey+"\nHander未注册\n请检查代码\n")
     }
+    
     
     /// model属性赋值
     private func setPropertyList(targetVC: String, param: WisdomRouterParam, target: UIViewController)->String{
@@ -361,6 +391,7 @@ extension WisdomRouterManager {
         }
         return param.valueTargetKey+"\n属性类未注册\n请检查代码\n"
     }
+    
     
     /// modelList属性赋值
     private func setListPropertyList(targetVC: String, param: WisdomRouterParam, target: UIViewController)->String{
@@ -388,6 +419,7 @@ extension WisdomRouterManager {
         }
         return param.valueTargetKey+"\n属性类未注册\n请检查代码\n"
     }
+    
     
     class func showError(error: String){
         let label = UILabel()

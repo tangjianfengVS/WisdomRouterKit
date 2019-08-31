@@ -19,9 +19,11 @@ extension UIApplication {
     }()
 }
 
+
 protocol WisdomRouterRegisterProtocol: class{
     static func register()
 }
+
 
 class WisdomRouterKitToSeeHere {
     static func routerKitFunction() {
@@ -36,6 +38,7 @@ class WisdomRouterKitToSeeHere {
         types.deallocate()
     }
 }
+
 
 let Dot = "."
 

@@ -9,6 +9,7 @@
 import UIKit
 
 public class WisdomRouterKit: NSObject {
+    
     /** 🌟注册控制器
         classType:  UIViewController.Type
      */
@@ -16,6 +17,7 @@ public class WisdomRouterKit: NSObject {
     @objc public class func register(vcClassType: UIViewController.Type) -> WisdomRouterResult{
         return WisdomRouterManager.shared.register(vcClassType: vcClassType)
     }
+    
     
     /** 🌟注册控制器,并注册它的Model属性,属性需要继承 WisdomRouterModel
         1：vcClassType:    UIViewController.Type
@@ -27,6 +29,7 @@ public class WisdomRouterKit: NSObject {
         return WisdomRouterManager.shared.register(vcClassType: vcClassType, modelName: modelName, modelClassType: modelClassType)
     }
     
+    
     /** 🌟注册控制器,并注册它的Hander(回调)属性
        1：vcClassType: UIViewController.Type
        2：handerName:  闭包名称
@@ -37,39 +40,47 @@ public class WisdomRouterKit: NSObject {
         return WisdomRouterManager.shared.register(vcClassType: vcClassType, handerName: handerName, hander: hander)
     }
     
-    /** ✨Router: 无参数，无回调 */
+    
+    /** 🔥Router: 无参数，无回调 */
     @objc public class func router(targetVC: String) -> UIViewController{
         return WisdomRouterManager.shared.router(targetVC: targetVC)
     }
     
-    /** ✨Router: 有参数，无回调 */
+    
+    /** 🔥Router: 有参数，无回调 */
     @objc public class func router(targetVC: String, param: WisdomRouterParam) -> UIViewController{
         return WisdomRouterManager.shared.router(targetVC: targetVC, param: param)
     }
     
-    /** ✨Router: 无参数，有回调 */
+    
+    /** 🔥Router: 无参数，有回调 */
     @objc public class func router(targetVC: String, hander: WisdomRouterHander) -> UIViewController{
         return WisdomRouterManager.shared.router(targetVC: targetVC, hander: hander)
     }
     
-    /** ✨Router: 有参数，有回调 */
+    
+    /** 🔥Router: 有参数，有回调 */
     @objc public class func router(targetVC: String, param: WisdomRouterParam, hander: WisdomRouterHander) -> UIViewController{
         return WisdomRouterManager.shared.router(targetVC: targetVC, param: param, hander: hander)
     }
     
-    /** ✨Router: 自定义参数集合 */
+    
+    /** 🔥Router: 自定义参数集合 */
     @objc public class func router(targetVC: String, params: [WisdomRouterParam]) -> UIViewController{
         return WisdomRouterManager.shared.router(targetVC: targetVC, params: params, handers: [])
     }
     
-    /** ✨Router: 自定义回调集合 */
+    
+    /** 🔥Router: 自定义回调集合 */
     @objc public class func router(targetVC: String, handers: [WisdomRouterHander]) -> UIViewController{
         return WisdomRouterManager.shared.router(targetVC: targetVC, params: [], handers: handers)
     }
     
-    /** ✨Router: 自定义参数集合和回调集合 */
+    
+    /** 🔥Router: 自定义参数集合和回调集合 */
     @objc public class func router(targetVC: String, params: [WisdomRouterParam], handers: [WisdomRouterHander]) -> UIViewController{
         return WisdomRouterManager.shared.router(targetVC: targetVC, params: params, handers: handers)
     }
+    
 }
 

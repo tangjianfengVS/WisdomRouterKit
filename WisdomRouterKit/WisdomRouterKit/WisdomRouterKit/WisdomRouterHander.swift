@@ -10,6 +10,7 @@ import UIKit
 
 public class WisdomRouterHander: NSObject {
     private(set) var value: Any?
+    
     private(set) var valueTargetKey: String=""
     
     @objc public class func creat(key: String, hander: Any) -> WisdomRouterHander{

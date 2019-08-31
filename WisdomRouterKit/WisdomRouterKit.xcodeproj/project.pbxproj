@@ -18,6 +18,7 @@
 		A54D8367223B7DF00076BF10 /* SecundTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8366223B7DF00076BF10 /* SecundTestModel.swift */; };
 		A54D8369223B9C7F0076BF10 /* WisdomRouterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8368223B9C7F0076BF10 /* WisdomRouterManager.swift */; };
 		A5546251224C63970059B693 /* WisdomRouterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5546250224C63970059B693 /* WisdomRouterConfig.swift */; };
+		A5601419231A60B700B60C68 /* WisdomRouterAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5601418231A60B700B60C68 /* WisdomRouterAlertVC.swift */; };
 		A56E05372241DB3400124526 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E05352241DB3400124526 /* FirstViewController.swift */; };
 		A56E05382241DB3400124526 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A56E05362241DB3400124526 /* FirstViewController.xib */; };
 		A56E053C224211B000124526 /* SecundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E053B224211B000124526 /* SecundViewController.swift */; };
@@ -48,6 +49,7 @@
 		A54D8366223B7DF00076BF10 /* SecundTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecundTestModel.swift; sourceTree = "<group>"; };
 		A54D8368223B9C7F0076BF10 /* WisdomRouterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterManager.swift; sourceTree = "<group>"; };
 		A5546250224C63970059B693 /* WisdomRouterConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterConfig.swift; sourceTree = "<group>"; };
+		A5601418231A60B700B60C68 /* WisdomRouterAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterAlertVC.swift; sourceTree = "<group>"; };
 		A56E05352241DB3400124526 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		A56E05362241DB3400124526 /* FirstViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 		A56E053B224211B000124526 /* SecundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecundViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				A5F65A32223BE1C100413D49 /* WisdomRouterRegister.swift */,
 				A54D835D223A4E200076BF10 /* WisdomRouterModel.swift */,
 				A5E024DD2244AB0700BE2C2B /* WisdomRouterResult.swift */,
+				A5601418231A60B700B60C68 /* WisdomRouterAlertVC.swift */,
 			);
 			path = WisdomRouterKit;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				A5F65A39223CB0E300413D49 /* ThreeTestModel.swift in Sources */,
 				A5F65A3F223F4A8600413D49 /* WisdomRouterHander.swift in Sources */,
 				A5F65A33223BE1C100413D49 /* WisdomRouterRegister.swift in Sources */,
+				A5601419231A60B700B60C68 /* WisdomRouterAlertVC.swift in Sources */,
 				A54D8367223B7DF00076BF10 /* SecundTestModel.swift in Sources */,
 				A56E05372241DB3400124526 /* FirstViewController.swift in Sources */,
 				A54D8365223B72F30076BF10 /* TestModel.swift in Sources */,

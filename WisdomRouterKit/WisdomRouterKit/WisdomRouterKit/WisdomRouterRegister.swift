@@ -11,8 +11,11 @@ import UIKit
 public typealias WisdomRouterClosure = (Any,UIViewController) -> ()
 
 struct WisdomRouterRegisterInfo {
+    
     private(set) var vcClassType: UIViewController.Type!
+    
     private(set) var modelList: [WisdomRouterRegisterModel]=[]
+    
     private(set) var handerList: [WisdomRouterRegisterHander]=[]
     
     init(vcClassType: UIViewController.Type) {
@@ -28,8 +31,11 @@ struct WisdomRouterRegisterInfo {
     }
 }
 
+
 struct WisdomRouterRegisterModel {
+    
     private(set) var modelClass: AnyClass?
+    
     private(set) var modelName: String=""
 
     init(modelName: String, modelClass: AnyClass) {
@@ -42,8 +48,11 @@ struct WisdomRouterRegisterModel {
     }
 }
 
+
 struct WisdomRouterRegisterHander{
+    
     private(set) var handerValue: WisdomRouterClosure!
+    
     private(set) var handerName: String!
     
     init(handerName:String, handerValue: @escaping WisdomRouterClosure) {
@@ -58,8 +67,11 @@ struct WisdomRouterRegisterHander{
 
 
 struct WisdomRouterRegisterProperty{
+    
     private(set) var nameType: String!
+    
     private(set) var name: String!
+    
     private(set) var value: Any?
     
     init(name:String, nameType:String ) {
