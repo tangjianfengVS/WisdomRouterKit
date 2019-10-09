@@ -19,11 +19,20 @@ class FirstViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
     }
     
+    
+    
+    ///###########################################################################
+    ///##                                                                       ##
+    ///##                              基本功能                                   ##
+    ///##                                                                       ##
+    ///###########################################################################
+    
     /// 无参数，无闭包
     @IBAction func clickPushNoDateBtn(_ sender: UIButton) {
         let VC = WisdomRouterKit.router(targetVC: "OneViewController")
         navigationController?.pushViewController(VC, animated: true)
     }
+    
     
     /// 有参数，无闭包
     @IBAction func clickPushHasDateBtn(_ sender: UIButton) {
@@ -31,6 +40,7 @@ class FirstViewController: UIViewController {
                                            param: WisdomRouterParam.create(key: "testSize", double: 99.99))
         navigationController?.pushViewController(VC, animated: true)
     }
+    
     
     /// 参数 testModel
     @IBAction func clickPushHasDateModelBtn(_ sender: UIButton) {
@@ -84,7 +94,14 @@ class FirstViewController: UIViewController {
         navigationController?.pushViewController(VC, animated: true)
     }
     
-    ///-----------------功能进阶------------------------
+    
+
+    ///###########################################################################
+    ///##                                                                       ##
+    ///##                              功能进阶                                   ##
+    ///##                                                                       ##
+    ///###########################################################################
+    
     /// 一个参数和一个闭包
     @IBAction func clickPushModelAndeWaitHanderBtn(_ sender: UIButton) {
         testModel.name = "名字"
@@ -115,6 +132,7 @@ class FirstViewController: UIViewController {
         navigationController?.pushViewController(VC, animated: true)
     }
     
+    
     /// 多参数集合
     @IBAction func clickPushMuchModelBtn(_ sender: UIButton) {
         testModel.name = "名字"
@@ -137,6 +155,7 @@ class FirstViewController: UIViewController {
         let VC = WisdomRouterKit.router(targetVC: "SixViewController", params: [param1,param2,param3])
         navigationController?.pushViewController(VC, animated: true)
     }
+    
     
     /// 多闭包集合
     @IBAction func clickPushMuchHanderBtn(_ sender: UIButton) {
@@ -191,6 +210,7 @@ class FirstViewController: UIViewController {
         let VC = WisdomRouterKit.router(targetVC: "SevenViewController", handers: [hander1,hander2,hander3])
         navigationController?.pushViewController(VC, animated: true)
     }
+    
     
     /// 多参数和闭包集合
     @IBAction func clickPushMuchHanderAndMuchDataBtn(_ sender: UIButton) {
@@ -261,5 +281,39 @@ class FirstViewController: UIViewController {
         })
         let VC = WisdomRouterKit.router(targetVC: "EightViewController", params: [param1,param2,param3], handers: [hander1,hander2,hander3])
         navigationController?.pushViewController(VC, animated: true)
+    }
+    
+    
+    
+    ///###########################################################################
+    ///##                                                                       ##
+    ///##                          功能进阶 -获取全局单列 Model                     ##
+    ///##                                                                       ##
+    ///###########################################################################
+    
+    /// 获取全局单列 Model
+    @IBAction func clickSherdDataBtn(_ sender: UIButton) {
+        
+        let sheraModel: TestModel = WisdomRouterKit.routerShare(shareName: "WisdomRouterKit.TestShareModel", targetSubstituteClass: TestModel.self) as! TestModel;
+        
+        var text = "单列对象数据: sheraModel属性如下:  \n"
+        let propertyList = WisdomRouterManager.propertyList(targetClass: TestModel.self)
+        for key in propertyList {
+            let res = sheraModel.value(forKey: key.name)
+            var str = ""
+            if let resStr = res as? CGSize{
+                str = String.init(format:"%.2f,%.2f",resStr.width,resStr.height)
+            }else if let resStr = res as? Bool{
+                str = resStr ? "true":"fales"
+            }else if let resStr = res as? NSInteger{
+                str = String(resStr)
+            }else if let resStr = res as? String{
+                str = resStr
+            }else if str.count == 0{
+                str = "nil"
+            }
+            text = text + key.name + ": " + str + "\n"
+        }
+        print(text)
     }
 }

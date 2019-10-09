@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50D5F8A234C79BA005EB99E /* WisdomRouterShareProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50D5F89234C79BA005EB99E /* WisdomRouterShareProtocol.swift */; };
 		A54D8334223A4A0B0076BF10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8333223A4A0B0076BF10 /* AppDelegate.swift */; };
 		A54D833B223A4A0C0076BF10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A54D833A223A4A0C0076BF10 /* Assets.xcassets */; };
 		A54D833E223A4A0C0076BF10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A54D833C223A4A0C0076BF10 /* LaunchScreen.storyboard */; };
@@ -24,7 +25,9 @@
 		A56E053C224211B000124526 /* SecundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E053B224211B000124526 /* SecundViewController.swift */; };
 		A56E053E224215D900124526 /* SecundThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E053D224215D900124526 /* SecundThreeViewController.swift */; };
 		A56E054022423FC300124526 /* FiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E053F22423FC300124526 /* FiveViewController.swift */; };
+		A571B1C2234CC629004FB175 /* NineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A571B1C1234CC629004FB175 /* NineViewController.swift */; };
 		A5B3B7C42248D5A8007B3207 /* EightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3B7C32248D5A8007B3207 /* EightViewController.swift */; };
+		A5DF3ECE234B890100CBB9E8 /* TestShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF3ECD234B890100CBB9E8 /* TestShareModel.swift */; };
 		A5E024DC2244818D00BE2C2B /* SixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E024DB2244818D00BE2C2B /* SixViewController.swift */; };
 		A5E024DE2244AB0700BE2C2B /* WisdomRouterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E024DD2244AB0700BE2C2B /* WisdomRouterResult.swift */; };
 		A5E024E02244BBAF00BE2C2B /* SevenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E024DF2244BBAF00BE2C2B /* SevenViewController.swift */; };
@@ -36,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A50D5F89234C79BA005EB99E /* WisdomRouterShareProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterShareProtocol.swift; sourceTree = "<group>"; };
 		A54D8330223A4A0B0076BF10 /* WisdomRouterKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WisdomRouterKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A54D8333223A4A0B0076BF10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A54D833A223A4A0C0076BF10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,7 +59,9 @@
 		A56E053B224211B000124526 /* SecundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecundViewController.swift; sourceTree = "<group>"; };
 		A56E053D224215D900124526 /* SecundThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecundThreeViewController.swift; sourceTree = "<group>"; };
 		A56E053F22423FC300124526 /* FiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveViewController.swift; sourceTree = "<group>"; };
+		A571B1C1234CC629004FB175 /* NineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NineViewController.swift; sourceTree = "<group>"; };
 		A5B3B7C32248D5A8007B3207 /* EightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EightViewController.swift; sourceTree = "<group>"; };
+		A5DF3ECD234B890100CBB9E8 /* TestShareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestShareModel.swift; sourceTree = "<group>"; };
 		A5E024DB2244818D00BE2C2B /* SixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SixViewController.swift; sourceTree = "<group>"; };
 		A5E024DD2244AB0700BE2C2B /* WisdomRouterResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterResult.swift; sourceTree = "<group>"; };
 		A5E024DF2244BBAF00BE2C2B /* SevenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenViewController.swift; sourceTree = "<group>"; };
@@ -109,9 +115,11 @@
 				A5E024DB2244818D00BE2C2B /* SixViewController.swift */,
 				A5E024DF2244BBAF00BE2C2B /* SevenViewController.swift */,
 				A5B3B7C32248D5A8007B3207 /* EightViewController.swift */,
+				A571B1C1234CC629004FB175 /* NineViewController.swift */,
 				A54D8364223B72F30076BF10 /* TestModel.swift */,
 				A54D8366223B7DF00076BF10 /* SecundTestModel.swift */,
 				A5F65A38223CB0E300413D49 /* ThreeTestModel.swift */,
+				A5DF3ECD234B890100CBB9E8 /* TestShareModel.swift */,
 				A54D833A223A4A0C0076BF10 /* Assets.xcassets */,
 				A54D833C223A4A0C0076BF10 /* LaunchScreen.storyboard */,
 				A54D833F223A4A0C0076BF10 /* Info.plist */,
@@ -131,6 +139,7 @@
 				A54D835D223A4E200076BF10 /* WisdomRouterModel.swift */,
 				A5E024DD2244AB0700BE2C2B /* WisdomRouterResult.swift */,
 				A5601418231A60B700B60C68 /* WisdomRouterAlertVC.swift */,
+				A50D5F89234C79BA005EB99E /* WisdomRouterShareProtocol.swift */,
 			);
 			path = WisdomRouterKit;
 			sourceTree = "<group>";
@@ -214,8 +223,10 @@
 				A54D8347223A4B090076BF10 /* WisdomRouterKit.swift in Sources */,
 				A54D8362223A76AD0076BF10 /* WisdomRouterParam.swift in Sources */,
 				A5F65A37223CB08D00413D49 /* ThreeViewController.swift in Sources */,
+				A571B1C2234CC629004FB175 /* NineViewController.swift in Sources */,
 				A56E053E224215D900124526 /* SecundThreeViewController.swift in Sources */,
 				A5E024E02244BBAF00BE2C2B /* SevenViewController.swift in Sources */,
+				A50D5F8A234C79BA005EB99E /* WisdomRouterShareProtocol.swift in Sources */,
 				A5B3B7C42248D5A8007B3207 /* EightViewController.swift in Sources */,
 				A5E024DE2244AB0700BE2C2B /* WisdomRouterResult.swift in Sources */,
 				A5F65A39223CB0E300413D49 /* ThreeTestModel.swift in Sources */,
@@ -225,6 +236,7 @@
 				A54D8367223B7DF00076BF10 /* SecundTestModel.swift in Sources */,
 				A56E05372241DB3400124526 /* FirstViewController.swift in Sources */,
 				A54D8365223B72F30076BF10 /* TestModel.swift in Sources */,
+				A5DF3ECE234B890100CBB9E8 /* TestShareModel.swift in Sources */,
 				A54D8334223A4A0B0076BF10 /* AppDelegate.swift in Sources */,
 				A54D835E223A4E200076BF10 /* WisdomRouterModel.swift in Sources */,
 				A56E054022423FC300124526 /* FiveViewController.swift in Sources */,

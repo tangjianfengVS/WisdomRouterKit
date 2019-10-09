@@ -91,7 +91,7 @@ class WisdomRouterManager: NSObject {
     }
     
 
-    /** router 基础 */
+    /** router targetVC，无参数，无闭包 */
     func router(targetVC: String) -> UIViewController{
         
         if vcClassValue[targetVC] == nil {
@@ -105,7 +105,7 @@ class WisdomRouterManager: NSObject {
     }
     
 
-    /** router 参数 */
+    /** router targetVC，带参数 */
     func router(targetVC: String, param: WisdomRouterParam) -> UIViewController {
         
         if vcClassValue[targetVC] == nil {
@@ -138,7 +138,7 @@ class WisdomRouterManager: NSObject {
     }
     
 
-    /** router 闭包 */
+    /** router targetVC，带闭包 */
     func router(targetVC: String, hander: WisdomRouterHander) -> UIViewController {
         
         if vcClassValue[targetVC] == nil {
@@ -163,7 +163,7 @@ class WisdomRouterManager: NSObject {
     }
     
 
-    /** router 参数和闭包 */
+    /** router targetVC，带参数和闭包 */
     func router(targetVC: String, param: WisdomRouterParam, hander: WisdomRouterHander) -> UIViewController {
         
         if vcClassValue[targetVC] == nil {
@@ -202,7 +202,7 @@ class WisdomRouterManager: NSObject {
     }
     
 
-    /** router 参数集合和闭包集合 */
+    /** router targetVC，带参数集合和闭包集合 */
     func router(targetVC: String, params: [WisdomRouterParam], handers: [WisdomRouterHander]) -> UIViewController {
         if vcClassValue[targetVC] == nil {
             return WisdomRouterAlertVC.alert(title: "温馨提示", message: targetVC+"\n未注册\n请检查代码", closeActionText: "确定", rightActionText: nil, handler: nil)
@@ -241,6 +241,27 @@ class WisdomRouterManager: NSObject {
             WisdomRouterManager.showError(error: errorStr)
         }
         return target
+    }
+    
+    
+    /** 通过 router 获取 全局单列 Model */
+    class func routerShare(shareName: String, targetSubstituteClass: WisdomRouterModel.Type) -> WisdomRouterModel{
+        let targetSubstituteModel = targetSubstituteClass.init()
+        let propertyList = WisdomRouterManager.propertyList(targetClass: targetSubstituteClass)
+        
+        if let classShare = NSClassFromString(shareName) as? WisdomRouterModel.Type{
+            let share = classShare.init()
+            
+            if share.responds(to: #selector(WisdomRouterShareProtocol.share)){
+                let shareModel = (share as! WisdomRouterShareProtocol).share()
+                let param = WisdomRouterParam.create(key: "",model: shareModel)
+                
+                for property in propertyList {
+                    WisdomRouterManager.shared.tager(model: targetSubstituteModel, param: param, tagerProperty: property)
+                }
+            }
+        }
+        return targetSubstituteModel
     }
     
     

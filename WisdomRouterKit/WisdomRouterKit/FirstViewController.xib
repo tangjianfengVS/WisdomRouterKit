@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -150,12 +150,34 @@
                         <action selector="clickPushMuchHanderAndMuchDataBtn:" destination="-1" eventType="touchUpInside" id="U2x-cB-pQa"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="功能进阶(全局单列对象获取)：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eec-W2-ISn">
+                    <rect key="frame" x="20" y="554" width="335" height="17"/>
+                    <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCx-b4-XMV">
+                    <rect key="frame" x="20" y="586" width="335" height="35"/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="G3V-tT-2MB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="获取TestShareModel(单列对象)">
+                        <color key="titleColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="clickSherdDataBtn:" destination="-1" eventType="touchUpInside" id="DO0-Cv-Ckw"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Tan-ND-RjA" firstAttribute="trailing" secondItem="cLA-aZ-4Bn" secondAttribute="trailing" id="31F-ZX-hV0"/>
                 <constraint firstItem="OcD-c6-Nv7" firstAttribute="top" secondItem="hOr-VY-zjW" secondAttribute="bottom" constant="15" id="4pW-ec-0aN"/>
                 <constraint firstItem="hOr-VY-zjW" firstAttribute="top" secondItem="vi4-cU-yJB" secondAttribute="bottom" constant="15" id="6fN-Ce-ZKP"/>
+                <constraint firstItem="eec-W2-ISn" firstAttribute="leading" secondItem="OcD-c6-Nv7" secondAttribute="leading" id="8AN-Kk-V4M"/>
                 <constraint firstItem="hOr-VY-zjW" firstAttribute="trailing" secondItem="vi4-cU-yJB" secondAttribute="trailing" id="9Qa-Bw-WPR"/>
                 <constraint firstItem="WSK-cU-Jyb" firstAttribute="top" secondItem="Tan-ND-RjA" secondAttribute="bottom" constant="15" id="A3W-t5-cfV"/>
                 <constraint firstItem="OcD-c6-Nv7" firstAttribute="trailing" secondItem="hOr-VY-zjW" secondAttribute="trailing" id="ATv-62-Zbg"/>
@@ -167,11 +189,16 @@
                 <constraint firstItem="Lby-77-sor" firstAttribute="trailing" secondItem="HLp-QO-F00" secondAttribute="trailing" id="IVW-8K-eGv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="HLp-QO-F00" secondAttribute="trailing" constant="20" id="LkV-dV-F0a"/>
                 <constraint firstItem="vi4-cU-yJB" firstAttribute="top" secondItem="i1C-ij-Zdt" secondAttribute="bottom" constant="15" id="Lvc-YE-VIj"/>
+                <constraint firstItem="eec-W2-ISn" firstAttribute="trailing" secondItem="OcD-c6-Nv7" secondAttribute="trailing" id="OJ8-0N-jfV"/>
                 <constraint firstItem="cLA-aZ-4Bn" firstAttribute="height" secondItem="meb-Bj-iIO" secondAttribute="height" id="QLa-gL-LCp"/>
                 <constraint firstItem="meb-Bj-iIO" firstAttribute="trailing" secondItem="HLp-QO-F00" secondAttribute="trailing" id="Rf7-KI-UOM"/>
                 <constraint firstItem="8vt-YU-loS" firstAttribute="top" secondItem="WSK-cU-Jyb" secondAttribute="bottom" constant="30" id="Sn1-kn-v5U"/>
+                <constraint firstItem="aCx-b4-XMV" firstAttribute="leading" secondItem="eec-W2-ISn" secondAttribute="leading" id="SqI-VF-bl8"/>
+                <constraint firstItem="aCx-b4-XMV" firstAttribute="trailing" secondItem="eec-W2-ISn" secondAttribute="trailing" id="W4t-Jo-zN4"/>
+                <constraint firstItem="eec-W2-ISn" firstAttribute="top" secondItem="OcD-c6-Nv7" secondAttribute="bottom" constant="25" id="WE2-rS-crJ"/>
                 <constraint firstItem="Lby-77-sor" firstAttribute="leading" secondItem="HLp-QO-F00" secondAttribute="leading" id="YJK-aN-fmZ"/>
                 <constraint firstItem="i1C-ij-Zdt" firstAttribute="leading" secondItem="WSK-cU-Jyb" secondAttribute="leading" id="Ybb-hS-9Qo"/>
+                <constraint firstItem="aCx-b4-XMV" firstAttribute="top" secondItem="eec-W2-ISn" secondAttribute="bottom" constant="15" id="ab6-ZF-rhq"/>
                 <constraint firstItem="cLA-aZ-4Bn" firstAttribute="top" secondItem="meb-Bj-iIO" secondAttribute="bottom" constant="15" id="c53-zv-NG7"/>
                 <constraint firstItem="Tan-ND-RjA" firstAttribute="top" secondItem="cLA-aZ-4Bn" secondAttribute="bottom" constant="15" id="fSb-zC-RAE"/>
                 <constraint firstItem="8vt-YU-loS" firstAttribute="trailing" secondItem="WSK-cU-Jyb" secondAttribute="trailing" id="fch-2D-l9v"/>
