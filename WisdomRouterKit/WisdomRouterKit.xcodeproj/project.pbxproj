@@ -35,7 +35,7 @@
 		A5F65A37223CB08D00413D49 /* ThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F65A36223CB08D00413D49 /* ThreeViewController.swift */; };
 		A5F65A39223CB0E300413D49 /* ThreeTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F65A38223CB0E300413D49 /* ThreeTestModel.swift */; };
 		A5F65A3D223F48FD00413D49 /* FourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F65A3C223F48FD00413D49 /* FourViewController.swift */; };
-		A5F65A3F223F4A8600413D49 /* WisdomRouterHander.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F65A3E223F4A8600413D49 /* WisdomRouterHander.swift */; };
+		A5F65A3F223F4A8600413D49 /* WisdomRouterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F65A3E223F4A8600413D49 /* WisdomRouterHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +69,7 @@
 		A5F65A36223CB08D00413D49 /* ThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeViewController.swift; sourceTree = "<group>"; };
 		A5F65A38223CB0E300413D49 /* ThreeTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeTestModel.swift; sourceTree = "<group>"; };
 		A5F65A3C223F48FD00413D49 /* FourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourViewController.swift; sourceTree = "<group>"; };
-		A5F65A3E223F4A8600413D49 /* WisdomRouterHander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterHander.swift; sourceTree = "<group>"; };
+		A5F65A3E223F4A8600413D49 /* WisdomRouterHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +134,7 @@
 				A5546250224C63970059B693 /* WisdomRouterConfig.swift */,
 				A54D8368223B9C7F0076BF10 /* WisdomRouterManager.swift */,
 				A54D8361223A76AD0076BF10 /* WisdomRouterParam.swift */,
-				A5F65A3E223F4A8600413D49 /* WisdomRouterHander.swift */,
+				A5F65A3E223F4A8600413D49 /* WisdomRouterHandler.swift */,
 				A5F65A32223BE1C100413D49 /* WisdomRouterRegister.swift */,
 				A54D835D223A4E200076BF10 /* WisdomRouterModel.swift */,
 				A5E024DD2244AB0700BE2C2B /* WisdomRouterResult.swift */,
@@ -230,7 +230,7 @@
 				A5B3B7C42248D5A8007B3207 /* EightViewController.swift in Sources */,
 				A5E024DE2244AB0700BE2C2B /* WisdomRouterResult.swift in Sources */,
 				A5F65A39223CB0E300413D49 /* ThreeTestModel.swift in Sources */,
-				A5F65A3F223F4A8600413D49 /* WisdomRouterHander.swift in Sources */,
+				A5F65A3F223F4A8600413D49 /* WisdomRouterHandler.swift in Sources */,
 				A5F65A33223BE1C100413D49 /* WisdomRouterRegister.swift in Sources */,
 				A5601419231A60B700B60C68 /* WisdomRouterAlertVC.swift in Sources */,
 				A54D8367223B7DF00076BF10 /* SecundTestModel.swift in Sources */,

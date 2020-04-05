@@ -11,20 +11,19 @@ import UIKit
 @objcMembers class EightViewController: UIViewController,WisdomRouterRegisterProtocol {
 
     static func register() {
-        WisdomRouterKit.register(vcClassType: self, handerName: "closureOne") { (closureOne, vc) in
+        WisdomRouterKit.register(vcClassType: self, handlerName: "closureOne") { (closureOne, vc) in
             let VC = vc as! EightViewController
             VC.closureOne = (closureOne as! ((String) ->())
                 
-        )}.register(handerName: "closureTwo") { (closureTwo, vc) in
+        )}.register(handlerName: "closureTwo") { (closureTwo, vc) in
             let VC = vc as! EightViewController
             VC.closureTwo = (closureTwo as! ((String,CGSize) -> ())
                     
-        )}.register(handerName: "closureThree") { (closureTwo, vc) in
+        )}.register(handlerName: "closureThree") { (closureTwo, vc) in
             let VC = vc as! EightViewController
             VC.closureThree = (closureTwo as! ((String, NSInteger) -> (Bool))
                 
-        )}.register(modelName: "testModel", modelClassType: SecundTestModel.self)
-            .register(modelName: "threeTestModel", modelClassType: ThreeTestModel.self)
+        )}
     }
     
     /// 参数一
@@ -86,8 +85,8 @@ import UIKit
         
         let lab = UILabel()
         view.addSubview(lab)
-        lab.frame = CGRect(x: 0, y: 0, width: 250, height: 500)
-        lab.center = CGPoint(x: view.center.x, y: view.center.y - 80)
+        lab.frame = CGRect(x: 0, y: 0, width: 270, height: 650)
+        lab.center.x = view.center.x
         lab.textAlignment = .center
         lab.numberOfLines = 0
         lab.backgroundColor = UIColor(white: 0.5, alpha: 0.7)

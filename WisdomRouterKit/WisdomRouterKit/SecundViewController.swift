@@ -10,10 +10,10 @@ import UIKit
 
 @objcMembers class SecundViewController: UIViewController,WisdomRouterRegisterProtocol {
     static func register() {
-        WisdomRouterKit.register(vcClassType: self)
+//        WisdomRouterKit.register(vcClassType: self)
     }
     
-    var testSize: Double=0.0
+    var testSize: UInt64=1
     
     lazy var label: UILabel = {
         let lab = UILabel()
@@ -32,11 +32,11 @@ import UIKit
         view.backgroundColor = UIColor.white
         view.addSubview(label)
         
-        if testSize > 0 {
-            label.text = label.text! + "Double: \n" + String.init(format:"%.2f",testSize)
-        }else{
-            label.text = label.text! + "Router传参数失败"
-            label.textColor = UIColor.red
-        }
+//        if testSize > 0 {
+//            label.text = label.text! + "Double: \n" + String.init(format:"%.2f",testSize)
+//        }else{
+//            label.text = label.text! + "Router传参数失败"
+//            label.textColor = UIColor.red
+//        }
     }
 }

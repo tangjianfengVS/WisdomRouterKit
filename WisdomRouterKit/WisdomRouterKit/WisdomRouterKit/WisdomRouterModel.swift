@@ -8,13 +8,14 @@
 
 import UIKit
 
-@objcMembers public class WisdomRouterModel: NSObject {
-    required override init() {
+@objcMembers open class WisdomRouterModel: NSObject {
+    
+    required override public init() {
         
     }
 }
 
 
-class WisdomRouterModelList: NSObject {
+public class WisdomRouterModelList: NSObject {
     
 }

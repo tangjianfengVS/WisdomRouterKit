@@ -8,15 +8,13 @@
 
 import UIKit
 
-public typealias WisdomRouterClosure = (Any,UIViewController) -> ()
-
 struct WisdomRouterRegisterInfo {
     
     private(set) var vcClassType: UIViewController.Type!
     
     private(set) var modelList: [WisdomRouterRegisterModel]=[]
     
-    private(set) var handerList: [WisdomRouterRegisterHander]=[]
+    private(set) var handlerList: [WisdomRouterRegisterHandler]=[]
     
     init(vcClassType: UIViewController.Type) {
         self.vcClassType = vcClassType
@@ -26,42 +24,42 @@ struct WisdomRouterRegisterInfo {
         self.modelList.append(model)
     }
     
-    mutating func add(hander: WisdomRouterRegisterHander) {
-        self.handerList.append(hander)
+    mutating func add(handler: WisdomRouterRegisterHandler) {
+        self.handlerList.append(handler)
     }
 }
 
 
 struct WisdomRouterRegisterModel {
     
-    private(set) var modelClass: AnyClass?
+    private(set) var modelClass: WisdomRouterModel.Type?
     
-    private(set) var modelName: String=""
+    private(set) var modelListName: String=""
 
-    init(modelName: String, modelClass: AnyClass) {
-        self.modelName = modelName
+    init(modelListName: String, modelClass: WisdomRouterModel.Type) {
+        self.modelListName = modelListName
         self.modelClass = modelClass
     }
     
-    mutating func updateModelClass(modelClass: AnyClass) {
+    mutating func updateModelClass(modelClass: WisdomRouterModel.Type) {
         self.modelClass = modelClass
     }
 }
 
 
-struct WisdomRouterRegisterHander{
+struct WisdomRouterRegisterHandler{
     
-    private(set) var handerValue: WisdomRouterClosure!
+    private(set) var handlerValue: RouterRegisterHandler!
     
-    private(set) var handerName: String!
+    private(set) var handlerName: String!
     
-    init(handerName:String, handerValue: @escaping WisdomRouterClosure) {
-        self.handerName = handerName
-        self.handerValue = handerValue
+    init(handerName:String, handlerValue: @escaping RouterRegisterHandler) {
+        self.handlerName = handerName
+        self.handlerValue = handlerValue
     }
     
-    mutating func updateHanderValue(handerValue: @escaping WisdomRouterClosure){
-        self.handerValue = handerValue
+    mutating func updateHanderValue(handlerValue: @escaping RouterRegisterHandler){
+        self.handlerValue = handlerValue
     }
 }
 

@@ -12,7 +12,13 @@ import UIKit
     var testModelList: [ThreeTestModel]?
     
     static func register() {
-        WisdomRouterKit.register(vcClassType: self, modelName: "testModelList", modelClassType: ThreeTestModel.self)
+        WisdomRouterKit.register(vcClassType: self,
+                                 modelListName: "testModelList",
+                                 modelListClass: ThreeTestModel.self)
+        
+        WisdomRouterKit.register(vcClassType: self,
+                                 modelListName: "testModelList",
+                                 modelListClass: ThreeTestModel.self)
     }
     
     override func viewDidLoad() {

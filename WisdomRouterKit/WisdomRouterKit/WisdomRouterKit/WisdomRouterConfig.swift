@@ -43,7 +43,9 @@ let Equal = "="
 
 let errorCount: Int = 5
 
-let DateBaseKey = "Double,NSInteger,Int,CGFloat"
+let DateBaseKey = "Double,double,NSInteger,Int,Int8,Int16,Int32,Int64,UInt,UInt8,UInt16,UInt32,UInt64,CGFloat,Float"
+
+let ReplacingList : [String] = ["10","11","12","13","14","15","16","17","18","19","20"]
 
 let valueTypesMap: Dictionary<String, String> = [
     "c" : "Int8",
@@ -59,3 +61,13 @@ let valueTypesMap: Dictionary<String, String> = [
     "{" : "Decimal"
 ]
 
+
+public typealias RouterHandler = (UIViewController) -> Void
+
+public typealias RouterResultHandler = (UIViewController, [String]) -> Void
+
+public typealias RouterErrorHandler = (String) -> Void
+
+public typealias RouterRegisterHandler = (Any,UIViewController) -> Void
+
+public typealias RouterSharedHandler = (WisdomRouterModel,[String]) -> Void

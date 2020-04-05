@@ -10,15 +10,15 @@ import UIKit
 
 @objcMembers class SevenViewController: UIViewController,WisdomRouterRegisterProtocol {
     static func register() {
-        WisdomRouterKit.register(vcClassType: self, handerName: "closureOne") { (closureOne, vc) in
+        WisdomRouterKit.register(vcClassType: self, handlerName: "closureOne") { (closureOne, vc) in
             let VC = vc as! SevenViewController
             VC.closureOne = (closureOne as! ((String) ->())
-            
-        )}.register(handerName: "closureTwo") { (closureTwo, vc) in
+
+        )}.register(handlerName: "closureTwo") { (closureTwo, vc) in
             let VC = vc as! SevenViewController
             VC.closureTwo = (closureTwo as! ((String,CGSize) -> ())
-                
-        )}.register(handerName: "closureThree") { (closureTwo, vc) in
+
+        )}.register(handlerName: "closureThree") { (closureTwo, vc) in
             let VC = vc as! SevenViewController
             VC.closureThree = (closureTwo as! ((String, NSInteger) -> (Bool))
         )}

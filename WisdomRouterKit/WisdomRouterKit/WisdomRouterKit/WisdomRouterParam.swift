@@ -68,7 +68,7 @@ public class WisdomRouterParam: NSObject {
     
     
     /** Param: Bool */
-    class func create(key: String, bool: Bool) -> WisdomRouterParam{
+    @objc public class func create(key: String, bool: Bool) -> WisdomRouterParam{
         let obj = WisdomRouterParam.createAny(param: bool, key: key)
         obj.typeValue = "Bool,BOOL"
         return obj

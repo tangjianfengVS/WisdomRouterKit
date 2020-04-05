@@ -8,11 +8,7 @@
 
 import UIKit
 
-@objcMembers class SixViewController: UIViewController, WisdomRouterRegisterProtocol {
-    
-    static func register() {
-        WisdomRouterKit.register(vcClassType: self, modelName: "testModel", modelClassType: SecundTestModel.self).register(modelName: "threeTestModel", modelClassType: ThreeTestModel.self)
-    }
+@objcMembers class SixViewController: UIViewController {
     
     /// 参数一
     var name99: String?
@@ -38,14 +34,14 @@ import UIKit
         view.backgroundColor = UIColor.white
         let lab = UILabel()
         view.addSubview(lab)
-        lab.frame = CGRect(x: 0, y: 0, width: 250, height: 500)
-        lab.center = view.center
+        lab.frame = CGRect(x: 0, y: 0, width: 250, height: view.frame.height - 60)
+        lab.center.x = view.center.x
         lab.textAlignment = .center
         lab.numberOfLines = 0
         lab.backgroundColor = UIColor(white: 0.5, alpha: 0.7)
         
         var text = "WisdomRouterKit\nFunc:\n \n"
-        text = text + "参数一name99:\n"+(name99 ?? "nil")+"\n   \n参数二：\n"+"testModel属性如下:  \n"
+        text = text + "参数一:\n"+(name99 ?? "nil")+"\n   \n参数二：\n"+"testModel属性如下:  \n"
         
         var propertyList = WisdomRouterManager.propertyList(targetClass: SecundTestModel.self)
         for key in propertyList {

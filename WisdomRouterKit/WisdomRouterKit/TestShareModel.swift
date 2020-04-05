@@ -10,7 +10,7 @@ import UIKit
 
 class TestShareModel: WisdomRouterModel, WisdomRouterShareProtocol {
     
-    func share() -> WisdomRouterModel {
+    func routerShared() -> WisdomRouterModel {
         return TestShareModel.share;
     }
     

@@ -1,5 +1,5 @@
 //
-//  WisdomRouterHander.swift
+//  WisdomRouterHandler.swift
 //  WisdomRouterKitDemo
 //
 //  Created by jianfeng on 2019/3/18.
@@ -8,15 +8,16 @@
 
 import UIKit
 
-public class WisdomRouterHander: NSObject {
+public class WisdomRouterHandler: NSObject {
+    
     private(set) var value: Any?
     
     private(set) var valueTargetKey: String=""
     
-    @objc public class func create(key: String, hander: Any) -> WisdomRouterHander{
-        let obj = WisdomRouterHander()
+    @objc public class func create(key: String, handler: Any) -> WisdomRouterHandler{
+        let obj = WisdomRouterHandler()
         obj.valueTargetKey = key
-        obj.value = hander;
+        obj.value = handler;
         return obj
     }
 }

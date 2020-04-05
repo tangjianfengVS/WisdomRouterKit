@@ -8,10 +8,7 @@
 
 import UIKit
 
-@objcMembers class SecundThreeViewController: UIViewController,WisdomRouterRegisterProtocol {
-    static func register() {
-        WisdomRouterKit.register(vcClassType: self, modelName: "testModel", modelClassType: SecundTestModel.self)
-    }
+@objcMembers class SecundThreeViewController: UIViewController {
     
     var testModel: SecundTestModel={
         let model = SecundTestModel()

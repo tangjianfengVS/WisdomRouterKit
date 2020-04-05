@@ -9,12 +9,13 @@
 import UIKit
 
 @objcMembers class FourViewController: UIViewController,WisdomRouterRegisterProtocol {
+    
     var closure: ((String) -> Void)?
     
     static func register() {
-        WisdomRouterKit.register(vcClassType: self, handerName: "closure") { (hander: Any, vc: UIViewController) in
+        WisdomRouterKit.register(vcClassType: self, handlerName: "closure") { (handler: Any, vc: UIViewController) in
             let VC = vc as! FourViewController
-            VC.closure = (hander as! ((String) -> Void))
+            VC.closure = (handler as! ((String) -> Void))
         }
     }
     

@@ -8,267 +8,474 @@
 
 import UIKit
 
-class WisdomRouterManager: NSObject {
+class WisdomRouterManager {
     
     static let shared = WisdomRouterManager()
     
-    /** 注册控制器值 */
-    private(set) var vcClassValue: [String: WisdomRouterRegisterInfo] = [:]
+    /// 注册控制器属性
+    private(set) var registerRouterVCInfo: [String: WisdomRouterRegisterInfo] = [:]
     
-    /** 注册模型属性值 */
-    private(set) var modelPropertyList: [String: [WisdomRouterRegisterProperty]] = [:]
+    private let modelPropertyCache = NSCache<AnyObject, AnyObject>()
     
-    func register(vcClassType: UIViewController.Type) -> WisdomRouterResult {
-        let cls = NSStringFromClass(vcClassType)
-        let value = cls.components(separatedBy: Dot)
-        guard let info = vcClassValue[value.last!] else {
-            let newinfo = WisdomRouterRegisterInfo.init(vcClassType: vcClassType)
-            vcClassValue[value.last!] = newinfo
-            return WisdomRouterResult(vcClassType: vcClassType, info: newinfo)
-        }
-        return WisdomRouterResult(vcClassType: vcClassType, info: info)
-    }
-    
-    
-    /** 注册模型 */
-    func register(vcClassType: UIViewController.Type, modelName: String, modelClassType: WisdomRouterModel.Type) -> WisdomRouterResult {
-        
-        let cls = NSStringFromClass(vcClassType)
-        let value = cls.components(separatedBy: Dot)
-        if vcClassValue[value.last!] == nil {
-            vcClassValue[value.last!] = WisdomRouterRegisterInfo.init(vcClassType: vcClassType)
-        }
-
-        let clsM = NSStringFromClass(modelClassType)
-        if modelPropertyList[clsM] == nil{
-            let propertyList = WisdomRouterManager.propertyList(targetClass: modelClassType)
-            modelPropertyList[clsM] = propertyList
-        }
-        
-        var info = vcClassValue[value.last!]!
-        if modelName.count == 0 {
-            return WisdomRouterResult(vcClassType: vcClassType, info: info)
-        }
-        
-        if info.modelList.count > 0{
-            for obj in info.modelList{
-                if obj.modelName == modelName {
-                    return WisdomRouterResult(vcClassType: vcClassType, info: info)
+    //MARK: - register 注册数组模型
+    func register(vcClassType: UIViewController.Type,
+                  modelListName: String,
+                  modelListClass: WisdomRouterModel.Type) -> WisdomRouterResult {
+        let key = NSStringFromClass(vcClassType)
+        if var VCInfo : WisdomRouterRegisterInfo = registerRouterVCInfo[key] {
+            var hasModelListName = false
+            for registerModel in VCInfo.modelList {
+                /// 存在不操作
+                if registerModel.modelListName == modelListName {
+                    hasModelListName = true
+                    break
                 }
             }
-        }
-        info.add(model: WisdomRouterRegisterModel(modelName: modelName, modelClass: modelClassType))
-        vcClassValue[value.last!] = info
-        return WisdomRouterResult(vcClassType: vcClassType, info: info)
-    }
-    
-
-    /** 注册闭包 */
-    @discardableResult
-    func register(vcClassType: UIViewController.Type, handerName: String, hander: @escaping WisdomRouterClosure) -> WisdomRouterResult{
-        
-        let cls = NSStringFromClass(vcClassType)
-        let value = cls.components(separatedBy: Dot)
-        if vcClassValue[value.last!] == nil {
-            vcClassValue[value.last!] = WisdomRouterRegisterInfo.init(vcClassType: vcClassType)
-        }
-
-        var info = vcClassValue[value.last!]!
-        if handerName.count == 0 {
-            return WisdomRouterResult(vcClassType: vcClassType, info: info)
-        }
-        
-        if info.handerList.count > 0{
-            for obj in info.handerList{
-                if obj.handerName == handerName {
-                    return WisdomRouterResult(vcClassType: vcClassType, info: info)
-                }
-            }
-        }
-        info.add(hander: WisdomRouterRegisterHander(handerName: handerName, handerValue: hander))
-        vcClassValue[value.last!] = info
-        return WisdomRouterResult(vcClassType: vcClassType, info: info)
-    }
-    
-
-    /** router targetVC，无参数，无闭包 */
-    func router(targetVC: String) -> UIViewController{
-        
-        if vcClassValue[targetVC] == nil {
-            return WisdomRouterAlertVC.alert(title: "温馨提示", message: targetVC+"\n未注册\n请检查代码", closeActionText: "确定", rightActionText: nil, handler: nil)
-        }
-        
-        guard let vcClassType = vcClassValue[targetVC]!.vcClassType else {
-            return UIViewController()
-        }
-        return vcClassType.init()
-    }
-    
-
-    /** router targetVC，带参数 */
-    func router(targetVC: String, param: WisdomRouterParam) -> UIViewController {
-        
-        if vcClassValue[targetVC] == nil {
-            return WisdomRouterAlertVC.alert(title: "温馨提示", message: targetVC+"\n未注册\n请检查代码", closeActionText: "确定", rightActionText: nil, handler: nil)
-        }
-        
-        guard let vcClassType = vcClassValue[targetVC]!.vcClassType else {
-            return UIViewController()
-        }
-        
-        var error = ""
-        let target = vcClassType.init()
-        let result = WisdomRouterManager.hasPropertyList(targetClass: vcClassType, targetParamKey: param.valueTargetKey)
-        if result.0{
-            if param.valueClass == WisdomRouterModel.self {
-                error = setPropertyList(targetVC: targetVC, param: param, target: target)
-            }else if param.valueClass == WisdomRouterModelList.self {
-                error = setListPropertyList(targetVC: targetVC, param: param, target: target)
-            }else{
-                tager(tager: target, param: param, tagerDateType: result.1)
-            }
-        }else{
-            error = param.valueTargetKey+"\n属性查找失败\n请检查代码"
-        }
-        
-        if error.count > errorCount {
-            WisdomRouterManager.showError(error: error)
-        }
-        return target
-    }
-    
-
-    /** router targetVC，带闭包 */
-    func router(targetVC: String, hander: WisdomRouterHander) -> UIViewController {
-        
-        if vcClassValue[targetVC] == nil {
-            return WisdomRouterAlertVC.alert(title: "温馨提示", message: targetVC+"\n未注册\n请检查代码", closeActionText: "确定", rightActionText: nil, handler: nil)
-        }
-        
-        guard let vcClassType = vcClassValue[targetVC]!.vcClassType else {
-            return UIViewController()
-        }
-        
-        let target = vcClassType.init()
-        if WisdomRouterManager.hasPropertyList(targetClass: vcClassType, targetParamKey: hander.valueTargetKey).0{
-            let error = setHanderProperty(targetVC: target, target: targetVC, hander: hander)
-            if error.count > errorCount {
-                WisdomRouterManager.showError(error: error)
-            }
-        }else{
-            WisdomRouterManager.showError(error: hander.valueTargetKey+"\nHander查找失败\n请检查代码")
-        }
-        
-        return target
-    }
-    
-
-    /** router targetVC，带参数和闭包 */
-    func router(targetVC: String, param: WisdomRouterParam, hander: WisdomRouterHander) -> UIViewController {
-        
-        if vcClassValue[targetVC] == nil {
-            return WisdomRouterAlertVC.alert(title: "温馨提示", message: targetVC+"\n未注册\n请检查代码", closeActionText: "确定", rightActionText: nil, handler: nil)
-        }
-        
-        guard let vcClassType = vcClassValue[targetVC]!.vcClassType else {
-            return UIViewController()
-        }
-        
-        var errorStr = ""
-        let target = vcClassType.init()
-        if WisdomRouterManager.hasPropertyList(targetClass: vcClassType, targetParamKey: hander.valueTargetKey).0 {
-            errorStr = setHanderProperty(targetVC: target, target: targetVC, hander: hander)
-        }else{
-            errorStr = hander.valueTargetKey+"\nHander查找失败\n请检查代码\n"
-        }
-        
-        let result = WisdomRouterManager.hasPropertyList(targetClass: vcClassType, targetParamKey: param.valueTargetKey)
-        if result.0 {
-            if param.valueClass == WisdomRouterModel.self {
-                errorStr = errorStr + " \n" + setPropertyList(targetVC: targetVC, param: param, target: target)
-            }else if param.valueClass == WisdomRouterModelList.self {
-                errorStr = errorStr + " \n" + setListPropertyList(targetVC: targetVC, param: param, target: target)
-            }else{
-                tager(tager: target, param: param, tagerDateType: result.1)
-            }
-        }else{
-            errorStr = errorStr + " \n" + param.valueTargetKey+"\n属性查找失败\n请检查代码"
-        }
-        
-        if errorStr.count > errorCount {
-            WisdomRouterManager.showError(error: errorStr)
-        }
-        return target
-    }
-    
-
-    /** router targetVC，带参数集合和闭包集合 */
-    func router(targetVC: String, params: [WisdomRouterParam], handers: [WisdomRouterHander]) -> UIViewController {
-        if vcClassValue[targetVC] == nil {
-            return WisdomRouterAlertVC.alert(title: "温馨提示", message: targetVC+"\n未注册\n请检查代码", closeActionText: "确定", rightActionText: nil, handler: nil)
-        }
-        
-        guard let vcClassType = vcClassValue[targetVC]!.vcClassType else {
-            return UIViewController()
-        }
-        
-        var errorStr = ""
-        let target = vcClassType.init()
-        for hander in handers {
-            if WisdomRouterManager.hasPropertyList(targetClass: vcClassType, targetParamKey: hander.valueTargetKey).0 {
-                errorStr = setHanderProperty(targetVC: target, target: targetVC, hander: hander)
-            }else{
-                errorStr = hander.valueTargetKey+"\nHander查找失败\n请检查代码\n"
-            }
-        }
-        
-        for param in params {
-            let result = WisdomRouterManager.hasPropertyList(targetClass: vcClassType, targetParamKey: param.valueTargetKey)
-            if result.0 {
-                if param.valueClass == WisdomRouterModel.self {
-                    errorStr = errorStr + " \n" + setPropertyList(targetVC: targetVC, param: param, target: target)
-                }else if param.valueClass == WisdomRouterModelList.self {
-                    errorStr = errorStr + " \n" + setListPropertyList(targetVC: targetVC, param: param, target: target)
-                }else{
-                    tager(tager: target, param: param, tagerDateType: result.1)
-                }
-            }else{
-                errorStr = errorStr  + param.valueTargetKey+"\n属性查找失败\n请检查代码"
-            }
-        }
-
-        if errorStr.count > errorCount {
-            WisdomRouterManager.showError(error: errorStr)
-        }
-        return target
-    }
-    
-    
-    /** 通过 router 获取 全局单列 Model */
-    class func routerShare(shareName: String, targetSubstituteClass: WisdomRouterModel.Type) -> WisdomRouterModel{
-        let targetSubstituteModel = targetSubstituteClass.init()
-        let propertyList = WisdomRouterManager.propertyList(targetClass: targetSubstituteClass)
-        
-        if let classShare = NSClassFromString(shareName) as? WisdomRouterModel.Type{
-            let share = classShare.init()
             
-            if share.responds(to: #selector(WisdomRouterShareProtocol.share)){
-                let shareModel = (share as! WisdomRouterShareProtocol).share()
-                let param = WisdomRouterParam.create(key: "",model: shareModel)
-                
-                for property in propertyList {
-                    WisdomRouterManager.shared.tager(model: targetSubstituteModel, param: param, tagerProperty: property)
-                }
+            if !hasModelListName {
+                let registerModel = WisdomRouterRegisterModel(modelListName: modelListName,
+                                                              modelClass: modelListClass)
+                VCInfo.add(model: registerModel)
+                registerRouterVCInfo[key] = VCInfo
             }
+            return WisdomRouterResult(vcClassType: vcClassType, info: VCInfo)
+        }else{
+            var info = WisdomRouterRegisterInfo(vcClassType: vcClassType)
+            let registerModel = WisdomRouterRegisterModel(modelListName: modelListName,
+                                                          modelClass: modelListClass)
+            info.add(model: registerModel)
+            registerRouterVCInfo[key] = info
+            return WisdomRouterResult(vcClassType: vcClassType, info: info)
         }
-        return targetSubstituteModel
     }
     
     
+    //MARK: - register 注册Handler
+    func register(vcClassType: UIViewController.Type,
+                  handlerName: String,
+                  handler: @escaping RouterRegisterHandler) -> WisdomRouterResult{
+        let key = NSStringFromClass(vcClassType)
+        if var VCInfo : WisdomRouterRegisterInfo = registerRouterVCInfo[key] {
+            var hasHandlerName = false
+            for registerHandler in VCInfo.handlerList {
+                /// 存在不操作
+                if registerHandler.handlerName == handlerName {
+                    hasHandlerName = true
+                    break
+                }
+            }
+            
+            if !hasHandlerName {
+                let registerHandler = WisdomRouterRegisterHandler(handerName: handlerName,
+                                                                  handlerValue: handler)
+                VCInfo.add(handler: registerHandler)
+                registerRouterVCInfo[key] = VCInfo
+            }
+            return WisdomRouterResult(vcClassType: vcClassType, info: VCInfo)
+        }else{
+            var info = WisdomRouterRegisterInfo(vcClassType: vcClassType)
+            let registerHandler = WisdomRouterRegisterHandler(handerName: handlerName,
+                                                              handlerValue: handler)
+            info.add(handler: registerHandler)
+            registerRouterVCInfo[key] = info
+            return WisdomRouterResult(vcClassType: vcClassType, info: info)
+        }
+    }
+    
+    
+    //MARK: - router 无参数，无Handler
+    public class func router(targetVC: String,
+                             project: String,
+                             routerHandler: RouterHandler,
+                             routerErrorHandler: RouterErrorHandler) {
+        let result = WisdomRouterManager.getClass(stringName: project + Dot + targetVC)
+        if let vcClass = result.0 {
+            let VC = vcClass.init()
+            routerHandler(VC)
+        } else {
+            routerErrorHandler(result.1)
+        }
+    }
+    
+    
+    //MARK: - router 有参数，无Handler
+    public class func router(targetVC: String,
+                             project: String,
+                             param: WisdomRouterParam,
+                             routerResultHandler: RouterResultHandler,
+                             routerErrorHandler: RouterErrorHandler) {
+        let className = project + Dot + targetVC
+        let result = WisdomRouterManager.getClass(stringName: className)
+        if let vcClass = result.0 {
+            let VC = vcClass.init()
+            let warning: [String] = WisdomRouterManager.setVCRouterParam(targetVC: VC,
+                                                                         param: param,
+                                                                         className: className,
+                                                                         project: project)
+            routerResultHandler(VC,warning)
+        } else {
+            routerErrorHandler(result.1)
+        }
+    }
+
+
+    //MARK: - router 无参数，有Handler
+    public class func router(targetVC: String,
+                             project: String,
+                             handler: WisdomRouterHandler,
+                             routerResultHandler: RouterResultHandler,
+                             routerErrorHandler: RouterErrorHandler) {
+        let className = project + Dot + targetVC
+        let result = WisdomRouterManager.getClass(stringName: className)
+        if let vcClass = result.0 {
+            let VC = vcClass.init()
+            let warning: [String] = WisdomRouterManager.setVCRouterHandler(targetVC: VC,
+                                                                           handler: handler,
+                                                                           className: className,
+                                                                           project: project)
+            routerResultHandler(VC,warning)
+        } else {
+            routerErrorHandler(result.1)
+        }
+    }
+    
+    
+    //MARK: - router 有参数，有Handler
+    public class func router(targetVC: String,
+                             project: String,
+                             param: WisdomRouterParam,
+                             handler: WisdomRouterHandler,
+                             routerResultHandler: RouterResultHandler,
+                             routerErrorHandler: RouterErrorHandler) {
+        let className = project + Dot + targetVC
+        let result = WisdomRouterManager.getClass(stringName: className)
+        if let vcClass = result.0 {
+            let VC = vcClass.init()
+            let warningM: [String] = WisdomRouterManager.setVCRouterParam(targetVC: VC,
+                                                                          param: param,
+                                                                          className: className,
+                                                                          project: project)
+            let warningH: [String] = WisdomRouterManager.setVCRouterHandler(targetVC: VC,
+                                                                            handler: handler,
+                                                                            className: className,
+                                                                            project: project)
+            routerResultHandler(VC,warningM+warningH)
+        } else {
+            routerErrorHandler(result.1)
+        }
+    }
+    
+    
+    //MARK: - router 多参数集合，无Handler
+    public class func router(targetVC: String,
+                             project: String,
+                             params: [WisdomRouterParam],
+                             routerResultHandler: RouterResultHandler,
+                             routerErrorHandler: RouterErrorHandler) {
+        let className = project + Dot + targetVC
+        let result = WisdomRouterManager.getClass(stringName: className)
+        if let vcClass = result.0 {
+            let VC = vcClass.init()
+            var warningL: [String] = []
+            for param in params {
+                let warningP = WisdomRouterManager.setVCRouterParam(targetVC: VC,
+                                                                    param: param,
+                                                                    className: className,
+                                                                    project: project)
+                warningL = warningL + warningP
+            }
+            routerResultHandler(VC,warningL)
+        } else {
+            routerErrorHandler(result.1)
+        }
+    }
+    
+    
+    //MARK: - router 无参数集合，多Handler集合
+    public class func router(targetVC: String,
+                             project: String,
+                             handlers: [WisdomRouterHandler],
+                             routerResultHandler: RouterResultHandler,
+                             routerErrorHandler: RouterErrorHandler) {
+        let className = project + Dot + targetVC
+        let result = WisdomRouterManager.getClass(stringName: className)
+        if let vcClass = result.0 {
+            let VC = vcClass.init()
+            var warningL: [String] = []
+            for handler in handlers {
+                let warningP: [String] = WisdomRouterManager.setVCRouterHandler(targetVC: VC,
+                                                                                handler: handler,
+                                                                                className: className,
+                                                                                project: project)
+                warningL = warningL + warningP
+            }
+            routerResultHandler(VC,warningL)
+        } else {
+            routerErrorHandler(result.1)
+        }
+    }
+    
+    
+    //MARK: - router 多参数集合，多Handler集合
+    public class func router(targetVC: String,
+                             project: String,
+                             params: [WisdomRouterParam],
+                             handlers: [WisdomRouterHandler],
+                             routerResultHandler: RouterResultHandler,
+                             routerErrorHandler: RouterErrorHandler) {
+        let className = project + Dot + targetVC
+        let result = WisdomRouterManager.getClass(stringName: className)
+        if let vcClass = result.0 {
+            let VC = vcClass.init()
+            var warningL: [String] = []
+            for param in params {
+                let warningP = WisdomRouterManager.setVCRouterParam(targetVC: VC,
+                                                                    param: param,
+                                                                    className: className,
+                                                                    project: project)
+                warningL = warningL + warningP
+            }
+            
+            for handler in handlers {
+                let warningP: [String] = WisdomRouterManager.setVCRouterHandler(targetVC: VC,
+                                                                                handler: handler,
+                                                                                className: className,
+                                                                                project: project)
+                warningL = warningL + warningP
+            }
+            routerResultHandler(VC,warningL)
+        } else {
+            routerErrorHandler(result.1)
+        }
+    }
+    
+    
+    //MARK: - routerShared 获取全局单列 Model
+    class func routerShared(sharedClassName: String,
+                            project: String,
+                            substituteModelType: WisdomRouterModel.Type,
+                            routerSharedHandler: RouterSharedHandler,
+                            routerErrorHandler: RouterErrorHandler){
+        let className = project + Dot + sharedClassName
+        let result = WisdomRouterManager.getSharedClass(stringName: className)
+        
+        if let sharedClass = result.0 {
+            let sharedModel = sharedClass.init()
+            
+            if sharedModel.responds(to: #selector(WisdomRouterShareProtocol.routerShared)){
+                let model = (sharedModel as! WisdomRouterShareProtocol).routerShared()
+                let param = WisdomRouterParam.create(key: "",model: model)
+                let substituteModel = substituteModelType.init()
+                
+                let warning: [String] = setSharedModelProperty(param: param,
+                                                               substituteModel: substituteModel,
+                                                               substituteModelType: substituteModelType)
+                routerSharedHandler(substituteModel, warning)
+            }else{
+                routerErrorHandler(result.1)
+            }
+        }else{
+            routerErrorHandler(result.1)
+        }
+    }
+}
+
+
+extension WisdomRouterManager {
+    /// get class
+    private class func getClass(stringName: String) -> (UIViewController.Type?,String){
+        guard let childVcClass = NSClassFromString(stringName) else {
+            return (nil,"没有获取到对应的class: " + stringName)
+        }
+        
+        guard let childVcType = childVcClass as? UIViewController.Type else {
+            return (nil,"没有得到的类型: " + stringName)
+        }
+        return (childVcType, "")
+    }
+    
+    
+    /// get shared class
+    private class func getSharedClass(stringName: String) -> (WisdomRouterModel.Type?, String){
+        guard let childModelClass = NSClassFromString(stringName) else {
+            return (nil,"没有获取到对应的class: " + stringName)
+        }
+        
+        guard let childModelType = childModelClass as? WisdomRouterModel.Type else {
+            return (nil,"没有得到的类型: " + stringName)
+        }
+        return (childModelType, "")
+    }
+    
+    
+    /// Handler赋值
+    private class func setVCRouterHandler(targetVC: UIViewController,
+                                          handler: WisdomRouterHandler,
+                                          className: String,
+                                          project: String) -> [String] {
+        var errorList : [String] = []
+        let result = WisdomRouterManager.hasPropertyList(targetClass: targetVC.classForCoder,
+                                                         targetParamKey: handler.valueTargetKey)
+        if result.0 {
+            errorList = WisdomRouterManager.shared.setHandlerProperty(targetVC: targetVC, handler: handler)
+        }else{
+            errorList.append(className + "⚠️未实现 Handler 属性: "+"'"+handler.valueTargetKey+"'")
+        }
+        return errorList
+    }
+    
+    
+    /// Hander属性赋值
+    private func setHandlerProperty(targetVC: UIViewController, handler: WisdomRouterHandler) -> [String] {
+        var errorList: [String] = []
+        let key = NSStringFromClass(targetVC.classForCoder)
+        let registerInfo = WisdomRouterManager.shared.registerRouterVCInfo[key]
+        
+        if registerInfo != nil {
+            var has = false
+            
+            for registerHandler in registerInfo!.handlerList {
+                if registerHandler.handlerName == handler.valueTargetKey {
+                    has = true
+                    registerHandler.handlerValue(handler.value!,targetVC)
+                    break
+                }
+            }
+            if !has {
+                let error = NSStringFromClass(targetVC.classForCoder)+" ⚠️未注册Handler：'"+handler.valueTargetKey+"'"
+                errorList.append(error)
+            }
+        }else{
+            let error = NSStringFromClass(targetVC.classForCoder)+" ⚠️未注册Handler：'"+handler.valueTargetKey+"'"
+            errorList.append(error)
+        }
+        return errorList
+    }
+    
+    
+    /// 参数赋值
+    private class func setVCRouterParam(targetVC: UIViewController,
+                                        param: WisdomRouterParam,
+                                        className: String,
+                                        project: String) -> [String] {
+        var errorList : [String] = []
+        let result = WisdomRouterManager.hasPropertyList(targetClass: targetVC.classForCoder,
+                                                         targetParamKey: param.valueTargetKey)
+        if result.0 {
+            var error = ""
+            if param.valueClass == WisdomRouterModel.self {
+                errorList = setModelProperty(targetVC: targetVC,
+                                             param: param,
+                                             project: project,
+                                             vcModelStr: result.1)
+            }else if param.valueClass == WisdomRouterModelList.self {
+                errorList = setModelListProperty(targetVC: targetVC,
+                                                 param: param,
+                                                 project: project,
+                                                 vcModelStr: result.1)
+            }else{
+                error = set_VC_Value(target: targetVC,
+                                     param: param,
+                                     tagerDateType: result.1,
+                                     className: className)
+                if error.count > 0 {
+                    errorList.append(error)
+                }
+            }
+        }else{
+            errorList.append(className + "⚠️未实现属性: "+"'"+param.valueTargetKey+"'")
+        }
+        return errorList
+    }
+    
+    
+    /// model 属性赋值
+    private class func setModelProperty(targetVC: UIViewController,
+                                        param: WisdomRouterParam,
+                                        project: String,
+                                        vcModelStr: String) -> [String] {
+        var errorList: [String] = []
+        /// 判断是否是 Model
+        if vcModelStr.contains(project) {
+            let range = vcModelStr.range(of: project)
+            let suffix_vcModelStr = vcModelStr.suffix(from: range!.lowerBound)
+            var vcModelClassStr : String = String(suffix_vcModelStr)
+            for replacing in ReplacingList {
+               vcModelClassStr = vcModelClassStr.replacingOccurrences(of: replacing, with: ".")
+            }
+            
+            if let vcModelClass = NSClassFromString(vcModelClassStr) as? WisdomRouterModel.Type {
+                let model = vcModelClass.init()
+
+                errorList = set_Model_Value(target:model, startProperty:param.keyValue.first!, vcModelClass: vcModelClass)
+                targetVC.setValue(model, forKey: param.valueTargetKey)
+            }else{
+                errorList.append(vcModelStr+" ⚠️属性Model '"+param.valueTargetKey+"'"+" ⚠️未继承: ‘WisdomRouterModel’")
+            }
+        }else{
+            errorList.append(vcModelStr+" ⚠️属性Model '"+param.valueTargetKey+"'"+" ⚠️未继承: ‘WisdomRouterModel’")
+        }
+        return errorList
+    }
+    
+    
+    /// model list 属性赋值
+    private class func setModelListProperty(targetVC: UIViewController,
+                                            param: WisdomRouterParam,
+                                            project: String,
+                                            vcModelStr: String) -> [String] {
+        var errorList: [String] = []
+        let key = NSStringFromClass(targetVC.classForCoder)
+        let registerInfo = WisdomRouterManager.shared.registerRouterVCInfo[key]
+        
+        if registerInfo != nil {
+            var has = false
+            
+            for registerModel in registerInfo!.modelList {
+                if registerModel.modelListName == param.valueTargetKey {
+                    has = true
+                    let modelClass : WisdomRouterModel.Type = registerModel.modelClass!
+                    var rray : [WisdomRouterModel] = []
+
+                    for property in param.keyValue {
+                        let model = modelClass.init()
+                        let errorArray = set_Model_Value(target:model, startProperty:property, vcModelClass: modelClass)
+
+                        rray.append(model)
+                        errorList = errorList + errorArray
+                    }
+                    targetVC.setValue(rray, forKey: param.valueTargetKey)
+                }
+            }
+            if !has {
+                let error = NSStringFromClass(targetVC.classForCoder)+" ⚠️未注册属性：'"+param.valueTargetKey+"'"
+                errorList.append(error)
+            }
+        }else{
+            let error = NSStringFromClass(targetVC.classForCoder)+" ⚠️未注册属性：'"+param.valueTargetKey+"'"
+            errorList.append(error)
+        }
+        return errorList
+    }
+    
+    
+    /// model  属性赋值
+    private class func setSharedModelProperty(param: WisdomRouterParam,
+                                              substituteModel: WisdomRouterModel,
+                                              substituteModelType: WisdomRouterModel.Type) -> [String] {
+        var errorList: [String] = []
+        errorList = set_Model_Value(target:substituteModel,
+                                    startProperty:param.keyValue.first!,
+                                    vcModelClass: substituteModelType)
+        return errorList
+    }
+    
+    
+    /// 判断属性实现
     class func hasPropertyList(targetClass: AnyClass, targetParamKey: String) -> (Bool,String) {
         var count: UInt32 = 0
         let list = class_copyPropertyList(targetClass, &count)
-        
+
         for i in 0..<Int(count) {
             let pty = list?[i]
             let cName = property_getName(pty!)
@@ -284,11 +491,70 @@ class WisdomRouterManager: NSObject {
     }
     
     
+    /// VC属性赋值
+    private class func set_VC_Value(target: UIViewController,
+                                    param: WisdomRouterParam,
+                                    tagerDateType: String,
+                                    className: String) -> String{
+        if param.typeValue.contains(tagerDateType) {
+            target.setValue(param.value, forKey: param.valueTargetKey)
+            return ""
+        }else{
+            let error = className + "⚠️属性类型不匹配: "+"'"+param.valueTargetKey+"'"+" -> "+tagerDateType
+            return error
+        }
+    }
+    
+    
+    /// Model属性赋值
+    private class func set_Model_Value(target: WisdomRouterModel,
+                                       startProperty: [String: WisdomRouterRegisterProperty],
+                                       vcModelClass: WisdomRouterModel.Type) -> [String]{
+        var errorList: [String] = []
+        let className = NSStringFromClass(vcModelClass)
+        var propertyList: [WisdomRouterRegisterProperty] = []
+        
+        let list = WisdomRouterManager.shared.modelPropertyCache.object(forKey: className as AnyObject) as? [WisdomRouterRegisterProperty]
+        if  list != nil{
+            propertyList = list!
+        }else{
+            propertyList = WisdomRouterManager.propertyList(targetClass: vcModelClass)
+            WisdomRouterManager.shared.modelPropertyCache.setObject(propertyList as AnyObject,
+                                                                    forKey: className as AnyObject)
+        }
+        
+        for registerProperty in startProperty {
+            var succeed = false
+            let startP = registerProperty.value
+
+            for property in propertyList {
+                if startP.name == property.name{
+                    succeed = true
+                    
+                    if startP.nameType == property.nameType {
+                        target.setValue(startP.value, forKey: property.name)
+                    }else{
+                        let error = className+" ⚠️ 属性类型不匹配: "+"'"+startP.nameType+"'"+" -> "+property.nameType
+                        errorList.append(error)
+                    }
+                    break
+                }
+            }
+
+            if !succeed {
+                errorList.append(className+" ⚠️ 未实现属性: "+"'"+startP.name+"'")
+            }
+        }
+        return errorList
+    }
+    
+   
+    /// 属性列表
     class func propertyList(targetClass: WisdomRouterModel.Type) -> [WisdomRouterRegisterProperty] {
         var count: UInt32 = 0
         var nameLsit: [WisdomRouterRegisterProperty] = []
         let list = class_copyPropertyList(targetClass.classForCoder(), &count)
-        
+
         for i in 0..<Int(count) {
             let pty = list?[i]
             let cName = property_getName(pty!)
@@ -302,10 +568,24 @@ class WisdomRouterManager: NSObject {
         free(list)
         return nameLsit
     }
-}
+    
+    
+    /// 类型分类
+    private class func getTypeOf(property: objc_property_t) -> String {
+        let str = property_getAttributes(property)!
+        guard let attributesStr = String(utf8String: str) else {
+            return " "
+        }
+        let slices = attributesStr.components(separatedBy: "\"")
 
-
-extension WisdomRouterManager {
+        guard slices.count > 1 else {
+            return WisdomRouterManager.valueType(withAttributes: attributesStr)
+        }
+        let objectClassName = slices[1]
+        return objectClassName
+    }
+    
+    
     /// 类型确定
     private class func valueType(withAttributes attributes: String) -> String {
         if attributes.contains(Bracket) && attributes.contains(Equal){
@@ -322,141 +602,4 @@ extension WisdomRouterManager {
         }
     }
     
-    
-    /// 类型分类
-    private class func getTypeOf(property: objc_property_t) -> String {
-        let str = property_getAttributes(property)!
-        guard let attributesStr = String(utf8String: str) else {
-            return " "
-        }
-        let slices = attributesStr.components(separatedBy: "\"")
-        
-        guard slices.count > 1 else {
-            return WisdomRouterManager.valueType(withAttributes: attributesStr)
-        }
-        let objectClassName = slices[1]
-        return objectClassName
-    }
-    
-    
-    private func tager(tager: NSObject, param: WisdomRouterParam, tagerDateType: String){
-        if param.typeValue.contains(tagerDateType) {
-            tager.setValue(param.value, forKey: param.valueTargetKey)
-        }else{
-            let error = "WisdomRouterKit⚠️:不能使用'"+param.typeValue+"'数据类型赋值-> '"+param.valueTargetKey+"'="+tagerDateType+",请修改数据类型⚠️"
-            print(error)
-        }
-    }
-    
-    
-    private func tager(model: WisdomRouterModel, param: WisdomRouterParam, tagerProperty: WisdomRouterRegisterProperty){
-        
-        guard let value = param.keyValue.first![tagerProperty.name] else {
-            return
-        }
-        
-        if value.nameType == tagerProperty.nameType {
-            model.setValue(value.value!, forKey: tagerProperty.name)
-        }else{
-            let error = "WisdomRouterKit⚠️:不能使用'"+value.nameType+"'数据类型赋值-> '"+tagerProperty.name+"'="+tagerProperty.nameType+",请修改数据类型⚠️"
-            print(error)
-        }
-    }
-    
-    
-    private func tagerList(model: WisdomRouterModel, param: [String: WisdomRouterRegisterProperty],
-                                             tagerProperty: WisdomRouterRegisterProperty){
-        guard let value = param[tagerProperty.name] else {
-            return
-        }
-        if value.nameType == tagerProperty.nameType {
-            model.setValue(value.value!, forKey: tagerProperty.name)
-        }else{
-            let error = "WisdomRouterKit⚠️:不能使用'"+value.nameType+"'数据类型赋值-> '"+tagerProperty.name+"'="+tagerProperty.nameType+",请修改数据类型⚠️"
-            print(error)
-        }
-    }
-    
-    
-    /// Hander属性赋值
-    private func setHanderProperty(targetVC: UIViewController, target: String,hander: WisdomRouterHander) -> (String) {
-        let registerInfo = vcClassValue[target]!
-        for handerInfo in registerInfo.handerList {
-            if handerInfo.handerName == hander.valueTargetKey {
-                handerInfo.handerValue(hander.value!,targetVC)
-                return ("")
-            }
-        }
-        return (hander.valueTargetKey+"\nHander未注册\n请检查代码\n")
-    }
-    
-    
-    /// model属性赋值
-    private func setPropertyList(targetVC: String, param: WisdomRouterParam, target: UIViewController)->String{
-        let registerInfo = vcClassValue[targetVC]!
-        
-        for modelInfo in registerInfo.modelList {
-            if modelInfo.modelName == param.valueTargetKey {
-                if let modelClass = modelInfo.modelClass! as? WisdomRouterModel.Type {
-                    let model = modelClass.init()
-                    let classStr = NSStringFromClass(model.classForCoder)
-                    let propertyList = modelPropertyList[classStr] ?? []
-                    
-                    for property in propertyList {
-                        tager(model: model, param: param, tagerProperty: property)
-                    }
-                    target.setValue(model, forKey: modelInfo.modelName)
-                    return ""
-                }
-            }
-        }
-        return param.valueTargetKey+"\n属性类未注册\n请检查代码\n"
-    }
-    
-    
-    /// modelList属性赋值
-    private func setListPropertyList(targetVC: String, param: WisdomRouterParam, target: UIViewController)->String{
-        let registerInfo = vcClassValue[targetVC]!
-        for modelInfo in registerInfo.modelList {
-            if modelInfo.modelName == param.valueTargetKey {
-                
-                if let modelClass = modelInfo.modelClass! as? WisdomRouterModel.Type {
-                    let classStr = NSStringFromClass(modelClass)
-                    let propertyList = modelPropertyList[classStr] ?? []
-                    var modelList: [WisdomRouterModel] = []
-                    
-                    for keyValue in param.keyValue {
-                        
-                        let model = modelClass.init()
-                        for property in propertyList {
-                            tagerList(model: model, param: keyValue, tagerProperty: property)
-                        }
-                        modelList.append(model)
-                    }
-                    target.setValue(modelList, forKey: modelInfo.modelName)
-                    return ""
-                }
-            }
-        }
-        return param.valueTargetKey+"\n属性类未注册\n请检查代码\n"
-    }
-    
-    
-    class func showError(error: String){
-        let label = UILabel()
-        label.layer.cornerRadius = 5
-        label.layer.masksToBounds = true
-        label.backgroundColor = UIColor(white: 0.8, alpha: 0.8)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.text = error
-        label.sizeToFit()
-        label.textColor = UIColor.red
-        UIApplication.shared.keyWindow?.addSubview(label)
-        label.center = UIApplication.shared.keyWindow!.center
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()+8, execute:{
-            label.removeFromSuperview()
-        })
-    }
 }

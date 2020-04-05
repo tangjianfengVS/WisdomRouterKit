@@ -22,7 +22,7 @@ class OneViewController: UIViewController, WisdomRouterRegisterProtocol {
     }()
     
     static func register() {
-        WisdomRouterKit.register(vcClassType: self)
+//        WisdomRouterKit.register(vcClassType: self)
     }
     
     override func viewDidLoad() {

@@ -8,132 +8,205 @@
 
 import UIKit
 
-/** Register Protocol */
-public protocol WisdomRouterRegisterProtocol: NSObject{
+
+public protocol WisdomRouterRegisterProtocol {
+    //MARK: - Register Protocol
     static func register()
 }
 
 
-public class WisdomRouterKit: NSObject {
+public class WisdomRouterKit {
     
-    /**
-      🌟register: 注册控制器
-       - parameter classType:  UIViewController.Type
-       - returns : WisdomRouterResult
-     */
+    //MARK: - register VC's 属性数组元素类型, 元素类型需要继承 WisdomRouterModel
+    // - parame targetVC:        target VC's name
+    // - parame modelListName:   target VC's array name
+    // - parame modelListClass:  array's Element class
     @discardableResult
-    @objc public class func register(vcClassType: UIViewController.Type) -> WisdomRouterResult{
-        return WisdomRouterManager.shared.register(vcClassType: vcClassType)
+    @objc public class func register(vcClassType: UIViewController.Type,
+                                     modelListName: String,
+                                     modelListClass: WisdomRouterModel.Type) -> WisdomRouterResult{
+        
+        return WisdomRouterManager.shared.register(vcClassType: vcClassType,
+                                                   modelListName: modelListName,
+                                                   modelListClass: modelListClass)
     }
     
     
-    /**
-       🌟register: 注册控制器,并注册它的Model属性,属性需要继承 WisdomRouterModel
-       - parameter vcClassType:    UIViewController.Type
-       - parameter modelName:      模型属性名称
-       - parameter modelClassType: 模型属性类型
-       - returns : WisdomRouterResult
-     */
+    //MARK: - register VC's 属性闭包, 在handler中确认转换类型
+    // - parame targetVC:        target VC's name
+    // - parame handlerName:     target VC's handler name
+    // - parame handler:         target VC's handler
     @discardableResult
-    @objc public class func register(vcClassType: UIViewController.Type, modelName: String, modelClassType: WisdomRouterModel.Type) -> WisdomRouterResult{
-        return WisdomRouterManager.shared.register(vcClassType: vcClassType, modelName: modelName, modelClassType: modelClassType)
+    @objc public class func register(vcClassType: UIViewController.Type,
+                                     handlerName: String,
+                                     handler: @escaping RouterRegisterHandler) -> WisdomRouterResult{
+        
+        return WisdomRouterManager.shared.register(vcClassType: vcClassType,
+                                                   handlerName: handlerName,
+                                                   handler: handler)
     }
     
     
-    /**
-       🌟register: 注册控制器,并注册它的Hander(回调)属性
-       - parameter vcClassType: UIViewController.Type
-       - parameter handerName:  闭包名称
-       - parameter hander:      (Any)->(UIViewController)实现闭包, 调用router时会调用
-       - returns : WisdomRouterResult
-     */
-    @discardableResult
-    @objc public class func register(vcClassType: UIViewController.Type, handerName: String, hander: @escaping WisdomRouterClosure) -> WisdomRouterResult{
-        return WisdomRouterManager.shared.register(vcClassType: vcClassType, handerName: handerName, hander: hander)
+    //MARK: - router 无参数，无Handler
+    // - parame targetVC:             target VC's name
+    // - parame project:              target VC's name of project
+    // - parame routerHandler:        router handler, succeed
+    // - parame routerErrorHandler:   router handler, error
+    @objc public class func router(targetVC: String,
+                                   project: String,
+                                   routerHandler: RouterHandler,
+                                   routerErrorHandler: RouterErrorHandler) {
+        
+        WisdomRouterManager.router(targetVC: targetVC,
+                                   project: project,
+                                   routerHandler: routerHandler,
+                                   routerErrorHandler: routerErrorHandler)
     }
     
     
-    /**
-       🔥router: 无参数，无回调
-       - parameter targetVC: 无参数，无回调
-       - returns : UIViewController
-     */
-    @objc public class func router(targetVC: String) -> UIViewController{
-        return WisdomRouterManager.shared.router(targetVC: targetVC)
+    //MARK: - router 有参数，无Handler
+    // - parame targetVC:             target VC's name
+    // - parame project:              target VC's name of project
+    // - parame param:                target VC's property of WisdomRouterParam
+    // - parame routerResultHandler:  router result handler, succeed
+    // - parame routerErrorHandler:   router handler, error
+    @objc public class func router(targetVC: String,
+                                   project: String,
+                                   param: WisdomRouterParam,
+                                   routerResultHandler: RouterResultHandler,
+                                   routerErrorHandler: RouterErrorHandler) {
+        
+        WisdomRouterManager.router(targetVC: targetVC,
+                                   project: project,
+                                   param: param,
+                                   routerResultHandler: routerResultHandler,
+                                   routerErrorHandler: routerErrorHandler)
     }
     
     
-    /**
-       🔥router: 有参数，无回调
-       - parameter param: 参数
-       - returns : UIViewController
-     */
-    @objc public class func router(targetVC: String, param: WisdomRouterParam) -> UIViewController{
-        return WisdomRouterManager.shared.router(targetVC: targetVC, param: param)
+    //MARK: - router 无参数，有Handler
+    // - parame targetVC:             target VC's name
+    // - parame project:              target VC's name of project
+    // - parame handler:              target VC's handler of WisdomRouterHandler
+    // - parame routerResultHandler:  router result handler, succeed
+    // - parame routerErrorHandler:   router handler, error
+    @objc public class func router(targetVC: String,
+                                   project: String,
+                                   handler: WisdomRouterHandler,
+                                   routerResultHandler: RouterResultHandler,
+                                   routerErrorHandler: RouterErrorHandler) {
+        
+        WisdomRouterManager.router(targetVC: targetVC,
+                                   project: project,
+                                   handler: handler,
+                                   routerResultHandler: routerResultHandler,
+                                   routerErrorHandler: routerErrorHandler)
     }
     
     
-    /**
-       🔥router: 无参数，有回调
-       - parameter hander: 回调
-       - returns : UIViewController
-     */
-    @objc public class func router(targetVC: String, hander: WisdomRouterHander) -> UIViewController{
-        return WisdomRouterManager.shared.router(targetVC: targetVC, hander: hander)
+    //MARK: - router 有参数，有Handler
+    // - parame targetVC:             target VC's name
+    // - parame project:              target VC's name of project
+    // - parame param:                target VC's property of WisdomRouterParam
+    // - parame handler:              target VC's handler of WisdomRouterHandler
+    // - parame routerResultHandler:  router result handler, succeed
+    // - parame routerErrorHandler:   router handler, error
+    @objc public class func router(targetVC: String,
+                                   project: String,
+                                   param: WisdomRouterParam,
+                                   handler: WisdomRouterHandler,
+                                   routerResultHandler: RouterResultHandler,
+                                   routerErrorHandler: RouterErrorHandler) {
+        
+        WisdomRouterManager.router(targetVC: targetVC,
+                                   project: project,
+                                   param: param,
+                                   handler: handler,
+                                   routerResultHandler: routerResultHandler,
+                                   routerErrorHandler: routerErrorHandler)
     }
     
     
-    /**
-       🔥router: 有参数，有回调
-       - parameter param: 参数
-       - parameter hander: 回调
-       - returns : UIViewController
-     */
-    @objc public class func router(targetVC: String, param: WisdomRouterParam, hander: WisdomRouterHander) -> UIViewController{
-        return WisdomRouterManager.shared.router(targetVC: targetVC, param: param, hander: hander)
+    //MARK: - router 多参数集合，无Handler
+    // - parame targetVC:             target VC's name
+    // - parame project:              target VC's name of project
+    // - parame params:               target VC's property of WisdomRouterParam array
+    // - parame routerResultHandler:  router result handler, succeed
+    // - parame routerErrorHandler:   router handler, error
+    @objc public class func router(targetVC: String,
+                                   project: String,
+                                   params: [WisdomRouterParam],
+                                   routerResultHandler: RouterResultHandler,
+                                   routerErrorHandler: RouterErrorHandler) {
+        
+        WisdomRouterManager.router(targetVC: targetVC,
+                                   project: project,
+                                   params: params,
+                                   routerResultHandler: routerResultHandler,
+                                   routerErrorHandler: routerErrorHandler)
     }
     
     
-    /**
-       🔥router: 自定义参数集合
-       - parameter params: 自定义参数集合
-       - returns : UIViewController
-     */
-    @objc public class func router(targetVC: String, params: [WisdomRouterParam]) -> UIViewController{
-        return WisdomRouterManager.shared.router(targetVC: targetVC, params: params, handers: [])
+    //MARK: - router 无参数，多Handler集合
+    // - parame targetVC:             target VC's name
+    // - parame project:              target VC's name of project
+    // - parame handlers:             target VC's property of WisdomRouterHandler array
+    // - parame routerResultHandler:  router result handler, succeed
+    // - parame routerErrorHandler:   router handler, error
+    @objc public class func router(targetVC: String,
+                                   project: String,
+                                   handlers: [WisdomRouterHandler],
+                                   routerResultHandler: RouterResultHandler,
+                                   routerErrorHandler: RouterErrorHandler) {
+        
+        WisdomRouterManager.router(targetVC: targetVC,
+                                   project: project,
+                                   handlers: handlers,
+                                   routerResultHandler: routerResultHandler,
+                                   routerErrorHandler: routerErrorHandler)
     }
     
     
-    /**
-       🔥router: 自定义回调集合
-       - parameter handers: 自定义回调集合
-       - returns : UIViewController
-     */
-    @objc public class func router(targetVC: String, handers: [WisdomRouterHander]) -> UIViewController{
-        return WisdomRouterManager.shared.router(targetVC: targetVC, params: [], handers: handers)
+    //MARK: - router 多参数集合，多Handler集合
+    // - parame targetVC:             target VC's name
+    // - parame project:              target VC's name of project
+    // - parame params:               target VC's property of WisdomRouterParam array
+    // - parame handlers:             target VC's property of WisdomRouterHandler array
+    // - parame routerResultHandler:  router result handler, succeed
+    // - parame routerErrorHandler:   router handler, error
+    @objc public class func router(targetVC: String,
+                                   project: String,
+                                   params: [WisdomRouterParam],
+                                   handlers: [WisdomRouterHandler],
+                                   routerResultHandler: RouterResultHandler,
+                                   routerErrorHandler: RouterErrorHandler) {
+        
+        WisdomRouterManager.router(targetVC: targetVC,
+                                   project: project,
+                                   params: params,
+                                   handlers: handlers,
+                                   routerResultHandler: routerResultHandler,
+                                   routerErrorHandler: routerErrorHandler)
     }
     
     
-    /**
-       🔥router: 自定义参数集合和回调集合
-       - parameter params: 自定义参数集合
-       - parameter handers: 自定义回调集合
-       - returns : UIViewController
-     */
-    @objc public class func router(targetVC: String, params: [WisdomRouterParam], handers: [WisdomRouterHander]) -> UIViewController{
-        return WisdomRouterManager.shared.router(targetVC: targetVC, params: params, handers: handers)
-    }
-    
-    
-    /**
-       ❄️routerShare: 获取全局单列 Model
-       - parameter shareName: 全局单列 Name
-       - parameter targetSubstituteClass: 替身 Model 类型
-       - returns : 返回值 WisdomRouterModel
-       - returns : WisdomRouterModel
-     */
-    @objc public class func routerShare(shareName: String, targetSubstituteClass: WisdomRouterModel.Type) -> WisdomRouterModel{
-        return WisdomRouterManager.routerShare(shareName: shareName, targetSubstituteClass: targetSubstituteClass)
+    //MARK: - getShared  获取全局单列 Model
+    // - parame sharedClassName:       target shared's class name
+    // - parame project:               target shared's class of project
+    // - parame substituteClassType:   substitute of shared's class info
+    // - parame routerSharedHandler:   router shared handler, succeed
+    // - parame routerErrorHandler:    router handler, error
+    @objc public class func getShared(sharedClassName: String,
+                                      project: String,
+                                      substituteModelType: WisdomRouterModel.Type,
+                                      routerSharedHandler: RouterSharedHandler,
+                                      routerErrorHandler: RouterErrorHandler) {
+        
+        WisdomRouterManager.routerShared(sharedClassName: sharedClassName,
+                                         project: project,
+                                         substituteModelType: substituteModelType,
+                                         routerSharedHandler: routerSharedHandler,
+                                         routerErrorHandler: routerErrorHandler)
     }
 }
 
