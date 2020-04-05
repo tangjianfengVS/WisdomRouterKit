@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc protocol WisdomRouterShareProtocol{
+@objc public protocol WisdomRouterShareProtocol{
     
      func routerShared() -> WisdomRouterModel;
 }

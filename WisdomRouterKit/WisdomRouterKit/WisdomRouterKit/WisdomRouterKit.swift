@@ -18,7 +18,7 @@ public protocol WisdomRouterRegisterProtocol {
 public class WisdomRouterKit {
     
     //MARK: - register VC's 属性数组元素类型, 元素类型需要继承 WisdomRouterModel
-    // - parame targetVC:        target VC's name
+    // - parame targetVC:        target VC's class name
     // - parame modelListName:   target VC's array name
     // - parame modelListClass:  array's Element class
     @discardableResult
@@ -33,7 +33,7 @@ public class WisdomRouterKit {
     
     
     //MARK: - register VC's 属性闭包, 在handler中确认转换类型
-    // - parame targetVC:        target VC's name
+    // - parame targetVC:        target VC's class name
     // - parame handlerName:     target VC's handler name
     // - parame handler:         target VC's handler
     @discardableResult
@@ -48,8 +48,8 @@ public class WisdomRouterKit {
     
     
     //MARK: - router 无参数，无Handler
-    // - parame targetVC:             target VC's name
-    // - parame project:              target VC's name of project
+    // - parame targetVC:             target VC's class name
+    // - parame project:              target VC's class of project
     // - parame routerHandler:        router handler, succeed
     // - parame routerErrorHandler:   router handler, error
     @objc public class func router(targetVC: String,
@@ -65,8 +65,8 @@ public class WisdomRouterKit {
     
     
     //MARK: - router 有参数，无Handler
-    // - parame targetVC:             target VC's name
-    // - parame project:              target VC's name of project
+    // - parame targetVC:             target VC's class name
+    // - parame project:              target VC's class of project
     // - parame param:                target VC's property of WisdomRouterParam
     // - parame routerResultHandler:  router result handler, succeed
     // - parame routerErrorHandler:   router handler, error
@@ -85,8 +85,8 @@ public class WisdomRouterKit {
     
     
     //MARK: - router 无参数，有Handler
-    // - parame targetVC:             target VC's name
-    // - parame project:              target VC's name of project
+    // - parame targetVC:             target VC's class name
+    // - parame project:              target VC's class of project
     // - parame handler:              target VC's handler of WisdomRouterHandler
     // - parame routerResultHandler:  router result handler, succeed
     // - parame routerErrorHandler:   router handler, error
@@ -105,8 +105,8 @@ public class WisdomRouterKit {
     
     
     //MARK: - router 有参数，有Handler
-    // - parame targetVC:             target VC's name
-    // - parame project:              target VC's name of project
+    // - parame targetVC:             target VC's class name
+    // - parame project:              target VC's class of project
     // - parame param:                target VC's property of WisdomRouterParam
     // - parame handler:              target VC's handler of WisdomRouterHandler
     // - parame routerResultHandler:  router result handler, succeed
@@ -128,8 +128,8 @@ public class WisdomRouterKit {
     
     
     //MARK: - router 多参数集合，无Handler
-    // - parame targetVC:             target VC's name
-    // - parame project:              target VC's name of project
+    // - parame targetVC:             target VC's class name
+    // - parame project:              target VC's class of project
     // - parame params:               target VC's property of WisdomRouterParam array
     // - parame routerResultHandler:  router result handler, succeed
     // - parame routerErrorHandler:   router handler, error
@@ -148,8 +148,8 @@ public class WisdomRouterKit {
     
     
     //MARK: - router 无参数，多Handler集合
-    // - parame targetVC:             target VC's name
-    // - parame project:              target VC's name of project
+    // - parame targetVC:             target VC's class name
+    // - parame project:              target VC's class of project
     // - parame handlers:             target VC's property of WisdomRouterHandler array
     // - parame routerResultHandler:  router result handler, succeed
     // - parame routerErrorHandler:   router handler, error
@@ -168,8 +168,8 @@ public class WisdomRouterKit {
     
     
     //MARK: - router 多参数集合，多Handler集合
-    // - parame targetVC:             target VC's name
-    // - parame project:              target VC's name of project
+    // - parame targetVC:             target VC's class name
+    // - parame project:              target VC's class of project
     // - parame params:               target VC's property of WisdomRouterParam array
     // - parame handlers:             target VC's property of WisdomRouterHandler array
     // - parame routerResultHandler:  router result handler, succeed

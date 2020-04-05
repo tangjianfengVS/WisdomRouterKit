@@ -21,11 +21,13 @@ public class WisdomRouterResult: NSObject {
     }
     
     
-//    /** 追加注册模型 */
-//    @discardableResult
-//    @objc public func register(modelName: String, modelClassType: WisdomRouterModel.Type) -> WisdomRouterResult{
-//        return WisdomRouterManager.shared.register(vcClassType: vcClassTypes, modelName: modelName, modelClassType: modelClassType)
-//    }
+    /** 追加注册模型 */
+    @discardableResult
+    @objc public func register(modelListName: String, modelListClass: WisdomRouterModel.Type) -> WisdomRouterResult{
+        return WisdomRouterManager.shared.register(vcClassType: vcClass,
+                                                   modelListName: modelListName,
+                                                   modelListClass: modelListClass)
+    }
     
     
     /** 追加注册Handler  */

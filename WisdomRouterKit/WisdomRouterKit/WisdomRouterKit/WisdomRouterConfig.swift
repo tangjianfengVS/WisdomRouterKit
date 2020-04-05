@@ -41,8 +41,6 @@ let Bracket = "{"
 
 let Equal = "="
 
-let errorCount: Int = 5
-
 let DateBaseKey = "Double,double,NSInteger,Int,Int8,Int16,Int32,Int64,UInt,UInt8,UInt16,UInt32,UInt64,CGFloat,Float"
 
 let ReplacingList : [String] = ["10","11","12","13","14","15","16","17","18","19","20"]
