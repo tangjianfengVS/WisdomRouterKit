@@ -414,7 +414,11 @@ extension WisdomRouterManager {
                              project: String,
                              routerHandler: RouterHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        let result = WisdomRouterManager.getClass(stringName: project + Dot + targetVC)
+        var className = project + Dot + targetVC
+        if project.count == 0{
+            className = targetVC
+        }
+        let result = WisdomRouterManager.getClass(stringName: className)
         if let vcClass = result.0 {
             let VC = vcClass.init()
             routerHandler(VC)
