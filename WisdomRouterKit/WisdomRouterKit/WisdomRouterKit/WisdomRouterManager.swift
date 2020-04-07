@@ -430,7 +430,10 @@ extension WisdomRouterManager {
                              param: WisdomRouterParam,
                              routerResultHandler: RouterResultHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        let className = project + Dot + targetVC
+        var className = project + Dot + targetVC
+        if project.count == 0{
+            className = targetVC
+        }
         let result = WisdomRouterManager.getClass(stringName: className)
         if let vcClass = result.0 {
             let VC = vcClass.init()
@@ -451,7 +454,10 @@ extension WisdomRouterManager {
                              handler: WisdomRouterHandler,
                              routerResultHandler: RouterResultHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        let className = project + Dot + targetVC
+        var className = project + Dot + targetVC
+        if project.count == 0{
+            className = targetVC
+        }
         let result = WisdomRouterManager.getClass(stringName: className)
         if let vcClass = result.0 {
             let VC = vcClass.init()
@@ -473,7 +479,10 @@ extension WisdomRouterManager {
                              handler: WisdomRouterHandler,
                              routerResultHandler: RouterResultHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        let className = project + Dot + targetVC
+        var className = project + Dot + targetVC
+        if project.count == 0{
+            className = targetVC
+        }
         let result = WisdomRouterManager.getClass(stringName: className)
         if let vcClass = result.0 {
             let VC = vcClass.init()
@@ -498,7 +507,10 @@ extension WisdomRouterManager {
                              params: [WisdomRouterParam],
                              routerResultHandler: RouterResultHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        let className = project + Dot + targetVC
+        var className = project + Dot + targetVC
+        if project.count == 0{
+            className = targetVC
+        }
         let result = WisdomRouterManager.getClass(stringName: className)
         if let vcClass = result.0 {
             let VC = vcClass.init()
@@ -523,7 +535,10 @@ extension WisdomRouterManager {
                              handlers: [WisdomRouterHandler],
                              routerResultHandler: RouterResultHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        let className = project + Dot + targetVC
+        var className = project + Dot + targetVC
+        if project.count == 0{
+            className = targetVC
+        }
         let result = WisdomRouterManager.getClass(stringName: className)
         if let vcClass = result.0 {
             let VC = vcClass.init()
@@ -549,7 +564,10 @@ extension WisdomRouterManager {
                              handlers: [WisdomRouterHandler],
                              routerResultHandler: RouterResultHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        let className = project + Dot + targetVC
+        var className = project + Dot + targetVC
+        if project.count == 0{
+            className = targetVC
+        }
         let result = WisdomRouterManager.getClass(stringName: className)
         if let vcClass = result.0 {
             let VC = vcClass.init()
@@ -582,7 +600,10 @@ extension WisdomRouterManager {
                             substituteModelType: WisdomRouterModel.Type,
                             routerSharedHandler: RouterSharedHandler,
                             routerErrorHandler: RouterErrorHandler){
-        let className = project + Dot + sharedClassName
+        var className = project + Dot + sharedClassName
+        if project.count == 0{
+            className = sharedClassName
+        }
         let result = WisdomRouterManager.getSharedClass(stringName: className)
         
         if let sharedClass = result.0 {
