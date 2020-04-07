@@ -9,12 +9,6 @@
 import UIKit
 
 
-public protocol WisdomRouterRegisterProtocol {
-    //MARK: - Register Protocol
-    static func register()
-}
-
-
 public class WisdomRouterKit : NSObject {
     
     //MARK: - register VC's 属性数组元素类型, 元素类型需要继承 WisdomRouterModel

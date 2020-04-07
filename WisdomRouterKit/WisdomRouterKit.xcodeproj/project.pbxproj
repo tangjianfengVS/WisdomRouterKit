@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A50D5F8A234C79BA005EB99E /* WisdomRouterShareProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50D5F89234C79BA005EB99E /* WisdomRouterShareProtocol.swift */; };
+		A50D5F8A234C79BA005EB99E /* WisdomRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50D5F89234C79BA005EB99E /* WisdomRouterProtocol.swift */; };
 		A54D8334223A4A0B0076BF10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8333223A4A0B0076BF10 /* AppDelegate.swift */; };
 		A54D833B223A4A0C0076BF10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A54D833A223A4A0C0076BF10 /* Assets.xcassets */; };
 		A54D833E223A4A0C0076BF10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A54D833C223A4A0C0076BF10 /* LaunchScreen.storyboard */; };
@@ -39,7 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A50D5F89234C79BA005EB99E /* WisdomRouterShareProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterShareProtocol.swift; sourceTree = "<group>"; };
+		A50D5F89234C79BA005EB99E /* WisdomRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterProtocol.swift; sourceTree = "<group>"; };
 		A54D8330223A4A0B0076BF10 /* WisdomRouterKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WisdomRouterKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A54D8333223A4A0B0076BF10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A54D833A223A4A0C0076BF10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 				A54D835D223A4E200076BF10 /* WisdomRouterModel.swift */,
 				A5E024DD2244AB0700BE2C2B /* WisdomRouterResult.swift */,
 				A5601418231A60B700B60C68 /* WisdomRouterAlertVC.swift */,
-				A50D5F89234C79BA005EB99E /* WisdomRouterShareProtocol.swift */,
+				A50D5F89234C79BA005EB99E /* WisdomRouterProtocol.swift */,
 			);
 			path = WisdomRouterKit;
 			sourceTree = "<group>";
@@ -227,7 +227,7 @@
 				A571B1C2234CC629004FB175 /* NineViewController.swift in Sources */,
 				A56E053E224215D900124526 /* SecundThreeViewController.swift in Sources */,
 				A5E024E02244BBAF00BE2C2B /* SevenViewController.swift in Sources */,
-				A50D5F8A234C79BA005EB99E /* WisdomRouterShareProtocol.swift in Sources */,
+				A50D5F8A234C79BA005EB99E /* WisdomRouterProtocol.swift in Sources */,
 				A5B3B7C42248D5A8007B3207 /* EightViewController.swift in Sources */,
 				A5E024DE2244AB0700BE2C2B /* WisdomRouterResult.swift in Sources */,
 				A5F65A39223CB0E300413D49 /* ThreeTestModel.swift in Sources */,

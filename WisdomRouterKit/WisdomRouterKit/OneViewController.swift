@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OneViewController: UIViewController, WisdomRouterRegisterProtocol {
+class OneViewController: UIViewController {
     
     lazy var label: UILabel = {
         let lab = UILabel()
@@ -21,9 +21,6 @@ class OneViewController: UIViewController, WisdomRouterRegisterProtocol {
         return lab
     }()
     
-    static func register() {
-//        WisdomRouterKit.register(vcClassType: self)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
