@@ -9,10 +9,10 @@
 import UIKit
 
 
-@objc public protocol WisdomRouterRegisterProtocol {
+public protocol WisdomRouterRegisterProtocol {
     
-    //MARK: - Register Protocol
-    static func register()
+    //MARK: - Register Router Protocol
+    static func registerRouter()
 }
 
 

@@ -17,15 +17,27 @@ class WisdomRouterManager {
     
     private let modelPropertyCache = NSCache<AnyObject, AnyObject>()
     
+    /// register OBJC class
+    private(set) var register_OBJC_Info: [String: AnyClass] = [:]
+    
     
     /// get class
      private class func getClass(stringName: String) -> (UIViewController.Type?,String){
+        
          guard let childVcClass = NSClassFromString(stringName) else {
-             return (nil,"没有获取到对应的class: " + stringName)
+            
+            if let Class = WisdomRouterManager.shared.register_OBJC_Info[stringName]{
+                if let childVcType = Class as? UIViewController.Type {
+                    return (childVcType, "")
+                }
+                return (nil,"没有得到类型 UIViewController : " + stringName)
+            }
+            
+            return (nil,"没有获取到对应的class: " + stringName)
          }
          
          guard let childVcType = childVcClass as? UIViewController.Type else {
-             return (nil,"没有得到类型 UIViewController : " + stringName)
+            return (nil,"没有得到类型 UIViewController : " + stringName)
          }
          return (childVcType, "")
      }
@@ -33,12 +45,21 @@ class WisdomRouterManager {
      
      /// get shared class
      private class func getSharedClass(stringName: String) -> (WisdomRouterModel.Type?, String){
+        
          guard let childModelClass = NSClassFromString(stringName) else {
-             return (nil,"没有获取到对应的class: " + stringName)
+            
+            if let Class = WisdomRouterManager.shared.register_OBJC_Info[stringName]{
+                if let childModelType = Class as? WisdomRouterModel.Type {
+                    return (childModelType, "")
+                }
+                return (nil,"没有得到类型 UIViewController : " + stringName)
+            }
+            
+            return (nil,"没有获取到对应的class: " + stringName)
          }
          
          guard let childModelType = childModelClass as? WisdomRouterModel.Type else {
-             return (nil,"没有得到类型 Model: " + stringName)
+            return (nil,"没有得到类型 Model: " + stringName)
          }
          return (childModelType, "")
      }
@@ -414,11 +435,10 @@ extension WisdomRouterManager {
                              project: String,
                              routerHandler: RouterHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        var className = project + Dot + targetVC
-        if project.count == 0{
-            className = targetVC
-        }
+        let className = (project + Dot + targetVC).replacingOccurrences(of: "-", with: "_")
+
         let result = WisdomRouterManager.getClass(stringName: className)
+        
         if let vcClass = result.0 {
             let VC = vcClass.init()
             routerHandler(VC)
@@ -434,11 +454,10 @@ extension WisdomRouterManager {
                              param: WisdomRouterParam,
                              routerResultHandler: RouterResultHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        var className = project + Dot + targetVC
-        if project.count == 0{
-            className = targetVC
-        }
+        let className = (project + Dot + targetVC).replacingOccurrences(of: "-", with: "_")
+
         let result = WisdomRouterManager.getClass(stringName: className)
+        
         if let vcClass = result.0 {
             let VC = vcClass.init()
             let warning: [String] = WisdomRouterManager.setVCRouterParam(targetVC: VC,
@@ -458,11 +477,10 @@ extension WisdomRouterManager {
                              handler: WisdomRouterHandler,
                              routerResultHandler: RouterResultHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        var className = project + Dot + targetVC
-        if project.count == 0{
-            className = targetVC
-        }
+        let className = (project + Dot + targetVC).replacingOccurrences(of: "-", with: "_")
+
         let result = WisdomRouterManager.getClass(stringName: className)
+        
         if let vcClass = result.0 {
             let VC = vcClass.init()
             let warning: [String] = WisdomRouterManager.setVCRouterHandler(targetVC: VC,
@@ -483,11 +501,10 @@ extension WisdomRouterManager {
                              handler: WisdomRouterHandler,
                              routerResultHandler: RouterResultHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        var className = project + Dot + targetVC
-        if project.count == 0{
-            className = targetVC
-        }
+        let className = (project + Dot + targetVC).replacingOccurrences(of: "-", with: "_")
+
         let result = WisdomRouterManager.getClass(stringName: className)
+        
         if let vcClass = result.0 {
             let VC = vcClass.init()
             let warningM: [String] = WisdomRouterManager.setVCRouterParam(targetVC: VC,
@@ -511,11 +528,10 @@ extension WisdomRouterManager {
                              params: [WisdomRouterParam],
                              routerResultHandler: RouterResultHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        var className = project + Dot + targetVC
-        if project.count == 0{
-            className = targetVC
-        }
+        let className = (project + Dot + targetVC).replacingOccurrences(of: "-", with: "_")
+
         let result = WisdomRouterManager.getClass(stringName: className)
+        
         if let vcClass = result.0 {
             let VC = vcClass.init()
             var warningL: [String] = []
@@ -539,11 +555,10 @@ extension WisdomRouterManager {
                              handlers: [WisdomRouterHandler],
                              routerResultHandler: RouterResultHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        var className = project + Dot + targetVC
-        if project.count == 0{
-            className = targetVC
-        }
+        let className = (project + Dot + targetVC).replacingOccurrences(of: "-", with: "_")
+
         let result = WisdomRouterManager.getClass(stringName: className)
+        
         if let vcClass = result.0 {
             let VC = vcClass.init()
             var warningL: [String] = []
@@ -568,11 +583,10 @@ extension WisdomRouterManager {
                              handlers: [WisdomRouterHandler],
                              routerResultHandler: RouterResultHandler,
                              routerErrorHandler: RouterErrorHandler) {
-        var className = project + Dot + targetVC
-        if project.count == 0{
-            className = targetVC
-        }
+        let className = (project + Dot + targetVC).replacingOccurrences(of: "-", with: "_")
+
         let result = WisdomRouterManager.getClass(stringName: className)
+        
         if let vcClass = result.0 {
             let VC = vcClass.init()
             var warningL: [String] = []
@@ -604,10 +618,8 @@ extension WisdomRouterManager {
                             substituteModelType: WisdomRouterModel.Type,
                             routerSharedHandler: RouterSharedHandler,
                             routerErrorHandler: RouterErrorHandler){
-        var className = project + Dot + sharedClassName
-        if project.count == 0{
-            className = sharedClassName
-        }
+        let className = (project + Dot + sharedClassName).replacingOccurrences(of: "-", with: "_")
+
         let result = WisdomRouterManager.getSharedClass(stringName: className)
         
         if let sharedClass = result.0 {
@@ -628,6 +640,20 @@ extension WisdomRouterManager {
         }else{
             routerErrorHandler(result.1)
         }
+    }
+    
+    
+    // - register OC's Class of VC
+    func register_OBJC(vcClassType: UIViewController.Type, project: String){
+        let key = (project + Dot + NSStringFromClass(vcClassType)).replacingOccurrences(of: "-", with: "_")
+        register_OBJC_Info[key] = vcClassType;
+    }
+    
+    
+    // - register OC's Class of Model
+    func register_OBJC(modelClassType: WisdomRouterModel.Type, project: String){
+        let key = (project + Dot + NSStringFromClass(modelClassType)).replacingOccurrences(of: "-", with: "_")
+        register_OBJC_Info[key] = modelClassType;
     }
     
 }

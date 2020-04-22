@@ -11,7 +11,7 @@ import UIKit
 @objcMembers class ThreeViewController: UIViewController, WisdomRouterRegisterProtocol{
     var testModelList: [ThreeTestModel]?
     
-    static func register() {
+    static func registerRouter() {
         WisdomRouterKit.register(vcClassType: self,
                                  modelListName: "testModelList",
                                  modelListClass: ThreeTestModel.self)

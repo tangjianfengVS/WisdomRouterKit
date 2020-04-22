@@ -10,7 +10,7 @@ import UIKit
 
 @objcMembers class EightViewController: UIViewController,WisdomRouterRegisterProtocol {
 
-    static func register() {
+    static func registerRouter() {
         WisdomRouterKit.register(vcClassType: self, handlerName: "closureOne") { (closureOne, vc) in
             let VC = vc as! EightViewController
             VC.closureOne = (closureOne as! ((String) ->())

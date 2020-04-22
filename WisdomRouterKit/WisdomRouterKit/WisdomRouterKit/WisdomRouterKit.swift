@@ -202,5 +202,28 @@ public class WisdomRouterKit : NSObject {
                                          routerSharedHandler: routerSharedHandler,
                                          routerErrorHandler: routerErrorHandler)
     }
+    
+    
+    
+    // Object-c, use 'WisdomRouterKit', need register OC's Class.
+    // Unlike swift, OC has no namespace.
+    // Router is used in Object-c, which requires us to specify project registration for the classes used.
+    // Please use the following registration method.
+    
+    //MARK: - register OC's Class of VC
+    // - parame vcClassType:        target VC's class name
+    // - parame project:            target VC's class of project
+    @objc public class func register_OBJC(vcClassType: UIViewController.Type, project: String){
+        WisdomRouterManager.shared.register_OBJC(vcClassType: vcClassType, project: project)
+    }
+    
+    
+    //MARK: - register OC's Class of Model
+    // - parame modelClassType:     target Model's class name
+    // - parame project:            target VC's class of project
+    @objc public class func register_OBJC(modelClassType: WisdomRouterModel.Type, project: String){
+        WisdomRouterManager.shared.register_OBJC(modelClassType: modelClassType, project: project)
+    }
+    
 }
 

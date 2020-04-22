@@ -12,7 +12,7 @@ import UIKit
     
     var closure: ((String) -> Void)?
     
-    static func register() {
+    static func registerRouter() {
         WisdomRouterKit.register(vcClassType: self, handlerName: "closure") { (handler: Any, vc: UIViewController) in
             let VC = vc as! FourViewController
             VC.closure = (handler as! ((String) -> Void))

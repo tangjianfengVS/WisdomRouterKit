@@ -28,7 +28,7 @@ class WisdomRouterKitToSeeHere {
         objc_getClassList(autoreleasingTypes, Int32(typeCount))
         
         for index in 0 ..< typeCount {
-            (types[index] as? WisdomRouterRegisterProtocol.Type)?.register()
+            (types[index] as? WisdomRouterRegisterProtocol.Type)?.registerRouter()
         }
         types.deallocate()
     }

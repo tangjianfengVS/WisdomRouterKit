@@ -9,7 +9,8 @@
 import UIKit
 
 @objcMembers class FiveViewController: UIViewController, WisdomRouterRegisterProtocol {
-    static func register() {
+    
+    static func registerRouter() {
 
         WisdomRouterKit.register(vcClassType: self, handlerName: "hander") { (hander, vc) in
             let VC = vc as! FiveViewController
