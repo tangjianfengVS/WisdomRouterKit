@@ -31,7 +31,7 @@ import UIKit
     
     var closureThree: ((String, NSInteger) -> (Bool))?
     
-    var handerBtnOne: UIButton = {
+    lazy var handerBtnOne: UIButton = {
         let btn = UIButton(frame: CGRect(x: 10, y: UIScreen.main.bounds.height - 270, width: UIScreen.main.bounds.width - 20, height: 35))
         btn.setTitle("Click Hander One", for: .normal)
         btn.backgroundColor = UIColor.gray
@@ -39,7 +39,7 @@ import UIKit
         return btn
     }()
     
-    var handerBtnTwo: UIButton = {
+    lazy var handerBtnTwo: UIButton = {
         let btn = UIButton(frame: CGRect(x: 10, y: UIScreen.main.bounds.height - 210, width: UIScreen.main.bounds.width - 20, height: 35))
         btn.setTitle("Click Hander Two", for: .normal)
         btn.backgroundColor = UIColor.gray
@@ -47,7 +47,7 @@ import UIKit
         return btn
     }()
     
-    var handerBtnThree: UIButton = {
+    lazy var handerBtnThree: UIButton = {
         let btn = UIButton(frame: CGRect(x: 10, y: UIScreen.main.bounds.height - 150, width: UIScreen.main.bounds.width - 20, height: 35))
         btn.setTitle("Click Hander Three", for: .normal)
         btn.backgroundColor = UIColor.gray

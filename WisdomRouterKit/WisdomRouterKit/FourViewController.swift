@@ -19,7 +19,7 @@ import UIKit
         }
     }
     
-    var handerBtn: UIButton = {
+    lazy var handerBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("Click Hander", for: .normal)
         btn.backgroundColor = UIColor.gray

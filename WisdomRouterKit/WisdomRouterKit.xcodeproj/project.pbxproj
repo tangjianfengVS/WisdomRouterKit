@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A50D5F8A234C79BA005EB99E /* WisdomRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50D5F89234C79BA005EB99E /* WisdomRouterProtocol.swift */; };
+		3EC4BFA229DE99DA00F41452 /* WisdomRouterKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4BF9629DE99DA00F41452 /* WisdomRouterKit.swift */; };
+		3EC4BFA329DE99DA00F41452 /* WisdomRouterObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4BF9729DE99DA00F41452 /* WisdomRouterObjc.m */; };
+		3EC4BFA429DE99DA00F41452 /* WisdomRouterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4BF9829DE99DA00F41452 /* WisdomRouterManager.swift */; };
+		3EC4BFA529DE99DA00F41452 /* WisdomRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4BF9929DE99DA00F41452 /* WisdomRouterProtocol.swift */; };
+		3EC4BFA629DE99DA00F41452 /* WisdomRouterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4BF9A29DE99DA00F41452 /* WisdomRouterConfig.swift */; };
+		3EC4BFA729DE99DA00F41452 /* WisdomRouterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4BF9B29DE99DA00F41452 /* WisdomRouterResult.swift */; };
+		3EC4BFA829DE99DA00F41452 /* WisdomRouterRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4BF9C29DE99DA00F41452 /* WisdomRouterRegister.swift */; };
+		3EC4BFA929DE99DA00F41452 /* WisdomRouterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4BF9D29DE99DA00F41452 /* WisdomRouterHandler.swift */; };
+		3EC4BFAA29DE99DA00F41452 /* WisdomRouterParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4BF9E29DE99DA00F41452 /* WisdomRouterParam.swift */; };
+		3EC4BFAB29DE99DA00F41452 /* WisdomRouterAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4BFA029DE99DA00F41452 /* WisdomRouterAlertVC.swift */; };
+		3EC4BFAC29DE99DA00F41452 /* WisdomRouterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4BFA129DE99DA00F41452 /* WisdomRouterModel.swift */; };
 		A54D8334223A4A0B0076BF10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8333223A4A0B0076BF10 /* AppDelegate.swift */; };
 		A54D833B223A4A0C0076BF10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A54D833A223A4A0C0076BF10 /* Assets.xcassets */; };
 		A54D833E223A4A0C0076BF10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A54D833C223A4A0C0076BF10 /* LaunchScreen.storyboard */; };
-		A54D8347223A4B090076BF10 /* WisdomRouterKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8346223A4B090076BF10 /* WisdomRouterKit.swift */; };
-		A54D835E223A4E200076BF10 /* WisdomRouterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D835D223A4E200076BF10 /* WisdomRouterModel.swift */; };
 		A54D8360223A571D0076BF10 /* OneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D835F223A571D0076BF10 /* OneViewController.swift */; };
-		A54D8362223A76AD0076BF10 /* WisdomRouterParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8361223A76AD0076BF10 /* WisdomRouterParam.swift */; };
 		A54D8365223B72F30076BF10 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8364223B72F30076BF10 /* TestModel.swift */; };
 		A54D8367223B7DF00076BF10 /* SecundTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8366223B7DF00076BF10 /* SecundTestModel.swift */; };
-		A54D8369223B9C7F0076BF10 /* WisdomRouterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54D8368223B9C7F0076BF10 /* WisdomRouterManager.swift */; };
-		A5546251224C63970059B693 /* WisdomRouterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5546250224C63970059B693 /* WisdomRouterConfig.swift */; };
-		A5601419231A60B700B60C68 /* WisdomRouterAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5601418231A60B700B60C68 /* WisdomRouterAlertVC.swift */; };
 		A56E05372241DB3400124526 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E05352241DB3400124526 /* FirstViewController.swift */; };
 		A56E05382241DB3400124526 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A56E05362241DB3400124526 /* FirstViewController.xib */; };
 		A56E053C224211B000124526 /* SecundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E053B224211B000124526 /* SecundViewController.swift */; };
@@ -29,31 +33,33 @@
 		A5B3B7C42248D5A8007B3207 /* EightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3B7C32248D5A8007B3207 /* EightViewController.swift */; };
 		A5DF3ECE234B890100CBB9E8 /* TestShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF3ECD234B890100CBB9E8 /* TestShareModel.swift */; };
 		A5E024DC2244818D00BE2C2B /* SixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E024DB2244818D00BE2C2B /* SixViewController.swift */; };
-		A5E024DE2244AB0700BE2C2B /* WisdomRouterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E024DD2244AB0700BE2C2B /* WisdomRouterResult.swift */; };
 		A5E024E02244BBAF00BE2C2B /* SevenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E024DF2244BBAF00BE2C2B /* SevenViewController.swift */; };
-		A5F65A33223BE1C100413D49 /* WisdomRouterRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F65A32223BE1C100413D49 /* WisdomRouterRegister.swift */; };
 		A5F65A37223CB08D00413D49 /* ThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F65A36223CB08D00413D49 /* ThreeViewController.swift */; };
 		A5F65A39223CB0E300413D49 /* ThreeTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F65A38223CB0E300413D49 /* ThreeTestModel.swift */; };
 		A5F65A3D223F48FD00413D49 /* FourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F65A3C223F48FD00413D49 /* FourViewController.swift */; };
-		A5F65A3F223F4A8600413D49 /* WisdomRouterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F65A3E223F4A8600413D49 /* WisdomRouterHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A50D5F89234C79BA005EB99E /* WisdomRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterProtocol.swift; sourceTree = "<group>"; };
+		3EC4BF9629DE99DA00F41452 /* WisdomRouterKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomRouterKit.swift; sourceTree = "<group>"; };
+		3EC4BF9729DE99DA00F41452 /* WisdomRouterObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WisdomRouterObjc.m; sourceTree = "<group>"; };
+		3EC4BF9829DE99DA00F41452 /* WisdomRouterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomRouterManager.swift; sourceTree = "<group>"; };
+		3EC4BF9929DE99DA00F41452 /* WisdomRouterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomRouterProtocol.swift; sourceTree = "<group>"; };
+		3EC4BF9A29DE99DA00F41452 /* WisdomRouterConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomRouterConfig.swift; sourceTree = "<group>"; };
+		3EC4BF9B29DE99DA00F41452 /* WisdomRouterResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomRouterResult.swift; sourceTree = "<group>"; };
+		3EC4BF9C29DE99DA00F41452 /* WisdomRouterRegister.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomRouterRegister.swift; sourceTree = "<group>"; };
+		3EC4BF9D29DE99DA00F41452 /* WisdomRouterHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomRouterHandler.swift; sourceTree = "<group>"; };
+		3EC4BF9E29DE99DA00F41452 /* WisdomRouterParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomRouterParam.swift; sourceTree = "<group>"; };
+		3EC4BF9F29DE99DA00F41452 /* WisdomRouterObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WisdomRouterObjc.h; sourceTree = "<group>"; };
+		3EC4BFA029DE99DA00F41452 /* WisdomRouterAlertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomRouterAlertVC.swift; sourceTree = "<group>"; };
+		3EC4BFA129DE99DA00F41452 /* WisdomRouterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WisdomRouterModel.swift; sourceTree = "<group>"; };
 		A54D8330223A4A0B0076BF10 /* WisdomRouterKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WisdomRouterKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A54D8333223A4A0B0076BF10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A54D833A223A4A0C0076BF10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A54D833D223A4A0C0076BF10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A54D833F223A4A0C0076BF10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A54D8346223A4B090076BF10 /* WisdomRouterKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterKit.swift; sourceTree = "<group>"; };
-		A54D835D223A4E200076BF10 /* WisdomRouterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterModel.swift; sourceTree = "<group>"; };
 		A54D835F223A571D0076BF10 /* OneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneViewController.swift; sourceTree = "<group>"; };
-		A54D8361223A76AD0076BF10 /* WisdomRouterParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterParam.swift; sourceTree = "<group>"; };
 		A54D8364223B72F30076BF10 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		A54D8366223B7DF00076BF10 /* SecundTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecundTestModel.swift; sourceTree = "<group>"; };
-		A54D8368223B9C7F0076BF10 /* WisdomRouterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterManager.swift; sourceTree = "<group>"; };
-		A5546250224C63970059B693 /* WisdomRouterConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterConfig.swift; sourceTree = "<group>"; };
-		A5601418231A60B700B60C68 /* WisdomRouterAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterAlertVC.swift; sourceTree = "<group>"; };
 		A56E05352241DB3400124526 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		A56E05362241DB3400124526 /* FirstViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 		A56E053B224211B000124526 /* SecundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecundViewController.swift; sourceTree = "<group>"; };
@@ -63,13 +69,10 @@
 		A5B3B7C32248D5A8007B3207 /* EightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EightViewController.swift; sourceTree = "<group>"; };
 		A5DF3ECD234B890100CBB9E8 /* TestShareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestShareModel.swift; sourceTree = "<group>"; };
 		A5E024DB2244818D00BE2C2B /* SixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SixViewController.swift; sourceTree = "<group>"; };
-		A5E024DD2244AB0700BE2C2B /* WisdomRouterResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterResult.swift; sourceTree = "<group>"; };
 		A5E024DF2244BBAF00BE2C2B /* SevenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenViewController.swift; sourceTree = "<group>"; };
-		A5F65A32223BE1C100413D49 /* WisdomRouterRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterRegister.swift; sourceTree = "<group>"; };
 		A5F65A36223CB08D00413D49 /* ThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeViewController.swift; sourceTree = "<group>"; };
 		A5F65A38223CB0E300413D49 /* ThreeTestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeTestModel.swift; sourceTree = "<group>"; };
 		A5F65A3C223F48FD00413D49 /* FourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourViewController.swift; sourceTree = "<group>"; };
-		A5F65A3E223F4A8600413D49 /* WisdomRouterHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WisdomRouterHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +86,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3EC4BF9529DE99DA00F41452 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				3EC4BF9629DE99DA00F41452 /* WisdomRouterKit.swift */,
+				3EC4BF9F29DE99DA00F41452 /* WisdomRouterObjc.h */,
+				3EC4BF9729DE99DA00F41452 /* WisdomRouterObjc.m */,
+				3EC4BF9829DE99DA00F41452 /* WisdomRouterManager.swift */,
+				3EC4BF9929DE99DA00F41452 /* WisdomRouterProtocol.swift */,
+				3EC4BF9A29DE99DA00F41452 /* WisdomRouterConfig.swift */,
+				3EC4BF9B29DE99DA00F41452 /* WisdomRouterResult.swift */,
+				3EC4BF9C29DE99DA00F41452 /* WisdomRouterRegister.swift */,
+				3EC4BF9D29DE99DA00F41452 /* WisdomRouterHandler.swift */,
+				3EC4BF9E29DE99DA00F41452 /* WisdomRouterParam.swift */,
+				3EC4BFA029DE99DA00F41452 /* WisdomRouterAlertVC.swift */,
+				3EC4BFA129DE99DA00F41452 /* WisdomRouterModel.swift */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = "<group>";
+		};
 		A54D8327223A4A0B0076BF10 = {
 			isa = PBXGroup;
 			children = (
+				3EC4BF9529DE99DA00F41452 /* Source */,
 				A54D8332223A4A0B0076BF10 /* WisdomRouterKit */,
 				A54D8331223A4A0B0076BF10 /* Products */,
 			);
@@ -102,7 +126,6 @@
 		A54D8332223A4A0B0076BF10 /* WisdomRouterKit */ = {
 			isa = PBXGroup;
 			children = (
-				A54D8345223A4ADF0076BF10 /* WisdomRouterKit */,
 				A54D8333223A4A0B0076BF10 /* AppDelegate.swift */,
 				A56E05352241DB3400124526 /* FirstViewController.swift */,
 				A56E05362241DB3400124526 /* FirstViewController.xib */,
@@ -123,23 +146,6 @@
 				A54D833A223A4A0C0076BF10 /* Assets.xcassets */,
 				A54D833C223A4A0C0076BF10 /* LaunchScreen.storyboard */,
 				A54D833F223A4A0C0076BF10 /* Info.plist */,
-			);
-			path = WisdomRouterKit;
-			sourceTree = "<group>";
-		};
-		A54D8345223A4ADF0076BF10 /* WisdomRouterKit */ = {
-			isa = PBXGroup;
-			children = (
-				A54D8346223A4B090076BF10 /* WisdomRouterKit.swift */,
-				A5546250224C63970059B693 /* WisdomRouterConfig.swift */,
-				A54D8368223B9C7F0076BF10 /* WisdomRouterManager.swift */,
-				A54D8361223A76AD0076BF10 /* WisdomRouterParam.swift */,
-				A5F65A3E223F4A8600413D49 /* WisdomRouterHandler.swift */,
-				A5F65A32223BE1C100413D49 /* WisdomRouterRegister.swift */,
-				A54D835D223A4E200076BF10 /* WisdomRouterModel.swift */,
-				A5E024DD2244AB0700BE2C2B /* WisdomRouterResult.swift */,
-				A5601418231A60B700B60C68 /* WisdomRouterAlertVC.swift */,
-				A50D5F89234C79BA005EB99E /* WisdomRouterProtocol.swift */,
 			);
 			path = WisdomRouterKit;
 			sourceTree = "<group>";
@@ -176,7 +182,7 @@
 				TargetAttributes = {
 					A54D832F223A4A0B0076BF10 = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1130;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -217,31 +223,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				A56E053C224211B000124526 /* SecundViewController.swift in Sources */,
-				A54D8369223B9C7F0076BF10 /* WisdomRouterManager.swift in Sources */,
-				A5546251224C63970059B693 /* WisdomRouterConfig.swift in Sources */,
+				3EC4BFAC29DE99DA00F41452 /* WisdomRouterModel.swift in Sources */,
 				A5E024DC2244818D00BE2C2B /* SixViewController.swift in Sources */,
 				A5F65A3D223F48FD00413D49 /* FourViewController.swift in Sources */,
-				A54D8347223A4B090076BF10 /* WisdomRouterKit.swift in Sources */,
-				A54D8362223A76AD0076BF10 /* WisdomRouterParam.swift in Sources */,
+				3EC4BFAB29DE99DA00F41452 /* WisdomRouterAlertVC.swift in Sources */,
+				3EC4BFA529DE99DA00F41452 /* WisdomRouterProtocol.swift in Sources */,
 				A5F65A37223CB08D00413D49 /* ThreeViewController.swift in Sources */,
 				A571B1C2234CC629004FB175 /* NineViewController.swift in Sources */,
 				A56E053E224215D900124526 /* SecundThreeViewController.swift in Sources */,
+				3EC4BFA429DE99DA00F41452 /* WisdomRouterManager.swift in Sources */,
+				3EC4BFA729DE99DA00F41452 /* WisdomRouterResult.swift in Sources */,
+				3EC4BFAA29DE99DA00F41452 /* WisdomRouterParam.swift in Sources */,
 				A5E024E02244BBAF00BE2C2B /* SevenViewController.swift in Sources */,
-				A50D5F8A234C79BA005EB99E /* WisdomRouterProtocol.swift in Sources */,
+				3EC4BFA229DE99DA00F41452 /* WisdomRouterKit.swift in Sources */,
 				A5B3B7C42248D5A8007B3207 /* EightViewController.swift in Sources */,
-				A5E024DE2244AB0700BE2C2B /* WisdomRouterResult.swift in Sources */,
 				A5F65A39223CB0E300413D49 /* ThreeTestModel.swift in Sources */,
-				A5F65A3F223F4A8600413D49 /* WisdomRouterHandler.swift in Sources */,
-				A5F65A33223BE1C100413D49 /* WisdomRouterRegister.swift in Sources */,
-				A5601419231A60B700B60C68 /* WisdomRouterAlertVC.swift in Sources */,
 				A54D8367223B7DF00076BF10 /* SecundTestModel.swift in Sources */,
+				3EC4BFA929DE99DA00F41452 /* WisdomRouterHandler.swift in Sources */,
 				A56E05372241DB3400124526 /* FirstViewController.swift in Sources */,
 				A54D8365223B72F30076BF10 /* TestModel.swift in Sources */,
 				A5DF3ECE234B890100CBB9E8 /* TestShareModel.swift in Sources */,
 				A54D8334223A4A0B0076BF10 /* AppDelegate.swift in Sources */,
-				A54D835E223A4E200076BF10 /* WisdomRouterModel.swift in Sources */,
+				3EC4BFA829DE99DA00F41452 /* WisdomRouterRegister.swift in Sources */,
 				A56E054022423FC300124526 /* FiveViewController.swift in Sources */,
 				A54D8360223A571D0076BF10 /* OneViewController.swift in Sources */,
+				3EC4BFA329DE99DA00F41452 /* WisdomRouterObjc.m in Sources */,
+				3EC4BFA629DE99DA00F41452 /* WisdomRouterConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,7 +317,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -365,7 +372,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -379,6 +386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WisdomRouterKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -388,6 +396,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "All-over-the-sky-star.WisdomRouterKitDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -397,6 +406,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WisdomRouterKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
