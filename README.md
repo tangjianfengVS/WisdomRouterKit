@@ -127,6 +127,7 @@
 # 四. Router API introduce/介绍：
 
 【1】.//MARK: - router no argument/无参数，no/无 Handler
+
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame routerHandler:        router handler, succeed
@@ -138,6 +139,7 @@
     
     
 【2】.//MARK: - router has argument/有参数，no/无 Handler
+
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame param:                target VC's property of WisdomRouterParam
@@ -151,6 +153,7 @@
     
     
 【3】.//MARK: - router no argument/无参数，has/有 Handler
+
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame handler:              target VC's handler of WisdomRouterHandler
@@ -164,6 +167,7 @@
     
     
 【4】.//MARK: - router has argument/有参数，has/有 Handler
+
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame param:                target VC's property of WisdomRouterParam
@@ -179,6 +183,7 @@
     
     
 【5】.//MARK: - router parameter list，no/无 Handler
+
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame params:               target VC's property of WisdomRouterParam array
@@ -192,6 +197,7 @@
     
     
 【6】.//MARK: - router no argument/无参数，Handler 数组/list
+
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame handlers:             target VC's property of WisdomRouterHandler array
@@ -205,6 +211,7 @@
     
     
 【7】.//MARK: - router parameter list，Handler 数组/list
+
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame params:               target VC's property of WisdomRouterParam array
