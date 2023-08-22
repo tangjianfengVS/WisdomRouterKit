@@ -234,9 +234,9 @@
          // - parame routerSharedHandler:   router shared handler, succeed
          // - parame routerErrorHandler:    router handler, error
          @objc public class func getShared(sharedClassName: String,
-                                      project: String,
-                                      substituteModelType: WisdomRouterModel.Type,
-                                      routerSharedHandler: RouterSharedHandler,
-                                      routerErrorHandler: RouterErrorHandler)
+                                           project: String,
+                                           substituteModelType: WisdomRouterModel.Type,
+                                           routerSharedHandler: RouterSharedHandler,
+                                           routerErrorHandler: RouterErrorHandler)
 
 
