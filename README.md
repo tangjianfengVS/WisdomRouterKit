@@ -51,11 +51,11 @@
 
   4. Implement WisdomRouterShareProtocol agreement, to ensure early registration for single route objects：
 
-     @objc public protocol WisdomRouterShareProtocol{
+         @objc public protocol WisdomRouterShareProtocol{
     
-         //MARK: - Router Shared Protocol
-         func routerShared() -> WisdomRouterModel;
-     }
+             //MARK: - Router Shared Protocol
+             func routerShared() -> WisdomRouterModel;
+         }
 
      note: Please see demo to use
 
@@ -64,21 +64,21 @@
 
   2. 实现 WisdomRouterRegisterProtocol 协议，保证提前 对 路由对象 进行注册：
 
-     public protocol WisdomRouterRegisterProtocol {
+         public protocol WisdomRouterRegisterProtocol {
     
-         //MARK: - Register Router Protocol
-         static func registerRouter()
-     }
+             //MARK: - Register Router Protocol
+             static func registerRouter()
+         }
 
      note: 使用请看 demo
      
   4. 实现 WisdomRouterShareProtocol 协议，保证提前 对 单列路由对象 进行注册：
      
-     @objc public protocol WisdomRouterShareProtocol{
+         @objc public protocol WisdomRouterShareProtocol{
     
-         //MARK: - Router Shared Protocol
-         func routerShared() -> WisdomRouterModel;
-     }
+             //MARK: - Router Shared Protocol
+             func routerShared() -> WisdomRouterModel;
+         }
 
      note: 使用请看 demo
 
