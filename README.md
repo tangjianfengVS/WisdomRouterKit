@@ -225,4 +225,18 @@
                                         routerResultHandler: RouterResultHandler,
                                         routerErrorHandler: RouterErrorHandler) 
 
+# 五. Router Shared/单列 API introduce/介绍：
+
+         // MARK: - getShared  Gets a global Shared/获取全局单列 Model
+         // - parame sharedClassName:       target shared's class name
+         // - parame project:               target shared's class of project
+         // - parame substituteClassType:   substitute of shared's class info
+         // - parame routerSharedHandler:   router shared handler, succeed
+         // - parame routerErrorHandler:    router handler, error
+         @objc public class func getShared(sharedClassName: String,
+                                      project: String,
+                                      substituteModelType: WisdomRouterModel.Type,
+                                      routerSharedHandler: RouterSharedHandler,
+                                      routerErrorHandler: RouterErrorHandler)
+
 
