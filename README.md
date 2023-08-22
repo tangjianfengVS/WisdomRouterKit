@@ -85,8 +85,9 @@
 
 # 三. Register API introduce/介绍：
 
-【1】.注册 模型数组
+【1】.Register Model array/注册 模型数组
 
+         //MARK: - register VC's attribute array element type, element types require inheritance WisdomRouterModel
          //MARK: - register VC's 属性数组元素类型, 元素类型需要继承 WisdomRouterModel
          // - parame targetVC:        target VC's class name
          // - parame modelListName:   target VC's array name
@@ -96,16 +97,19 @@
                                           modelListName: String,
                                           modelListClass: WisdomRouterModel.Type) -> WisdomRouterResult
 
-         // 继承的模型对象父类
+         // Inherited model object parent class/继承的模型对象父类
          @objcMembers open class WisdomRouterModel: NSObject {
     
              required override public init() {
              }
          }
 
-【2】.注册 回调任务 闭包/Block
+         note： Returned value/返回值 WisdomRouterResult 
 
-         //MARK: - register VC's 属性闭包, 在handler中确认转换类型
+【2】.Register Callback task Block/注册 回调任务 闭包
+
+         //MARK: - register VC's attribute closure, confirm the conversion type in handler
+         //MARK: - register VC's 属性闭包, 在 handler 中确认转换类型
          // - parame targetVC:        target VC's class name
          // - parame handlerName:     target VC's handler name
          // - parame handler:         target VC's handler
@@ -114,8 +118,9 @@
                                           handlerName: String,
                                           handler: @escaping RouterRegisterHandler) -> WisdomRouterResult
 
-         // 闭包/Block 类型
+         // Block/闭包 type/类型
          public typealias RouterRegisterHandler = (Any,UIViewController) -> Void
 
+         note： Returned value/返回值 WisdomRouterResult 
 
 
