@@ -127,6 +127,7 @@
 # 四. Object-c Register API introduce/介绍：（OC private registration interface/OC专用注册接口）
 
 【1】.// Object-c, use 'WisdomRouterKit', need register OC's Class.
+
          // Unlike swift, OC has no namespace.
          // Router is used in Object-c, which requires us to specify project registration for the classes used.
          // Please use the following registration method.
@@ -138,6 +139,7 @@
     
     
 【2】.//MARK: - register OC's Class of Model
+
          // - parame modelClassType:     target Model's class name
          // - parame project:            target VC's class of project
          @objc public class func register_OBJC(modelClassType: WisdomRouterModel.Type, project: String)
@@ -259,3 +261,8 @@
                                            routerErrorHandler: RouterErrorHandler)
 
 
+# WisdomRouterKit
+
+喜欢的朋友，觉得 SDK 写的还不错的朋友，请帮忙推荐给身边的小伙伴们，给颗星，十分感谢！ Like friends, feel that the SDK writing is good friends, please help recommend to the small partners around, to the star, thank you very much!
+
+如果您热衷于iOS/swift开发，是一位热爱学习进步的童鞋，欢迎来一起研究/讨论 开发中遇到的问题。联系QQ：497609288。 请给予我支持，我会继续我的创作。 If you are keen on iOS/swift development, you are a child who loves learning and progress, welcome to study/discuss the problems encountered in the development together. Contact QQ: 497609288. Please give me your support and I will continue my creation.
