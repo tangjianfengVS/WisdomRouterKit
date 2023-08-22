@@ -126,7 +126,7 @@
 
 # 四. Router API introduce/介绍：
 
-         //MARK: - router no argument/无参数，no/无 Handler
+【1】.//MARK: - router no argument/无参数，no/无 Handler
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame routerHandler:        router handler, succeed
@@ -137,7 +137,7 @@
                                         routerErrorHandler: RouterErrorHandler)
     
     
-         //MARK: - router has argument/有参数，no/无 Handler
+【2】.//MARK: - router has argument/有参数，no/无 Handler
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame param:                target VC's property of WisdomRouterParam
@@ -150,7 +150,7 @@
                                         routerErrorHandler: RouterErrorHandler)
     
     
-         //MARK: - router no argument/无参数，has/有 Handler
+【3】.//MARK: - router no argument/无参数，has/有 Handler
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame handler:              target VC's handler of WisdomRouterHandler
@@ -163,7 +163,7 @@
                                         routerErrorHandler: RouterErrorHandler)
     
     
-         //MARK: - router has argument/有参数，has/有 Handler
+【4】.//MARK: - router has argument/有参数，has/有 Handler
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame param:                target VC's property of WisdomRouterParam
@@ -178,7 +178,7 @@
                                         routerErrorHandler: RouterErrorHandler) 
     
     
-         //MARK: - router parameter list，no/无 Handler
+【5】.//MARK: - router parameter list，no/无 Handler
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame params:               target VC's property of WisdomRouterParam array
@@ -191,7 +191,7 @@
                                         routerErrorHandler: RouterErrorHandler) 
     
     
-         //MARK: - router no argument/无参数，Handler 数组/list
+【6】.//MARK: - router no argument/无参数，Handler 数组/list
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame handlers:             target VC's property of WisdomRouterHandler array
@@ -204,7 +204,7 @@
                                         routerErrorHandler: RouterErrorHandler) 
     
     
-         //MARK: - router parameter list，Handler 数组/list
+【7】.//MARK: - router parameter list，Handler 数组/list
          // - parame targetVC:             target VC's class name
          // - parame project:              target VC's class of project
          // - parame params:               target VC's property of WisdomRouterParam array
