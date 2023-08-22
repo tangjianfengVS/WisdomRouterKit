@@ -1,25 +1,13 @@
 # WisdomRouterKit
 
-   address： https://github.com/tangjianfengVS/WisdomRouterKit
+  1. address： https://github.com/tangjianfengVS/WisdomRouterKit
 
-   cocoapods install：pod 'WisdomRouterKit', '0.3.1'
+  2. Swift Version Support： 5.5, 5.6, 5.7
+
+  3. cocoapods install：pod 'WisdomRouterKit', '0.3.1'
 
    
-# 一. 简介：
- 
-  1. 一个强大的iOS路由器SDK。
-
-  2. 针对处理组件化模块之间的调用，WisdomRouterKit可以帮你进行页面之间的属性参数和回调Block传递赋值，并且支持大量化的属性参数和大量化的回调Block传递赋值，无需各个子模块之间进行任何引用，也无需定义公共协议文件进行各个子模块之间关联，真正做到完全解偶，真正做到顶天立地。
-
-  3. 无论项目将来功能或者业务代码快速的扩展叠加，无需人员维护，无需维护成本。
-
-  4. API的优势是调用方便，使用灵活，实现了简洁的追加注册调用，只需要数行注册代码，我们就可以展开接下来的Router功能。
-
-  5. WisdomRouterKit SDK是纯swift代码编写，保证了SDK高效性能，支持属性赋值过程中的异常抓取，帮助开发快速定位问题。
-
-  6. OC项目的小伙伴们也不要愁，WisdomRouterKit SDK完成支持OC项目调用,尽管pod集成就是了。
-
-  English introduction：
+# 一. intro/简介：
 
   1. A powerful iOS router SDK.
 
@@ -32,3 +20,23 @@
   5. WisdomRouterKit SDK is a pure swift code compilation, which ensures the efficient performance of SDK, supports exception fetching in the process of attribute assignment, and helps develop rapid location problems.
 
   6. For those of you who are working on OC projects, the WisdomRouterKit SDK has been developed to support support for OC project calls, even though pod integration is the way to go.
+
+ 【Chinese】
+  1. 一个强大的iOS路由器SDK。
+
+  2. 针对处理组件化模块之间的调用，WisdomRouterKit 可以帮你进行页面之间的属性参数和回调Block传递赋值，并且支持大量化的属性参数和大量化的回调Block传递赋值，无需各个子模块之间进行任何引用，也无需定义公共协议文件进行各个子模块之间关联，真正做到完全解偶，真正做到顶天立地。
+
+  3. 无论项目将来功能或者业务代码快速的扩展叠加，无需人员维护，无需维护成本。
+
+  4. API的优势是调用方便，使用灵活，实现了简洁的追加注册调用，只需要数行注册代码，我们就可以展开接下来的 Router 功能。
+
+  5. WisdomRouterKit SDK是纯swift代码编写，保证了SDK高效性能，支持属性赋值过程中的异常抓取，帮助开发快速定位问题。
+
+  6. OC 项目的小伙伴们也不要愁，WisdomRouterKit SDK完成支持OC项目调用，尽管pod集成就是了。
+
+  
+# 二. API introduce/介绍：
+
+
+
+
