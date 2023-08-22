@@ -41,11 +41,11 @@
 
   2. Implement WisdomRouterRegisterProtocol agreement, guarantee in advance registration for route objects：
 
-     public protocol WisdomRouterRegisterProtocol {
+       public protocol WisdomRouterRegisterProtocol {
     
-         //MARK: - Register Router Protocol
-         static func registerRouter()
-     }
+           //MARK: - Register Router Protocol
+           static func registerRouter()
+       }
 
      note: Please see demo to use
 
