@@ -124,7 +124,26 @@
          note： Returned value/返回值 WisdomRouterResult 
 
 
-# 四. Router API introduce/介绍：
+# 四. Object-c Register API introduce/介绍：（OC private registration interface/OC专用注册接口）
+
+【1】.// Object-c, use 'WisdomRouterKit', need register OC's Class.
+         // Unlike swift, OC has no namespace.
+         // Router is used in Object-c, which requires us to specify project registration for the classes used.
+         // Please use the following registration method.
+    
+         //MARK: - register OC's Class of VC
+         // - parame vcClassType:        target VC's class name
+         // - parame project:            target VC's class of project
+         @objc public class func register_OBJC(vcClassType: UIViewController.Type, project: String)
+    
+    
+【2】.//MARK: - register OC's Class of Model
+         // - parame modelClassType:     target Model's class name
+         // - parame project:            target VC's class of project
+         @objc public class func register_OBJC(modelClassType: WisdomRouterModel.Type, project: String)
+         
+
+# 五. Router API introduce/介绍：
 
 【1】.//MARK: - router no argument/无参数，no/无 Handler
 
@@ -225,7 +244,7 @@
                                         routerResultHandler: RouterResultHandler,
                                         routerErrorHandler: RouterErrorHandler) 
 
-# 五. Router Shared/单列 API introduce/介绍：
+# 六. Router Shared/单列 API introduce/介绍：
 
          // MARK: - getShared  Gets a global Shared/获取全局单列 Model
          // - parame sharedClassName:       target shared's class name
